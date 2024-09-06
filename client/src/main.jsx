@@ -9,7 +9,7 @@ import {
   getCategories,
   getTransaction,
   getTransactions,
-  // getBudget,
+  getBudget,
   getBudgets,
 } from "./services/request";
 
@@ -21,6 +21,7 @@ import CategoryDetails from "./pages/CategoryDetails";
 import Transactions from "./pages/Transactions";
 import TransactionDetails from "./pages/TransactionDetails";
 import Budgets from "./pages/Budgets";
+import BudgetDetails from "./pages/BudgetDetails";
 
 const router = createBrowserRouter([
   {
@@ -75,13 +76,13 @@ const router = createBrowserRouter([
           budgets: await getBudgets(),
         }),
       },
-      // {
-      //   path: "/budget/:id",
-      //   element: <BudgetDetails />,
-      //   loader: async ({ params }) => ({
-      //     budget: await getBudget(params.id),
-      //   }),
-      // },
+      {
+        path: "/budget/:id",
+        element: <BudgetDetails />,
+        loader: async ({ params }) => ({
+          budget: await getBudget(params.id),
+        }),
+      },
     ],
   },
 ]);
