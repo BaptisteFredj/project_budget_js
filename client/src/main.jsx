@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   getUser,
   getUsers,
-  // getCategory,
+  getCategory,
   getCategories,
   // getTransaction,
   // getTransactions,
@@ -17,6 +17,7 @@ import App from "./App";
 import Users from "./pages/Users";
 import UserDetails from "./pages/UserDetails";
 import Categories from "./pages/Categories";
+import CategoryDetails from "./pages/CategoryDetails";
 
 const router = createBrowserRouter([
   {
@@ -43,13 +44,13 @@ const router = createBrowserRouter([
           categories: await getCategories(),
         }),
       },
-      // {
-      //   path: "/category/:id",
-      //   element: <Category />,
-      //   loader: async () => ({
-      //     user: await getCategory(),
-      //   }),
-      // },
+      {
+        path: "/category/:id",
+        element: <CategoryDetails />,
+        loader: async ({ params }) => ({
+          category: await getCategory(params.id),
+        }),
+      },
     ],
   },
 ]);

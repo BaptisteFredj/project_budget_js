@@ -4,10 +4,9 @@ import "./App.css";
 
 function App() {
   return (
-    <>
-      <h1>Hello Outlet</h1>
+    <main>
       <Outlet />
-    </>
+    </main>
   );
 }
 
