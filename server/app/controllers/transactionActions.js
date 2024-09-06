@@ -27,7 +27,7 @@ const add = async (req, res, next) => {
     const result = await tables.transaction.create(req.body);
     res
       .status(201)
-      .send(`Utilisateur ajouté avec succès. ID : ${result.insertId}`);
+      .send(`Transaction ajoutée avec succès. ID : ${result.insertId}`);
   } catch (error) {
     next(error);
   }
