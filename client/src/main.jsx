@@ -8,7 +8,7 @@ import {
   getCategory,
   getCategories,
   // getTransaction,
-  // getTransactions,
+  getTransactions,
   // getBudget,
   // getBudgets,
 } from "./services/request";
@@ -18,6 +18,7 @@ import Users from "./pages/Users";
 import UserDetails from "./pages/UserDetails";
 import Categories from "./pages/Categories";
 import CategoryDetails from "./pages/CategoryDetails";
+import Transactions from "./pages/Transactions";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,20 @@ const router = createBrowserRouter([
           category: await getCategory(params.id),
         }),
       },
+      {
+        path: "/transactions",
+        element: <Transactions />,
+        loader: async () => ({
+          transactions: await getTransactions(),
+        }),
+      },
+      // {
+      //   path: "/transaction/:id",
+      //   element: <TransactionDetails />,
+      //   loader: async ({ params }) => ({
+      //     category: await getTransaction(params.id),
+      //   }),
+      // },
     ],
   },
 ]);
