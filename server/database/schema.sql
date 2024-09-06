@@ -49,6 +49,7 @@ INSERT INTO transaction (date, amount, type, category_id) VALUES
 
 create table budget (
   id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  name VARCHAR(255),
   amount INT,
   start_date DATE,
   end_date DATE,
@@ -58,9 +59,9 @@ create table budget (
   FOREIGN KEY (category_id) REFERENCES category(id)
 );
 
-INSERT INTO budget (amount, start_date, end_date, category_id, user_id) VALUES
-(500, '2023-09-01', '2023-09-30', 1, 1),
-(1500, '2023-09-01', '2023-09-30', 2, 1),
-(300, '2023-09-01', '2023-09-30', 3, 2),
-(400, '2023-09-01', '2023-09-30', 4, 2),
-(1000, '2023-09-01', '2023-09-30', 5, 3);
+INSERT INTO budget (name, amount, start_date, end_date, category_id, user_id) VALUES
+('course', 500, '2023-09-01', '2023-09-30', 1, 1),
+('bar', 1500, '2023-09-01', '2023-09-30', 2, 1),
+('vélo', 300, '2023-09-01', '2023-09-30', 3, 2),
+('piscine', 400, '2023-09-01', '2023-09-30', 4, 2),
+('restaurant', 1000, '2023-09-01', '2023-09-30', 5, 3);
