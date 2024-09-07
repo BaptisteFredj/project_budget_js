@@ -8,6 +8,7 @@ class TransactionRepository extends AbstractRepository {
   async readAll() {
     const [rows] = await this.database.query(`SELECT 
   transaction.id,
+  transaction.name,
   transaction.amount,
   transaction.date,
   transaction.type,
@@ -23,6 +24,7 @@ JOIN
   async read(id) {
     const [rows] = await this.database.query(
       `SELECT 
+  transaction.name,
   transaction.amount,
   transaction.date,
   transaction.type,
