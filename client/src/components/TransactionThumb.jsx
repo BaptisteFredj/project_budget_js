@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 export default function TransactionThumb({ transaction }) {
   return (
     <ul>
+      <li>Nom de la transacton : {transaction.name}</li>
       <li>Montant de la transaction : {transaction.amount}</li>
       <li>Date de la transaction : {transaction.date}</li>
       <li>Type de transaction : {transaction.type}</li>
@@ -17,5 +18,6 @@ TransactionThumb.propTypes = {
     date: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     category_name: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   }).isRequired,
 };

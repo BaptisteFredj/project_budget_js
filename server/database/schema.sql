@@ -31,7 +31,7 @@ create table user (
   
   create table transaction (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    name VARCHAR(100),
+    name VARCHAR(255),
     date DATE,
     amount INT,
     type VARCHAR(255) NOT NULL,
@@ -39,7 +39,7 @@ create table user (
     FOREIGN KEY (category_id) REFERENCES category(id)
   );
   
-  INSERT INTO transaction (date, amount, type, category_id) VALUES
+  INSERT INTO transaction (name, date, amount, type, category_id) VALUES
   ('kebab', '2023-08-01', 50, 'expense', 1),
   ('mcdo', '2023-08-05', 1200, 'expense', 2),
   ('bk', '2023-08-12', 300, 'expense', 3),
