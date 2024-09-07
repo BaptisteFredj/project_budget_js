@@ -54,7 +54,7 @@ create table user (
     amount INT,
     start_date DATE,
     end_date DATE,
-    category_id INT NOT NULL,
+    category_id INT,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (category_id) REFERENCES category(id)
