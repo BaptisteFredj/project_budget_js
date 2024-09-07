@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import frenchType from "../utils/functions";
 
 export default function TransactionThumb({ transaction }) {
   return (
@@ -6,7 +7,7 @@ export default function TransactionThumb({ transaction }) {
       <li>Nom de la transacton : {transaction.name}</li>
       <li>Montant de la transaction : {transaction.amount}</li>
       <li>Date de la transaction : {transaction.date}</li>
-      <li>Type de transaction : {transaction.type}</li>
+      <li>Type de transaction : {frenchType(transaction.type)}</li>
       <li>Catégorie de la transaction : {transaction.category_name}</li>
     </ul>
   );
