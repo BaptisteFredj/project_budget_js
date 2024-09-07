@@ -6,7 +6,7 @@ function Users() {
 
   return (
     <>
-      <h1>Nos utilisateurs</h1>
+      <h1>Mes budgets</h1>
       {budgets.map((budget) => (
         <BudgetThumb budget={budget} key={budget.id} />
       ))}

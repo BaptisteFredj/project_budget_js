@@ -6,7 +6,7 @@ function Users() {
 
   return (
     <>
-      <h1>Nos catégories</h1>
+      <h1>Mes catégories</h1>
       {categories.map((category) => (
         <CategoryThumb category={category} key={category.id} />
       ))}

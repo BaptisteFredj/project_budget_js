@@ -3,8 +3,6 @@ import ReactDOM from "react-dom/client";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
-  getUser,
-  getUsers,
   getCategory,
   getCategories,
   getTransaction,
@@ -14,8 +12,6 @@ import {
 } from "./services/request";
 
 import App from "./App";
-import Users from "./pages/Users";
-import UserDetails from "./pages/UserDetails";
 import Categories from "./pages/Categories";
 import CategoryDetails from "./pages/CategoryDetails";
 import Transactions from "./pages/Transactions";
@@ -27,20 +23,6 @@ const router = createBrowserRouter([
   {
     element: <App />,
     children: [
-      {
-        path: "/users",
-        element: <Users />,
-        loader: async () => ({
-          users: await getUsers(),
-        }),
-      },
-      {
-        path: "/user/:id",
-        element: <UserDetails />,
-        loader: async ({ params }) => ({
-          user: await getUser(params.id),
-        }),
-      },
       {
         path: "/categories",
         element: <Categories />,

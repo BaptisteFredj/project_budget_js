@@ -2,17 +2,9 @@ const express = require("express");
 
 const router = express.Router();
 
-const user = require("./controllers/userActions");
 const category = require("./controllers/categoryActions");
 const transaction = require("./controllers/transactionActions");
 const budget = require("./controllers/budgetActions");
-
-// User routes
-router.get("/users", user.browse);
-router.get("/user/:id", user.read);
-router.post("/user", user.add);
-router.put("/user/:id", user.edit);
-router.delete("/user/:id", user.destroy);
 
 // Category routes
 router.get("/categories", category.browse);

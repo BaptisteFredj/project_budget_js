@@ -6,7 +6,7 @@ function Transactions() {
 
   return (
     <>
-      <h1>Nos catégories</h1>
+      <h1>Mes transactions</h1>
       {transactions.map((transaction) => (
         <TransactionThumb transaction={transaction} key={transaction.id} />
       ))}

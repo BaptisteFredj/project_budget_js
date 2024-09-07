@@ -1,6 +1,5 @@
 // Import the repository modules responsible for handling data operations on the tables
 
-const UserRepository = require("./models/UserRepository");
 const CategoryRepository = require("./models/CategoryRepository");
 const TransactionRepository = require("./models/TransactionRepository");
 const BudgetRepository = require("./models/BudgetRepository");
@@ -13,7 +12,6 @@ const tables = {};
 /* ************************************************************************* */
 
 // Register each repository as data access point for its table
-tables.user = new UserRepository();
 tables.category = new CategoryRepository();
 tables.transaction = new TransactionRepository();
 tables.budget = new BudgetRepository();
