@@ -38,7 +38,6 @@ WHERE
 `,
       [id]
     );
-    console.info(rows[0]);
     return rows[0];
   }
 

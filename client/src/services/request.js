@@ -14,7 +14,7 @@ export function getCategories() {
 // Get a category from it's ID
 export function getCategory(id) {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/category/${id}`)
+    .get(`${import.meta.env.VITE_API_URL}/api/categories/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
       console.error(error);
@@ -36,7 +36,7 @@ export function getTransactions() {
 // Get a transaction from it's ID
 export function getTransaction(id) {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/transaction/${id}`)
+    .get(`${import.meta.env.VITE_API_URL}/api/transactions/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
       console.error(error);
@@ -58,7 +58,7 @@ export function getBudgets() {
 // Get a budget from it's ID
 export function getBudget(id) {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/budget/${id}`)
+    .get(`${import.meta.env.VITE_API_URL}/api/budgets/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
       console.error(error);

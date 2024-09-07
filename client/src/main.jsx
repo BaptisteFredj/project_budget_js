@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         }),
       },
       {
-        path: "/category/:id",
+        path: "/categories/:id",
         element: <CategoryDetails />,
         loader: async ({ params }) => ({
           category: await getCategory(params.id),
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         }),
       },
       {
-        path: "/transaction/:id",
+        path: "/transactions/:id",
         element: <TransactionDetails />,
         loader: async ({ params }) => ({
           transaction: await getTransaction(params.id),
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         }),
       },
       {
-        path: "/budget/:id",
+        path: "/budgets/:id",
         element: <BudgetDetails />,
         loader: async ({ params }) => ({
           budget: await getBudget(params.id),
