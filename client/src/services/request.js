@@ -1,9 +1,11 @@
 import axios from "axios";
 
+const key = import.meta.env.VITE_API_URL;
+
 // Get all categories from DB
 export function getCategories() {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/categories`)
+    .get(`${key}/api/categories`)
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
@@ -14,7 +16,7 @@ export function getCategories() {
 // Get a category from it's ID
 export function getCategory(id) {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/categories/${id}`)
+    .get(`${key}/api/categories/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
       console.error(error);
@@ -25,7 +27,7 @@ export function getCategory(id) {
 // Get all transactions from DB
 export function getTransactions() {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/transactions`)
+    .get(`${key}/api/transactions`)
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
@@ -36,7 +38,7 @@ export function getTransactions() {
 // Get a transaction from it's ID
 export function getTransaction(id) {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/transactions/${id}`)
+    .get(`${key}/api/transactions/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
       console.error(error);
@@ -47,7 +49,7 @@ export function getTransaction(id) {
 // Get all budgets from DB
 export function getBudgets() {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/budgets`)
+    .get(`${key}/api/budgets`)
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
@@ -58,7 +60,7 @@ export function getBudgets() {
 // Get a budget from it's ID
 export function getBudget(id) {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/budgets/${id}`)
+    .get(`${key}/api/budgets/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
       console.error(error);
