@@ -6,14 +6,34 @@ class TransactionRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT 
+  transaction.id,
+  transaction.name,
+  transaction.amount,
+  transaction.date,
+  transaction.type,
+  category.name AS category_name
+FROM 
+  ${this.table}
+JOIN 
+  category ON transaction.category_id = category.id;
+`);
     return rows;
   }
 
   async read(id) {
     const [rows] = await this.database.query(
-      `
-      select * from ${this.table} where id = ?`,
+      `SELECT 
+  transaction.name,
+  transaction.amount,
+  transaction.date,
+  transaction.type,
+  category.name AS category_name
+FROM 
+  ${this.table}
+JOIN 
+  category ON transaction.category_id = category.id
+  WHERE transaction.id = ?;`,
       [id]
     );
     return rows[0];

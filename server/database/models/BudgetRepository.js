@@ -6,14 +6,36 @@ class BudgetRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT 
+  budget.id,
+  budget.name,
+  budget.amount,
+  budget.start_date,
+  budget.end_date,
+  category.name AS category_name
+FROM 
+  ${this.table}
+JOIN 
+  category ON budget.category_id = category.id;
+`);
     return rows;
   }
 
   async read(id) {
     const [rows] = await this.database.query(
-      `
-      select * from ${this.table} where id = ?`,
+      `SELECT 
+  budget.name,
+  budget.amount,
+  budget.start_date,
+  budget.end_date,
+  category.name AS category_name
+FROM 
+  ${this.table}
+JOIN 
+  category ON budget.category_id = category.id
+WHERE
+  budget.id = ?;
+`,
       [id]
     );
     return rows[0];
