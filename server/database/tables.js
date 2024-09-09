@@ -3,6 +3,7 @@
 const CategoryRepository = require("./models/CategoryRepository");
 const TransactionRepository = require("./models/TransactionRepository");
 const BudgetRepository = require("./models/BudgetRepository");
+const UserRepository = require("./models/UserRepository");
 
 // Create an empty object to hold data repositories for different tables
 const tables = {};
@@ -15,6 +16,7 @@ const tables = {};
 tables.category = new CategoryRepository();
 tables.transaction = new TransactionRepository();
 tables.budget = new BudgetRepository();
+tables.user = new UserRepository();
 
 /* ************************************************************************* */
 
