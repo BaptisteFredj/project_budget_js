@@ -67,3 +67,14 @@ export function getBudget(id) {
       return [];
     });
 }
+
+// Login function
+export function login(email, password) {
+  return axios
+    .post(`${key}/api/login`, { email, password })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
+}
