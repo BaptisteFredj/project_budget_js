@@ -15,7 +15,7 @@ class TransactionRepository extends AbstractRepository {
   category.name AS category_name
 FROM 
   ${this.table}
-JOIN 
+LEFT JOIN 
   category ON transaction.category_id = category.id;
 `);
     return rows;
