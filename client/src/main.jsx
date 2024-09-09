@@ -18,11 +18,21 @@ import Transactions from "./pages/Transactions";
 import TransactionDetails from "./pages/TransactionDetails";
 import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
     element: <App />,
     children: [
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
       {
         path: "/categories",
         element: <Categories />,
