@@ -39,9 +39,6 @@ function Register() {
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 201) {
         navigate("/login");
-      } else {
-        // Log des détails de la réponse en cas d'échec
-        console.info(response);
       }
     } catch (err) {
       console.error(err);
