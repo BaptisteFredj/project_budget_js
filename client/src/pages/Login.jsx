@@ -33,10 +33,10 @@ function Login() {
         <input ref={emailRef} type="email" id="email" />
       </div>
       <div>
-        <label htmlFor="password">password</label>{" "}
+        <label htmlFor="password">mot de passe</label>{" "}
         <input type="password" id="password" ref={passwordRef} />
       </div>
-      <button type="submit">Send</button>
+      <button type="submit">Valider</button>
     </form>
   );
 }
