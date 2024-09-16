@@ -25,7 +25,7 @@ import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import CategoryForm from "./components/CategoryForm";
+import CategoryForm from "./pages/CategoryForm";
 
 const router = createBrowserRouter([
   {
