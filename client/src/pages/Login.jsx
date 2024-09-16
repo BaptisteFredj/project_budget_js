@@ -22,7 +22,7 @@ function Login() {
       setUser(user);
       navigate(`/transactions`);
     } catch (err) {
-      console.error(err);
+      alert("Identifiants incorrects");
     }
   };
 
