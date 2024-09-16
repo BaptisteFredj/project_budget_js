@@ -29,7 +29,7 @@ function CategoryForm() {
           value={name}
           onChange={handleNameChange}
         />
-        <label htmlFor="name">Icone de la catégorie</label>
+        <label htmlFor="icon">Icone de la catégorie</label>
         <input
           type="text"
           id="icon"
@@ -38,7 +38,7 @@ function CategoryForm() {
           value={icon}
           onChange={handleIconChange}
         />
-        <label htmlFor="name">ID du créateur de la catégorie</label>
+        <label htmlFor="userId">ID du créateur de la catégorie</label>
         <input
           type="text"
           id="userId"
