@@ -34,7 +34,7 @@ create table user (
     amount INT,
     type VARCHAR(255) NOT NULL,
     category_id INT,
-    FOREIGN KEY (category_id) REFERENCES category(id)
+    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL
   );
   
   INSERT INTO transaction (name, date, amount, type, category_id) VALUES
@@ -55,7 +55,7 @@ create table user (
     category_id INT,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(id),
-    FOREIGN KEY (category_id) REFERENCES category(id)
+    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL
   );
   
   INSERT INTO budget (name, amount, start_date, end_date, category_id, user_id) VALUES
