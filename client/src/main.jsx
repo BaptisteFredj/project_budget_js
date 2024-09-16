@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import {
   getCategory,
   getCategories,
@@ -9,6 +13,7 @@ import {
   getTransactions,
   getBudget,
   getBudgets,
+  addCategory,
 } from "./services/request";
 
 import App from "./App";
@@ -39,6 +44,14 @@ const router = createBrowserRouter([
         loader: async () => ({
           categories: await getCategories(),
         }),
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          const name = formData.get("name");
+          const icon = formData.get("icon");
+          const userId = formData.get("userId");
+          addCategory(name, icon, userId);
+          return redirect(`/categories`);
+        },
       },
       {
         path: "/categories/:id",

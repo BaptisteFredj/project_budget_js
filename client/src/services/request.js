@@ -24,6 +24,17 @@ export function getCategory(id) {
     });
 }
 
+// Create a category
+export function addCategory(name, icon, userId) {
+  return axios
+    .post(`${key}/api/categories`, { name, icon, user_id: userId })
+    .then((response) => console.info(response))
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+}
+
 // Get all transactions from DB
 export function getTransactions() {
   return axios
