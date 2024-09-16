@@ -28,7 +28,7 @@ export function getCategory(id) {
 export function addCategory(name, icon, userId) {
   return axios
     .post(`${key}/api/categories`, { name, icon, user_id: userId })
-    .then((response) => console.info(response))
+    .then((response) => response.data)
     .catch((error) => {
       console.error(error);
       return [];
