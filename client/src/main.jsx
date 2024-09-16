@@ -25,6 +25,7 @@ import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import CategoryForm from "./components/CategoryForm";
 
 const router = createBrowserRouter([
   {
@@ -44,14 +45,6 @@ const router = createBrowserRouter([
         loader: async () => ({
           categories: await getCategories(),
         }),
-        action: async ({ request }) => {
-          const formData = await request.formData();
-          const name = formData.get("name");
-          const icon = formData.get("icon");
-          const userId = formData.get("userId");
-          addCategory(name, icon, userId);
-          return redirect(`/categories`);
-        },
       },
       {
         path: "/categories/:id",
@@ -59,6 +52,18 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           category: await getCategory(params.id),
         }),
+      },
+      {
+        path: "/categories_form",
+        element: <CategoryForm />,
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          const name = formData.get("name");
+          const icon = formData.get("icon");
+          const userId = formData.get("userId");
+          await addCategory(name, icon, userId);
+          return redirect(`/categories`);
+        },
       },
       {
         path: "/transactions",
