@@ -74,7 +74,6 @@ export function login(email, password) {
     .post(`${key}/api/login`, { email, password })
     .then((response) => response.data)
     .catch((error) => {
-      console.error(error);
       throw error;
     });
 }

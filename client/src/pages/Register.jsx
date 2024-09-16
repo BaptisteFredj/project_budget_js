@@ -39,6 +39,7 @@ function Register() {
       }
     } catch (err) {
       console.error(err);
+      alert("Il y a une erreur, veuillez réessayer plus tard");
     }
   };
 
