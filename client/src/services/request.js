@@ -77,3 +77,13 @@ export function login(email, password) {
       throw error;
     });
 }
+
+// Register function
+export function register(email, password, createdAt) {
+  return axios
+    .post(`${key}/api/users`, { email, password, created_at: createdAt })
+    .then((response) => response)
+    .catch((error) => {
+      throw error;
+    });
+}

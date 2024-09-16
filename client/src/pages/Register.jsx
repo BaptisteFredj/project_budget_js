@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { register } from "../services/request";
 
 function Register() {
   const emailRef = useRef();
@@ -21,24 +22,16 @@ function Register() {
     event.preventDefault();
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/users`,
-        {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: emailRef.current.value,
-            password,
-            created_at: new Date().toISOString().split("T")[0],
-          }),
-        }
+      const createdAt = new Date().toISOString().split("T")[0];
+      const response = await register(
+        emailRef.current.value,
+        password,
+        createdAt
       );
-
       if (response.status === 201) {
         navigate("/login");
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
       alert("Il y a une erreur, veuillez réessayer plus tard");
     }
   };
