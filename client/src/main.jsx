@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import axios from "axios";
 
 import {
   createBrowserRouter,
@@ -26,6 +27,9 @@ import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import CategoryForm from "./pages/CategoryForm";
+import CategoryEdit from "./pages/CategoryEdit";
+
+const key = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
   {
@@ -52,6 +56,32 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           category: await getCategory(params.id),
         }),
+      },
+      {
+        path: "/categories/:id/edit",
+        element: <CategoryEdit />,
+        loader: async ({ params }) => ({
+          category: await getCategory(params.id),
+        }),
+        action: async ({ request, params }) => {
+          const formData = await request.formData();
+
+          switch (request.method.toLocaleLowerCase()) {
+            case "put": {
+              await axios.put(`${key}/api/categories/${params.id}`, {
+                name: formData.get("name"),
+                icon: formData.get("icon"),
+              });
+              return redirect(`/categories/${params.id}`);
+            }
+            case "delete": {
+              await axios.delete(`${key}/api/categories/${params.id}`);
+              return redirect("/categories");
+            }
+            default:
+              throw new Response("", { status: 405 });
+          }
+        },
       },
       {
         path: "/categories_form",
