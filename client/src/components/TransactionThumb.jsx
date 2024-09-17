@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { PropTypes } from "prop-types";
 import frenchType from "../utils/functions";
 
 export default function TransactionThumb({ transaction }) {
