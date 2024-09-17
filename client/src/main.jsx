@@ -29,7 +29,7 @@ import Login from "./pages/Login";
 import CategoryForm from "./pages/CategoryForm";
 import CategoryEdit from "./pages/CategoryEdit";
 
-const key = import.meta.env.VITE_API_URL;
+const url = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
   {
@@ -68,14 +68,14 @@ const router = createBrowserRouter([
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              await axios.put(`${key}/api/categories/${params.id}`, {
+              await axios.put(`${url}/api/categories/${params.id}`, {
                 name: formData.get("name"),
                 icon: formData.get("icon"),
               });
               return redirect(`/categories/${params.id}`);
             }
             case "delete": {
-              await axios.delete(`${key}/api/categories/${params.id}`);
+              await axios.delete(`${url}/api/categories/${params.id}`);
               return redirect("/categories");
             }
             default:
