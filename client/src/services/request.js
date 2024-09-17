@@ -79,6 +79,17 @@ export function getTransaction(id) {
     });
 }
 
+// Create a transaction
+export function addTransaction(name, amount, date, type, category) {
+  return axios
+    .post(`${url}/api/categories`, { name, amount, date, type, category })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+}
+
 // Get all budgets from DB
 export function getBudgets() {
   return axios

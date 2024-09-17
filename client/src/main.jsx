@@ -16,19 +16,21 @@ import {
   addCategory,
   editCategory,
   deleteCategory,
+  addTransaction,
 } from "./services/request";
 
 import App from "./App";
 import Categories from "./pages/Categories";
 import CategoryDetails from "./pages/CategoryDetails";
+import CategoryForm from "./pages/CategoryForm";
+import CategoryEdit from "./pages/CategoryEdit";
 import Transactions from "./pages/Transactions";
 import TransactionDetails from "./pages/TransactionDetails";
+import TransactionForm from "./pages/TransactionForm";
 import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import CategoryForm from "./pages/CategoryForm";
-import CategoryEdit from "./pages/CategoryEdit";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +107,23 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           transaction: await getTransaction(params.id),
         }),
+      },
+      {
+        path: "/transactions_form",
+        element: <TransactionForm />,
+        loader: async () => ({
+          categories: await getCategories(),
+        }),
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          const name = formData.get("name");
+          const amount = formData.get("amount");
+          const date = formData.get("date");
+          const type = formData.get("type");
+          const category = formData.get("category");
+          await addTransaction(name, amount, date, type, category);
+          return redirect(`/transactions`);
+        },
       },
       {
         path: "/budgets",

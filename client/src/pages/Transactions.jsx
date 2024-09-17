@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import TransactionThumb from "../components/TransactionThumb";
 
 function Transactions() {
@@ -10,6 +10,7 @@ function Transactions() {
       {transactions.map((transaction) => (
         <TransactionThumb transaction={transaction} key={transaction.id} />
       ))}
+      <Link to="/transactions_form">Ajouter une transaction</Link>
     </>
   );
 }

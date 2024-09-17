@@ -18,7 +18,7 @@ TransactionThumb.propTypes = {
     amount: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    category_name: PropTypes.string.isRequired,
+    category_name: PropTypes.string,
     name: PropTypes.string.isRequired,
   }).isRequired,
 };
