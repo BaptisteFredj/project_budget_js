@@ -79,9 +79,9 @@ export function login(email, password) {
 }
 
 // Register function
-export function register(email, password, createdAt) {
+export function register(email, password) {
   return axios
-    .post(`${key}/api/users`, { email, password, created_at: createdAt })
+    .post(`${key}/api/users`, { email, password })
     .then((response) => response)
     .catch((error) => {
       throw error;

@@ -23,6 +23,7 @@ const read = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
+  req.body.created_at = new Date();
   try {
     const result = await tables.user.create(req.body);
     res
