@@ -6,14 +6,14 @@ class CategoryRepository extends AbstractRepository {
   }
 
   async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
     return rows;
   }
 
   async read(id) {
     const [rows] = await this.database.query(
       `
-      select * from ${this.table} where id = ?`,
+      SELECT * FROM ${this.table} WHERE id = ?`,
       [id]
     );
     return rows[0];

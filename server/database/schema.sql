@@ -1,16 +1,14 @@
 create table user (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    username VARCHAR(100),
     email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    avatar VARCHAR(255),
+    hashed_password VARCHAR(255) NOT NULL,
     created_at DATE
   );
   
-  INSERT INTO user (username, email, password, avatar, created_at) VALUES
-  ('john_doe', 'john@example.com', 'password123', 'avatar1.png', '2023-01-15'),
-  ('jane_smith', 'jane@example.com', 'securePass!', 'avatar2.png', '2023-02-10'),
-  ('alice_jones', 'alice@example.com', 'alice2024', 'avatar3.png', '2023-03-20');
+  INSERT INTO user (email, hashed_password, created_at) VALUES
+  ('john@example.com', 'nothashed', '2023-01-15'),
+  ('jane@example.com', 'nothashed', '2023-02-10'),
+  ('alice@example.com', 'nothashed', '2023-03-20');
   
   
   create table category (
