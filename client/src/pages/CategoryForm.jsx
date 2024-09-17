@@ -10,7 +10,7 @@ function CategoryForm() {
           type="text"
           id="name"
           name="name"
-          placeholder="Nom de de la catégorie"
+          placeholder="Nom de la catégorie"
         />
         <label htmlFor="icon">Icone de la catégorie</label>
         <input type="text" id="icon" name="icon" placeholder="Icône" />
