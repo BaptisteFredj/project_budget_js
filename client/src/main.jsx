@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import axios from "axios";
 
 import {
   createBrowserRouter,
@@ -15,6 +14,8 @@ import {
   getBudget,
   getBudgets,
   addCategory,
+  editCategory,
+  deleteCategory,
 } from "./services/request";
 
 import App from "./App";
@@ -28,8 +29,6 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import CategoryForm from "./pages/CategoryForm";
 import CategoryEdit from "./pages/CategoryEdit";
-
-const url = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
   {
@@ -68,14 +67,13 @@ const router = createBrowserRouter([
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              await axios.put(`${url}/api/categories/${params.id}`, {
-                name: formData.get("name"),
-                icon: formData.get("icon"),
-              });
+              const categoryName = formData.get("name");
+              const categoryIcon = formData.get("icon");
+              await editCategory(categoryName, categoryIcon, params.id);
               return redirect(`/categories/${params.id}`);
             }
             case "delete": {
-              await axios.delete(`${url}/api/categories/${params.id}`);
+              await deleteCategory(params.id);
               return redirect("/categories");
             }
             default:

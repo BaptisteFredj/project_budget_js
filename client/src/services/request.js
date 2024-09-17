@@ -35,6 +35,28 @@ export function addCategory(name, icon, userId) {
     });
 }
 
+// Edit a category
+export function editCategory(name, icon, id) {
+  return axios
+    .put(`${url}/api/categories/${id}`, { name, icon, user_id: id })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+}
+
+// Delete a category
+export function deleteCategory(id) {
+  return axios
+    .delete(`${url}/api/categories/${id}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+}
+
 // Get all transactions from DB
 export function getTransactions() {
   return axios
