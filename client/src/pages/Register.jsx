@@ -22,12 +22,7 @@ function Register() {
     event.preventDefault();
 
     try {
-      const createdAt = new Date().toISOString().split("T")[0];
-      const response = await register(
-        emailRef.current.value,
-        password,
-        createdAt
-      );
+      const response = await register(emailRef.current.value, password);
       if (response.status === 201) {
         navigate("/login");
       }
