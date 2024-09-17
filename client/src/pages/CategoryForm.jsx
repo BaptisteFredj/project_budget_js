@@ -4,16 +4,12 @@ import { Form } from "react-router-dom";
 function CategoryForm() {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
-  const [userId, setUserId] = useState("");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
   const handleIconChange = (event) => {
     setIcon(event.target.value);
-  };
-  const handleUserIdChange = (event) => {
-    setUserId(event.target.value);
   };
 
   return (
@@ -37,15 +33,6 @@ function CategoryForm() {
           placeholder="Icône"
           value={icon}
           onChange={handleIconChange}
-        />
-        <label htmlFor="userId">ID du créateur de la catégorie</label>
-        <input
-          type="text"
-          id="userId"
-          name="userId"
-          placeholder="Rien pour le moment"
-          value={userId}
-          onChange={handleUserIdChange}
         />
         <button type="submit">Ajouter</button>
       </Form>

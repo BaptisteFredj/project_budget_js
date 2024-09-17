@@ -23,6 +23,8 @@ const read = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
+  // To be changed when token set up
+  req.body.user_id = 1;
   try {
     const result = await tables.category.create(req.body);
     res

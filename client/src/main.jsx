@@ -88,8 +88,7 @@ const router = createBrowserRouter([
           const formData = await request.formData();
           const name = formData.get("name");
           const icon = formData.get("icon");
-          const userId = formData.get("userId");
-          await addCategory(name, icon, userId);
+          await addCategory(name, icon);
           return redirect(`/categories`);
         },
       },
