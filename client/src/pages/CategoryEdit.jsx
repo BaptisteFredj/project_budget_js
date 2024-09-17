@@ -5,6 +5,7 @@ function CategoryEdit() {
 
   return (
     <>
+      <h1>Modifier ma catégorie</h1>
       <Form method="put">
         <label htmlFor="name">Nom</label>{" "}
         <input type="text" id="name" name="name" defaultValue={category.name} />
@@ -14,7 +15,7 @@ function CategoryEdit() {
       </Form>
 
       <Form method="delete">
-        <button type="submit">Supprimer</button>
+        <button type="submit">Supprimer cette catégorie</button>
       </Form>
     </>
   );
