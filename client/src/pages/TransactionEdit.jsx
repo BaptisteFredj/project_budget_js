@@ -4,7 +4,7 @@ import { standardDate } from "../utils/functions";
 function TransactionEdit() {
   const { transaction, categories } = useLoaderData();
 
-  const categoryInfo = categories.find(
+  const previousCategory = categories.find(
     (category) => category.name === transaction.category_name
   );
 
@@ -42,7 +42,11 @@ function TransactionEdit() {
         </select>
 
         <label htmlFor="category">Catégorie de transaction</label>
-        <select id="category" name="category" defaultValue={categoryInfo.id}>
+        <select
+          id="category"
+          name="category"
+          defaultValue={previousCategory.id}
+        >
           <option value="">Aucune catégorie</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
