@@ -29,11 +29,11 @@ import CategoryEdit from "./pages/CategoryEdit";
 import Transactions from "./pages/Transactions";
 import TransactionDetails from "./pages/TransactionDetails";
 import TransactionForm from "./pages/TransactionForm";
+import TransactionEdit from "./pages/TransactionEdit";
 import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import TransactionEdit from "./pages/TransactionEdit";
 
 const router = createBrowserRouter([
   {
@@ -128,13 +128,6 @@ const router = createBrowserRouter([
               const transactionAmount = formData.get("amount");
               const transactionType = formData.get("type");
               const transactionCategoryId = formData.get("category");
-              console.info({
-                transactionName,
-                transactionDate,
-                transactionAmount,
-                transactionType,
-                transactionCategoryId,
-              });
               await editTransaction(
                 transactionName,
                 transactionDate,
