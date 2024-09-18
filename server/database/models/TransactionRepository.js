@@ -41,15 +41,16 @@ JOIN
 
   async create(transaction) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (date, amount, type, category_id) VALUES(?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (name, date, amount, type, category_id) VALUES(?, ?, ?, ?, ?)`,
       [
+        transaction.name,
         transaction.date,
         transaction.amount,
         transaction.type,
         transaction.category_id,
       ]
     );
-
+    console.info(result);
     return result;
   }
 
