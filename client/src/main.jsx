@@ -125,9 +125,12 @@ const router = createBrowserRouter([
             case "put": {
               const transactionName = formData.get("name");
               const transactionDate = formData.get("date");
-              const transactionAmount = formData.get("amount");
+              const transactionAmount = parseInt(formData.get("amount"), 10);
               const transactionType = formData.get("type");
-              const transactionCategoryId = formData.get("category");
+              const transactionCategoryId = parseInt(
+                formData.get("category"),
+                10
+              );
               await editTransaction(
                 transactionName,
                 transactionDate,
