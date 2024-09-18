@@ -24,6 +24,7 @@ LEFT JOIN
   async read(id) {
     const [rows] = await this.database.query(
       `SELECT 
+  transaction.id,    
   transaction.name,
   transaction.amount,
   transaction.date,
