@@ -116,12 +116,13 @@ const router = createBrowserRouter([
         }),
         action: async ({ request }) => {
           const formData = await request.formData();
+
           const name = formData.get("name");
-          const amount = formData.get("amount");
+          const amount = parseInt(formData.get("amount"), 10);
           const date = formData.get("date");
           const type = formData.get("type");
-          const category = formData.get("category");
-          await addTransaction(name, amount, date, type, category);
+          const categoryId = parseInt(formData.get("category"), 10);
+          await addTransaction(name, date, amount, type, categoryId);
           return redirect(`/transactions`);
         },
       },

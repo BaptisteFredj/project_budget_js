@@ -35,7 +35,7 @@ function TransactionForm() {
         <select id="category" name="category">
           <option value="">Aucune catégorie</option>
           {categories.map((category) => (
-            <option key={category.id} value={category.name}>
+            <option key={category.id} value={category.id}>
               {category.name}
             </option>
           ))}

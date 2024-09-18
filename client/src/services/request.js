@@ -80,9 +80,15 @@ export function getTransaction(id) {
 }
 
 // Create a transaction
-export function addTransaction(name, amount, date, type, category) {
+export function addTransaction(name, date, amount, type, categoryId) {
   return axios
-    .post(`${url}/api/categories`, { name, amount, date, type, category })
+    .post(`${url}/api/transactions`, {
+      name,
+      date,
+      amount,
+      type,
+      category_id: categoryId,
+    })
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
