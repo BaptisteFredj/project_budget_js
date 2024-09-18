@@ -17,6 +17,8 @@ import {
   editCategory,
   deleteCategory,
   addTransaction,
+  editTransaction,
+  deleteTransaction,
 } from "./services/request";
 
 import App from "./App";
@@ -31,6 +33,7 @@ import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import TransactionEdit from "./pages/TransactionEdit";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +110,49 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           transaction: await getTransaction(params.id),
         }),
+      },
+      {
+        path: "/transactions/:id/edit",
+        element: <TransactionEdit />,
+        loader: async ({ params }) => ({
+          transaction: await getTransaction(params.id),
+          categories: await getCategories(),
+        }),
+        action: async ({ request, params }) => {
+          const formData = await request.formData();
+
+          switch (request.method.toLocaleLowerCase()) {
+            case "put": {
+              const transactionName = formData.get("name");
+              const transactionDate = formData.get("date");
+              const transactionAmount = formData.get("amount");
+              const transactionType = formData.get("type");
+              const transactionCategoryId = formData.get("category");
+              console.info({
+                transactionName,
+                transactionDate,
+                transactionAmount,
+                transactionType,
+                transactionCategoryId,
+              });
+              await editTransaction(
+                transactionName,
+                transactionDate,
+                transactionAmount,
+                transactionType,
+                transactionCategoryId,
+                params.id
+              );
+              return redirect(`/transactions/${params.id}`);
+            }
+            case "delete": {
+              await deleteTransaction(params.id);
+              return redirect("/transactions");
+            }
+            default:
+              throw new Response("", { status: 405 });
+          }
+        },
       },
       {
         path: "/transactions_form",

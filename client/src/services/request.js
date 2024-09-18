@@ -96,6 +96,35 @@ export function addTransaction(name, date, amount, type, categoryId) {
     });
 }
 
+// Edit a transaction
+export function editTransaction(name, date, amount, type, categoryId, id) {
+  return axios
+    .put(`${url}/api/transactions/${id}`, {
+      name,
+      date,
+      amount,
+      type,
+      category_id: categoryId,
+      user_id: id,
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+}
+
+// Delete a transaction
+export function deleteTransaction(id) {
+  return axios
+    .delete(`${url}/api/transactions/${id}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+}
+
 // Get all budgets from DB
 export function getBudgets() {
   return axios
