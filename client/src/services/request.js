@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const key = import.meta.env.VITE_API_URL;
+const url = import.meta.env.VITE_API_URL;
 
 // Get all categories from DB
 export function getCategories() {
   return axios
-    .get(`${key}/api/categories`)
+    .get(`${url}/api/categories`)
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
@@ -16,8 +16,41 @@ export function getCategories() {
 // Get a category from it's ID
 export function getCategory(id) {
   return axios
-    .get(`${key}/api/categories/${id}`)
+    .get(`${url}/api/categories/${id}`)
     .then((reponse) => reponse.data)
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+}
+
+// Create a category
+export function addCategory(name, icon) {
+  return axios
+    .post(`${url}/api/categories`, { name, icon })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+}
+
+// Edit a category
+export function editCategory(name, icon, id) {
+  return axios
+    .put(`${url}/api/categories/${id}`, { name, icon, user_id: id })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+}
+
+// Delete a category
+export function deleteCategory(id) {
+  return axios
+    .delete(`${url}/api/categories/${id}`)
+    .then((response) => response.data)
     .catch((error) => {
       console.error(error);
       return [];
@@ -27,7 +60,7 @@ export function getCategory(id) {
 // Get all transactions from DB
 export function getTransactions() {
   return axios
-    .get(`${key}/api/transactions`)
+    .get(`${url}/api/transactions`)
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
@@ -38,7 +71,7 @@ export function getTransactions() {
 // Get a transaction from it's ID
 export function getTransaction(id) {
   return axios
-    .get(`${key}/api/transactions/${id}`)
+    .get(`${url}/api/transactions/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
       console.error(error);
@@ -49,7 +82,7 @@ export function getTransaction(id) {
 // Get all budgets from DB
 export function getBudgets() {
   return axios
-    .get(`${key}/api/budgets`)
+    .get(`${url}/api/budgets`)
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
@@ -60,7 +93,7 @@ export function getBudgets() {
 // Get a budget from it's ID
 export function getBudget(id) {
   return axios
-    .get(`${key}/api/budgets/${id}`)
+    .get(`${url}/api/budgets/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
       console.error(error);
@@ -71,7 +104,7 @@ export function getBudget(id) {
 // Login function
 export function login(email, password) {
   return axios
-    .post(`${key}/api/login`, { email, password })
+    .post(`${url}/api/login`, { email, password })
     .then((response) => response.data)
     .catch((error) => {
       throw error;
@@ -81,7 +114,7 @@ export function login(email, password) {
 // Register function
 export function register(email, password) {
   return axios
-    .post(`${key}/api/users`, { email, password })
+    .post(`${url}/api/users`, { email, password })
     .then((response) => response)
     .catch((error) => {
       throw error;

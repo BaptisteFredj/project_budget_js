@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import {
   getCategory,
   getCategories,
@@ -9,6 +13,9 @@ import {
   getTransactions,
   getBudget,
   getBudgets,
+  addCategory,
+  editCategory,
+  deleteCategory,
 } from "./services/request";
 
 import App from "./App";
@@ -20,6 +27,8 @@ import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import CategoryForm from "./pages/CategoryForm";
+import CategoryEdit from "./pages/CategoryEdit";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +55,42 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           category: await getCategory(params.id),
         }),
+      },
+      {
+        path: "/categories/:id/edit",
+        element: <CategoryEdit />,
+        loader: async ({ params }) => ({
+          category: await getCategory(params.id),
+        }),
+        action: async ({ request, params }) => {
+          const formData = await request.formData();
+
+          switch (request.method.toLocaleLowerCase()) {
+            case "put": {
+              const categoryName = formData.get("name");
+              const categoryIcon = formData.get("icon");
+              await editCategory(categoryName, categoryIcon, params.id);
+              return redirect(`/categories/${params.id}`);
+            }
+            case "delete": {
+              await deleteCategory(params.id);
+              return redirect("/categories");
+            }
+            default:
+              throw new Response("", { status: 405 });
+          }
+        },
+      },
+      {
+        path: "/categories_form",
+        element: <CategoryForm />,
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          const name = formData.get("name");
+          const icon = formData.get("icon");
+          await addCategory(name, icon);
+          return redirect(`/categories`);
+        },
       },
       {
         path: "/transactions",
