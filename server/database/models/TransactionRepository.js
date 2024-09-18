@@ -50,7 +50,6 @@ JOIN
         transaction.category_id,
       ]
     );
-    console.info(result);
     return result;
   }
 
