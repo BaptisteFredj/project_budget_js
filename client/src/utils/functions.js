@@ -11,8 +11,7 @@ export function frenchType(type) {
 }
 
 export function standardDate(iso8601date) {
-  const date = iso8601date.substring(0, 10);
-  return date;
+  return iso8601date.substring(0, 10);
 }
 
 export function frenchDate(iso8601date) {
