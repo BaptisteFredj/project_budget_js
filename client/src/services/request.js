@@ -25,7 +25,7 @@ export function getCategory(id) {
 }
 
 // Create a category
-export function addCategory(name, icon) {
+export function addCategory({ name, icon }) {
   return axios
     .post(`${url}/api/categories`, { name, icon })
     .then((response) => response.data)
@@ -80,7 +80,7 @@ export function getTransaction(id) {
 }
 
 // Create a transaction
-export function addTransaction(name, date, amount, type, categoryId) {
+export function addTransaction({ name, date, amount, type, categoryId }) {
   return axios
     .post(`${url}/api/transactions`, {
       name,
@@ -97,7 +97,7 @@ export function addTransaction(name, date, amount, type, categoryId) {
 }
 
 // Edit a transaction
-export function editTransaction(name, date, amount, type, categoryId, id) {
+export function editTransaction({ name, date, amount, type, categoryId, id }) {
   return axios
     .put(`${url}/api/transactions/${id}`, {
       name,
@@ -105,7 +105,7 @@ export function editTransaction(name, date, amount, type, categoryId, id) {
       amount,
       type,
       category_id: categoryId,
-      user_id: id,
+      id,
     })
     .then((response) => response.data)
     .catch((error) => {

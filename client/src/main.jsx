@@ -6,6 +6,7 @@ import {
   redirect,
   RouterProvider,
 } from "react-router-dom";
+
 import {
   getCategory,
   getCategories,
@@ -91,9 +92,11 @@ const router = createBrowserRouter([
         element: <CategoryForm />,
         action: async ({ request }) => {
           const formData = await request.formData();
-          const name = formData.get("name");
-          const icon = formData.get("icon");
-          await addCategory(name, icon);
+          const categoryData = {
+            name: formData.get("name"),
+            icon: formData.get("icon"),
+          };
+          await addCategory({ ...categoryData });
           return redirect(`/categories`);
         },
       },
@@ -123,22 +126,14 @@ const router = createBrowserRouter([
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              const transactionName = formData.get("name");
-              const transactionDate = formData.get("date");
-              const transactionAmount = parseInt(formData.get("amount"), 10);
-              const transactionType = formData.get("type");
-              const transactionCategoryId = parseInt(
-                formData.get("category"),
-                10
-              );
-              await editTransaction(
-                transactionName,
-                transactionDate,
-                transactionAmount,
-                transactionType,
-                transactionCategoryId,
-                params.id
-              );
+              const transactionData = {
+                name: formData.get("name"),
+                date: formData.get("date"),
+                amount: parseInt(formData.get("amount"), 10),
+                type: formData.get("type"),
+                categoryId: parseInt(formData.get("category"), 10),
+              };
+              await editTransaction({ ...transactionData, id: params.id });
               return redirect(`/transactions/${params.id}`);
             }
             case "delete": {
@@ -158,13 +153,14 @@ const router = createBrowserRouter([
         }),
         action: async ({ request }) => {
           const formData = await request.formData();
-
-          const name = formData.get("name");
-          const amount = parseInt(formData.get("amount"), 10);
-          const date = formData.get("date");
-          const type = formData.get("type");
-          const categoryId = parseInt(formData.get("category"), 10);
-          await addTransaction(name, date, amount, type, categoryId);
+          const transactionData = {
+            name: formData.get("name"),
+            date: formData.get("date"),
+            amount: parseInt(formData.get("amount"), 10),
+            type: formData.get("type"),
+            categoryId: parseInt(formData.get("category"), 10),
+          };
+          await addTransaction({ ...transactionData });
           return redirect(`/transactions`);
         },
       },
