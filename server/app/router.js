@@ -4,7 +4,7 @@ const router = express.Router();
 
 // User operations routes
 const user = require("./controllers/userActions");
-const { hashPassword } = require("./services/auth");
+const { hashPassword, verifyToken } = require("./services/auth");
 
 router.get("/users", user.browse);
 router.get("/users/:id", user.read);
@@ -22,7 +22,7 @@ const category = require("./controllers/categoryActions");
 
 router.get("/categories", category.browse);
 router.get("/categories/:id", category.read);
-router.post("/categories", category.add);
+router.post("/categories", verifyToken, category.add);
 router.put("/categories/:id", category.edit);
 router.delete("/categories/:id", category.destroy);
 
