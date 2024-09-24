@@ -20,7 +20,7 @@ function Login() {
       );
 
       setUser(user);
-      navigate(`/transactions`);
+      navigate(`/categories`);
     } catch (err) {
       alert("Identifiants incorrects");
     }
