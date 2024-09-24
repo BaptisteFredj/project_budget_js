@@ -14,11 +14,11 @@ function Login() {
     event.preventDefault();
 
     try {
-      const user = await login(
+      const response = await login(
         emailRef.current.value,
         passwordRef.current.value
       );
-
+      const user = await response.data;
       setUser(user);
       navigate(`/categories`);
     } catch (err) {

@@ -150,7 +150,14 @@ export function getBudget(id) {
 // Login function
 export function login(email, password) {
   return axios
-    .post(`${url}/api/login`, { email, password })
+    .post(
+      `${url}/api/login`,
+      { email, password },
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       throw error;
@@ -160,7 +167,13 @@ export function login(email, password) {
 // Register function
 export function register(email, password) {
   return axios
-    .post(`${url}/api/users`, { email, password })
+    .post(
+      `${url}/api/users`,
+      { email, password },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    )
     .then((response) => response)
     .catch((error) => {
       throw error;
