@@ -25,9 +25,18 @@ export function getCategory(id) {
 }
 
 // Create a category
-export function addCategory({ name, icon }) {
+export function addCategory({ name, icon }, token) {
   return axios
-    .post(`${url}/api/categories`, { name, icon })
+    .post(
+      `${url}/api/categories`,
+      { name, icon },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
