@@ -20,11 +20,11 @@ router.post("/login", auth.login);
 // Category operations routes
 const category = require("./controllers/categoryActions");
 
-router.get("/categories", verifyToken, category.readByUserId);
-router.get("/categories/:id", verifyToken, category.readByCategoryId);
+router.get("/categories", category.readByUserId);
+router.get("/categories/:id", category.readByCategoryId);
 router.post("/categories", verifyToken, category.add);
 router.put("/categories/:id", verifyToken, category.edit);
-router.delete("/categories/:id", category.destroy);
+router.delete("/categories/:id", verifyToken, category.destroy);
 
 // Transaction operations routes
 const transaction = require("./controllers/transactionActions");

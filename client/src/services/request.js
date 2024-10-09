@@ -168,14 +168,7 @@ export function getBudget(id) {
 // Login function
 export function login(email, password) {
   return axios
-    .post(
-      `${url}/api/login`,
-      { email, password },
-      {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      }
-    )
+    .post(`${url}/api/login`, { email, password })
     .then((response) => response.data)
     .catch((error) => {
       throw error;

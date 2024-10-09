@@ -18,7 +18,7 @@ function Login() {
         emailRef.current.value,
         passwordRef.current.value
       );
-      const auth = await response.data;
+      const auth = response.user.id;
 
       setAuth(auth);
       navigate(`/categories`);
