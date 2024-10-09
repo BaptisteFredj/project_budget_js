@@ -141,7 +141,7 @@ const router = createBrowserRouter([
               return redirect("/transactions");
             }
             default:
-              throw new Response("", { status: 405 });
+              throw new Response("Method Not Allowed", { status: 405 });
           }
         },
       },
