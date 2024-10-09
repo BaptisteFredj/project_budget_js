@@ -92,7 +92,7 @@ export function addTransaction({ name, date, amount, type, categoryId }) {
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
-      return [];
+      return null;
     });
 }
 
