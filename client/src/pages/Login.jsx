@@ -19,6 +19,7 @@ function Login() {
         passwordRef.current.value
       );
       const auth = await response.data;
+
       setAuth(auth);
       navigate(`/categories`);
     } catch (err) {

@@ -1,9 +1,8 @@
-import { Form, useOutletContext, useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { addCategory } from "../services/request";
 
 function CategoryForm() {
-  const { auth } = useOutletContext();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -13,20 +12,18 @@ function CategoryForm() {
     const formData = new FormData(event.target);
 
     try {
-      if (!auth || !auth.token) {
-        setError(
-          "Vous n'êtes pas connecté. Veuillez vous connecter s'il vous plaît."
-        );
-        return;
-      }
+      // console.info("auth from cat form page", auth);
+      // if (!auth || !auth.token) {
+      //   setError(
+      //     "Vous n'êtes pas connecté. Veuillez vous connecter s'il vous plaît."
+      //   );
+      //   return;
+      // }
 
-      const response = await addCategory(
-        {
-          name: formData.get("name"),
-          icon: formData.get("icon"),
-        },
-        auth.token
-      );
+      const response = await addCategory({
+        name: formData.get("name"),
+        icon: formData.get("icon"),
+      });
 
       if (response) {
         navigate(`/categories`);

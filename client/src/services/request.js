@@ -3,9 +3,11 @@ import axios from "axios";
 const url = import.meta.env.VITE_API_URL;
 
 // Get all categories from DB
-export function getCategories() {
+export function getCategoriesByUserId() {
   return axios
-    .get(`${url}/api/categories`)
+    .get(`${url}/api/categories`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
@@ -16,7 +18,9 @@ export function getCategories() {
 // Get a category from it's ID
 export function getCategory(id) {
   return axios
-    .get(`${url}/api/categories/${id}`)
+    .get(`${url}/api/categories/${id}`, {
+      withCredentials: true,
+    })
     .then((reponse) => reponse.data)
     .catch((error) => {
       console.error(error);
@@ -25,16 +29,13 @@ export function getCategory(id) {
 }
 
 // Create a category
-export function addCategory({ name, icon }, token) {
+export function addCategory({ name, icon }) {
   return axios
     .post(
       `${url}/api/categories`,
       { name, icon },
       {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+        withCredentials: true,
       }
     )
     .then((response) => response.data)
@@ -47,7 +48,13 @@ export function addCategory({ name, icon }, token) {
 // Edit a category
 export function editCategory(name, icon, id) {
   return axios
-    .put(`${url}/api/categories/${id}`, { name, icon, user_id: id })
+    .put(
+      `${url}/api/categories/${id}`,
+      { name, icon, user_id: id },
+      {
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
@@ -58,7 +65,9 @@ export function editCategory(name, icon, id) {
 // Delete a category
 export function deleteCategory(id) {
   return axios
-    .delete(`${url}/api/categories/${id}`)
+    .delete(`${url}/api/categories/${id}`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
