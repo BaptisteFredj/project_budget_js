@@ -12,14 +12,6 @@ function CategoryForm() {
     const formData = new FormData(event.target);
 
     try {
-      // console.info("auth from cat form page", auth);
-      // if (!auth || !auth.token) {
-      //   setError(
-      //     "Vous n'êtes pas connecté. Veuillez vous connecter s'il vous plaît."
-      //   );
-      //   return;
-      // }
-
       const response = await addCategory({
         name: formData.get("name"),
         icon: formData.get("icon"),
