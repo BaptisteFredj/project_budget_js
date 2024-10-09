@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
-import frenchType from "../utils/functions";
+import { frenchType } from "../utils/functions";
 
 export default function TransactionThumb({ transaction }) {
   return (
     <ul>
       <li>
-        Nom de la transacton :{" "}
+        Nom de la transaction :{" "}
         <Link to={`/transactions/${transaction.id}`}>{transaction.name}</Link>
       </li>
       <li>Montant de la transaction : {transaction.amount}</li>

@@ -1,5 +1,5 @@
 import { useLoaderData, Link } from "react-router-dom";
-import frenchType from "../utils/functions";
+import { frenchType } from "../utils/functions";
 
 function TransactionDetails() {
   const { transaction } = useLoaderData();
