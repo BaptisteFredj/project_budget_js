@@ -8,7 +8,6 @@ function TransactionDetails() {
     <>
       <ul>
         <li>Nom de la transaction : {transaction.name}</li>
-
         <li>Montant de la transaction : {transaction.amount}</li>
         <li>Date de la transaction : {frenchDate(transaction.date)}</li>
         <li>Type de transaction : {frenchType(transaction.type)}</li>
