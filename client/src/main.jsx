@@ -24,7 +24,6 @@ import {
 
 import App from "./App";
 import Categories from "./pages/Categories";
-// import CategoryDetails from "./pages/CategoryDetails";
 import CategoryForm from "./pages/CategoryForm";
 import CategoryEdit from "./pages/CategoryEdit";
 import Transactions from "./pages/Transactions";
