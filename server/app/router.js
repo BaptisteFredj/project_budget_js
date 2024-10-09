@@ -20,10 +20,10 @@ router.post("/login", auth.login);
 // Category operations routes
 const category = require("./controllers/categoryActions");
 
-router.get("/categories", category.browse);
-router.get("/categories/:id", category.read);
+router.get("/categories", verifyToken, category.readByUserId);
+router.get("/categories/:id", verifyToken, category.readByCategoryId);
 router.post("/categories", verifyToken, category.add);
-router.put("/categories/:id", category.edit);
+router.put("/categories/:id", verifyToken, category.edit);
 router.delete("/categories/:id", category.destroy);
 
 // Transaction operations routes

@@ -32,29 +32,17 @@ const hashPassword = async (req, res, next) => {
 
 const verifyToken = (req, res, next) => {
   try {
-    // Vérifier la présence de l'en-tête "Authorization" dans la requête
-    const authorizationHeader = req.get("Authorization");
-
-    if (authorizationHeader == null) {
-      throw new Error("Authorization header is missing");
+    const { auth } = req.cookies;
+    if (!auth) {
+      throw new Error("");
     }
-
-    // Vérifier que l'en-tête a la forme "Bearer <token>"
-    const [type, token] = authorizationHeader.split(" ");
-
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type");
-    }
-
-    // Vérifier la validité du token (son authenticité et sa date d'expériation)
-    // En cas de succès, le payload est extrait et décodé
-    req.auth = jwt.verify(token, process.env.APP_SECRET);
-
+    // Données chiffrées > déchiffrer avec la clé puis vérifier l'info
+    req.auth = jwt.verify(auth, process.env.APP_SECRET);
+    req.body.user_id = req.auth.sub;
     next();
   } catch (err) {
     console.error(err);
-
-    res.sendStatus(401);
+    res.status(401).json({ message: "Unauthorized: Invalid or missing token" });
   }
 };
 

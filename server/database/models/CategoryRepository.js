@@ -5,18 +5,22 @@ class CategoryRepository extends AbstractRepository {
     super({ table: "category" });
   }
 
-  async readAll() {
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
+  async readByUserId(userId) {
+    const [rows] = await this.database.query(
+      `
+      SELECT * FROM ${this.table} WHERE user_id = ?`,
+      [userId]
+    );
     return rows;
   }
 
-  async read(id) {
+  async readByCategoryId(categoryId) {
     const [rows] = await this.database.query(
       `
       SELECT * FROM ${this.table} WHERE id = ?`,
-      [id]
+      [categoryId]
     );
-    return rows[0];
+    return rows;
   }
 
   async create(category) {

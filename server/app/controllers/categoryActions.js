@@ -1,17 +1,20 @@
 const tables = require("../../database/tables");
 
-const browse = async (req, res, next) => {
+const readByUserId = async (req, res, next) => {
   try {
-    const categories = await tables.category.readAll();
-    res.json(categories);
+    if (!req.body.user_id) {
+      res.sendStatus(404);
+    }
+    const category = await tables.category.readByUserId(req.body.user_id);
+    res.json(category);
   } catch (error) {
     next(error);
   }
 };
 
-const read = async (req, res, next) => {
+const readByCategoryId = async (req, res, next) => {
   try {
-    const category = await tables.category.read(req.params.id);
+    const category = await tables.category.readByCategoryId(req.params.id);
     if (category == null) {
       res.sendStatus(404);
     } else {
@@ -23,7 +26,6 @@ const read = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  // To be changed when token set up
   req.body.user_id = req.auth.sub;
   try {
     const result = await tables.category.create(req.body);
@@ -54,4 +56,4 @@ const destroy = async (req, res, next) => {
   }
 };
 
-module.exports = { browse, read, add, edit, destroy };
+module.exports = { readByCategoryId, readByUserId, add, edit, destroy };
