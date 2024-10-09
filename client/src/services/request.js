@@ -36,7 +36,7 @@ export function addCategory({ name, icon }) {
 }
 
 // Edit a category
-export function editCategory(name, icon, id) {
+export function editCategory({ name, icon, id }) {
   return axios
     .put(`${url}/api/categories/${id}`, { name, icon, user_id: id })
     .then((response) => response.data)

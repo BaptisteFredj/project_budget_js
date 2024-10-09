@@ -3,8 +3,6 @@ import { toIso } from "../utils/functions";
 
 function TransactionEdit() {
   const { transaction, categories } = useLoaderData();
-  console.info("date from db", transaction.date);
-  console.info("after func", toIso(transaction.date));
 
   const previousCategory = categories.find(
     (category) => category.name === transaction.category_name
