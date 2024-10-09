@@ -10,7 +10,7 @@ class TransactionRepository extends AbstractRepository {
   transaction.id,
   transaction.name,
   transaction.amount,
-  transaction.date,
+  DATE_FORMAT(transaction.date,'%d/%m/%Y') as date,
   transaction.type,
   category.name AS category_name
 FROM 
@@ -27,7 +27,7 @@ LEFT JOIN
   transaction.id,    
   transaction.name,
   transaction.amount,
-  transaction.date,
+  DATE_FORMAT(transaction.date,'%d/%m/%Y') as date,
   transaction.type,
   category.name AS category_name
 FROM 
