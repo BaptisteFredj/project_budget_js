@@ -27,6 +27,8 @@ const login = async (req, res, next) => {
         expiresIn: "1d",
       });
 
+      console.info("token from authAct : ", token);
+
       res.cookie("auth", token).json({
         token,
         user,

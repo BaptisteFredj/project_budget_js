@@ -14,12 +14,11 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await login(
+      const auth = await login(
         emailRef.current.value,
         passwordRef.current.value
       );
-      const auth = response.user.id;
-
+      console.info("auth Login jsx :", auth);
       setAuth(auth);
       navigate(`/categories`);
     } catch (err) {

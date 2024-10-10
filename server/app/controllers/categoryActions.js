@@ -2,6 +2,7 @@ const tables = require("../../database/tables");
 
 const readByUserId = async (req, res, next) => {
   try {
+    console.info("req body cat Act", req.body);
     if (!req.body.user_id) {
       res.sendStatus(404);
     }
