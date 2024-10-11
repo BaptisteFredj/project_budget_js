@@ -39,7 +39,7 @@ const verifyToken = (req, res, next) => {
     }
     // Encrypted data is uncrypted with the key, then verified
     req.auth = jwt.verify(auth, process.env.APP_SECRET);
-    req.body.user_id = req.auth;
+    req.body.user_id = req.auth.sub;
 
     next();
   } catch (err) {
