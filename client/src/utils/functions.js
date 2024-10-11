@@ -10,12 +10,7 @@ export function frenchType(type) {
   return "transfert";
 }
 
-export function standardDate(iso8601date) {
-  return iso8601date.substring(0, 10);
-}
-
-export function frenchDate(iso8601date) {
-  const date = iso8601date.substring(0, 10);
-  const [year, month, day] = date.split("-");
-  return `${day}/${month}/${year}`;
+export function toIso(europeanDate) {
+  const [day, month, year] = europeanDate.split("/");
+  return `${year}-${month}-${day}`;
 }

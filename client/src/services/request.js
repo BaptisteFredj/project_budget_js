@@ -46,7 +46,7 @@ export function addCategory({ name, icon }) {
 }
 
 // Edit a category
-export function editCategory(name, icon, id) {
+export function editCategory({ name, icon, id }) {
   return axios
     .put(
       `${url}/api/categories/${id}`,
@@ -110,7 +110,7 @@ export function addTransaction({ name, date, amount, type, categoryId }) {
     .then((response) => response.data)
     .catch((error) => {
       console.error(error);
-      return [];
+      return null;
     });
 }
 

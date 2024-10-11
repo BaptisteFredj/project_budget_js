@@ -65,10 +65,12 @@ const router = createBrowserRouter([
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              const categoryName = formData.get("name");
-              const categoryIcon = formData.get("icon");
-              await editCategory(categoryName, categoryIcon, params.id);
-              return redirect(`/categories`);
+              await editCategory({
+                name: formData.get("name"),
+                icon: formData.get("icon"),
+                id: params.id,
+              });
+              return redirect(`/categories/${params.id}`);
             }
             case "delete": {
               await deleteCategory(params.id);
@@ -84,11 +86,10 @@ const router = createBrowserRouter([
         element: <CategoryForm />,
         action: async ({ request }) => {
           const formData = await request.formData();
-          const categoryData = {
+          await addCategory({
             name: formData.get("name"),
             icon: formData.get("icon"),
-          };
-          await addCategory({ ...categoryData });
+          });
           return redirect(`/categories`);
         },
       },
@@ -118,14 +119,14 @@ const router = createBrowserRouter([
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              const transactionData = {
+              await editTransaction({
                 name: formData.get("name"),
                 date: formData.get("date"),
                 amount: parseInt(formData.get("amount"), 10),
                 type: formData.get("type"),
                 categoryId: parseInt(formData.get("category"), 10),
-              };
-              await editTransaction({ ...transactionData, id: params.id });
+                id: params.id,
+              });
               return redirect(`/transactions/${params.id}`);
             }
             case "delete": {
@@ -133,7 +134,7 @@ const router = createBrowserRouter([
               return redirect("/transactions");
             }
             default:
-              throw new Response("", { status: 405 });
+              throw new Response("Method Not Allowed", { status: 405 });
           }
         },
       },
@@ -145,14 +146,13 @@ const router = createBrowserRouter([
         }),
         action: async ({ request }) => {
           const formData = await request.formData();
-          const transactionData = {
+          await addTransaction({
             name: formData.get("name"),
             date: formData.get("date"),
             amount: parseInt(formData.get("amount"), 10),
             type: formData.get("type"),
             categoryId: parseInt(formData.get("category"), 10),
-          };
-          await addTransaction({ ...transactionData });
+          });
           return redirect(`/transactions`);
         },
       },

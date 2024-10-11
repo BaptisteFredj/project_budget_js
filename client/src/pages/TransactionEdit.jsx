@@ -1,5 +1,5 @@
 import { Form, useLoaderData } from "react-router-dom";
-import { standardDate } from "../utils/functions";
+import { toIso } from "../utils/functions";
 
 function TransactionEdit() {
   const { transaction, categories } = useLoaderData();
@@ -31,7 +31,7 @@ function TransactionEdit() {
           type="date"
           id="date"
           name="date"
-          defaultValue={standardDate(transaction.date)}
+          defaultValue={toIso(transaction.date)}
         />
 
         <label htmlFor="type">Type de transaction</label>

@@ -10,8 +10,8 @@ class BudgetRepository extends AbstractRepository {
   budget.id,
   budget.name,
   budget.amount,
-  budget.start_date,
-  budget.end_date,
+  DATE_FORMAT(budget.start_date,'%d/%m/%Y') as start_date,
+  DATE_FORMAT(budget.end_date,'%d/%m/%Y') as end_date,
   category.name AS category_name
 FROM 
   ${this.table}
@@ -26,8 +26,8 @@ JOIN
       `SELECT 
   budget.name,
   budget.amount,
-  budget.start_date,
-  budget.end_date,
+  DATE_FORMAT(budget.start_date,'%d/%m/%Y') as start_date,
+  DATE_FORMAT(budget.end_date,'%d/%m/%Y') as end_date,
   category.name AS category_name
 FROM 
   ${this.table}
