@@ -2,10 +2,6 @@ const tables = require("../../database/tables");
 
 const readByUserId = async (req, res, next) => {
   try {
-    console.info("req body cat Act", req.body);
-    if (!req.body.user_id) {
-      res.sendStatus(404);
-    }
     const category = await tables.category.readByUserId(req.body.user_id);
     res.json(category);
   } catch (error) {
@@ -27,7 +23,6 @@ const readByCategoryId = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  req.body.user_id = req.auth.sub;
   try {
     const result = await tables.category.create(req.body);
     res

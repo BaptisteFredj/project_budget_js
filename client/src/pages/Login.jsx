@@ -18,7 +18,7 @@ function Login() {
         emailRef.current.value,
         passwordRef.current.value
       );
-      console.info("auth Login jsx :", auth);
+
       setAuth(auth);
       navigate(`/categories`);
     } catch (err) {

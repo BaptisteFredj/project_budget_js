@@ -32,13 +32,15 @@ const hashPassword = async (req, res, next) => {
 
 const verifyToken = (req, res, next) => {
   try {
+    // Get key auth from keyheaders (with cookie smthg) -  (withCredentials when calling request)
     const { auth } = req.cookies;
     if (!auth) {
       throw new Error("");
     }
     // Données chiffrées > déchiffrer avec la clé puis vérifier l'info
     req.auth = jwt.verify(auth, process.env.APP_SECRET);
-    req.body.user_id = req.auth.sub;
+    req.body.user_id = req.auth;
+
     next();
   } catch (err) {
     console.error(err);
