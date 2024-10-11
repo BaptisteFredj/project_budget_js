@@ -8,17 +8,19 @@ export function getCategories() {
     .get(`${url}/api/categories`)
     .then((response) => response.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
 }
 
-// Get a category from it's ID
+// Get a category from its ID
 export function getCategory(id) {
   return axios
     .get(`${url}/api/categories/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
@@ -30,6 +32,7 @@ export function addCategory({ name, icon }) {
     .post(`${url}/api/categories`, { name, icon })
     .then((response) => response.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
@@ -41,6 +44,7 @@ export function editCategory({ name, icon, id }) {
     .put(`${url}/api/categories/${id}`, { name, icon, user_id: id })
     .then((response) => response.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
@@ -52,6 +56,7 @@ export function deleteCategory(id) {
     .delete(`${url}/api/categories/${id}`)
     .then((response) => response.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
@@ -63,17 +68,19 @@ export function getTransactions() {
     .get(`${url}/api/transactions`)
     .then((response) => response.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
 }
 
-// Get a transaction from it's ID
+// Get a transaction from its ID
 export function getTransaction(id) {
   return axios
     .get(`${url}/api/transactions/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
@@ -91,6 +98,7 @@ export function addTransaction({ name, date, amount, type, categoryId }) {
     })
     .then((response) => response.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return null;
     });
@@ -109,6 +117,7 @@ export function editTransaction({ name, date, amount, type, categoryId, id }) {
     })
     .then((response) => response.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
@@ -120,6 +129,7 @@ export function deleteTransaction(id) {
     .delete(`${url}/api/transactions/${id}`)
     .then((response) => response.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
@@ -131,17 +141,19 @@ export function getBudgets() {
     .get(`${url}/api/budgets`)
     .then((response) => response.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
 }
 
-// Get a budget from it's ID
+// Get a budget from its ID
 export function getBudget(id) {
   return axios
     .get(`${url}/api/budgets/${id}`)
     .then((reponse) => reponse.data)
     .catch((error) => {
+      // FIX ME
       console.error(error);
       return [];
     });
