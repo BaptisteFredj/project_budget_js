@@ -32,12 +32,12 @@ const hashPassword = async (req, res, next) => {
 
 const verifyToken = (req, res, next) => {
   try {
-    // Get key auth from keyheaders (with cookie smthg) -  (withCredentials when calling request)
+    // Search a key named auth in a key headers named "cookies" (with withCredentials when calling request)
     const { auth } = req.cookies;
     if (!auth) {
-      throw new Error("");
+      throw new Error("No token found");
     }
-    // Données chiffrées > déchiffrer avec la clé puis vérifier l'info
+    // Encrypted data is uncrypted with the key, then verified
     req.auth = jwt.verify(auth, process.env.APP_SECRET);
     req.body.user_id = req.auth;
 
