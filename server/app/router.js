@@ -4,7 +4,7 @@ const router = express.Router();
 
 // User operations routes
 const user = require("./controllers/userActions");
-const { hashPassword, verifyToken } = require("./services/auth");
+const { hashPassword, authenticateUser } = require("./services/auth");
 
 router.get("/users", user.browse);
 router.get("/users/:id", user.read);
@@ -20,11 +20,11 @@ router.post("/login", auth.login);
 // Category operations routes
 const category = require("./controllers/categoryActions");
 
-router.get("/categories", verifyToken, category.readByUserId);
-router.get("/categories/:id", verifyToken, category.readByCategoryId);
-router.post("/categories", verifyToken, category.add);
-router.put("/categories/:id", verifyToken, category.edit);
-router.delete("/categories/:id", verifyToken, category.destroy);
+router.get("/categories", authenticateUser, category.readByUserId);
+router.get("/categories/:id", authenticateUser, category.readByCategoryId);
+router.post("/categories", authenticateUser, category.add);
+router.put("/categories/:id", authenticateUser, category.edit);
+router.delete("/categories/:id", authenticateUser, category.destroy);
 
 // Transaction operations routes
 const transaction = require("./controllers/transactionActions");

@@ -30,7 +30,7 @@ const hashPassword = async (req, res, next) => {
   }
 };
 
-const verifyToken = (req, res, next) => {
+const authenticateUser = (req, res, next) => {
   try {
     // Search a key named auth in a key headers named "cookies" (with withCredentials when calling request)
     const { auth } = req.cookies;
@@ -50,5 +50,5 @@ const verifyToken = (req, res, next) => {
 
 module.exports = {
   hashPassword,
-  verifyToken,
+  authenticateUser,
 };
