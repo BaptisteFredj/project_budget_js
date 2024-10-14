@@ -5,7 +5,7 @@ class CategoryRepository extends AbstractRepository {
     super({ table: "category" });
   }
 
-  async readByUserId(userId) {
+  async readCategoriesByUser(userId) {
     const [rows] = await this.database.query(
       `
       SELECT * FROM ${this.table} WHERE user_id = ?`,
@@ -14,7 +14,7 @@ class CategoryRepository extends AbstractRepository {
     return rows;
   }
 
-  async readByCategoryId(category) {
+  async readCategoryById(category) {
     const [rows] = await this.database.query(
       `
       SELECT * FROM ${this.table} WHERE id = ? AND user_id = ?`,

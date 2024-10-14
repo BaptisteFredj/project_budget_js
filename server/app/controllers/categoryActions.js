@@ -1,18 +1,20 @@
 const tables = require("../../database/tables");
 
-const readByUserId = async (req, res, next) => {
+const readCategoriesByUser = async (req, res, next) => {
   try {
-    const category = await tables.category.readByUserId(req.body.user_id);
+    const category = await tables.category.readCategoriesByUser(
+      req.body.user_id
+    );
     res.json(category);
   } catch (error) {
     next(error);
   }
 };
 
-const readByCategoryId = async (req, res, next) => {
+const readCategoryById = async (req, res, next) => {
   req.body.id = req.params.id;
   try {
-    const category = await tables.category.readByCategoryId(req.body);
+    const category = await tables.category.readCategoryById(req.body);
     if (category == null) {
       res.sendStatus(404);
     } else {
@@ -54,4 +56,4 @@ const destroy = async (req, res, next) => {
   }
 };
 
-module.exports = { readByCategoryId, readByUserId, add, edit, destroy };
+module.exports = { readCategoriesByUser, readCategoryById, add, edit, destroy };
