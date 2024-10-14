@@ -10,7 +10,7 @@ class TransactionRepository extends AbstractRepository {
   transaction.id,
   transaction.name,
   transaction.amount,
-  transaction.date,
+  DATE_FORMAT(transaction.date,'%d/%m/%Y') as date,
   transaction.type,
   category.name AS category_name
 FROM 
@@ -24,9 +24,10 @@ LEFT JOIN
   async read(id) {
     const [rows] = await this.database.query(
       `SELECT 
+  transaction.id,    
   transaction.name,
   transaction.amount,
-  transaction.date,
+  DATE_FORMAT(transaction.date,'%d/%m/%Y') as date,
   transaction.type,
   category.name AS category_name
 FROM 
@@ -41,15 +42,15 @@ JOIN
 
   async create(transaction) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (date, amount, type, category_id) VALUES(?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (name, date, amount, type, category_id) VALUES(?, ?, ?, ?, ?)`,
       [
+        transaction.name,
         transaction.date,
         transaction.amount,
         transaction.type,
         transaction.category_id,
       ]
     );
-
     return result;
   }
 

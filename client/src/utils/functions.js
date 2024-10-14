@@ -1,5 +1,5 @@
 // Showing type in french
-export default function frenchType(type) {
+export function frenchType(type) {
   if (type === "expense") {
     return "dépense";
   }
@@ -8,4 +8,9 @@ export default function frenchType(type) {
     return "revenu";
   }
   return "transfert";
+}
+
+export function toIso(europeanDate) {
+  const [day, month, year] = europeanDate.split("/");
+  return `${year}-${month}-${day}`;
 }

@@ -6,6 +6,7 @@ import {
   redirect,
   RouterProvider,
 } from "react-router-dom";
+
 import {
   getCategory,
   getCategories,
@@ -16,19 +17,24 @@ import {
   addCategory,
   editCategory,
   deleteCategory,
+  addTransaction,
+  editTransaction,
+  deleteTransaction,
 } from "./services/request";
 
 import App from "./App";
 import Categories from "./pages/Categories";
 import CategoryDetails from "./pages/CategoryDetails";
+import CategoryForm from "./pages/CategoryForm";
+import CategoryEdit from "./pages/CategoryEdit";
 import Transactions from "./pages/Transactions";
 import TransactionDetails from "./pages/TransactionDetails";
+import TransactionForm from "./pages/TransactionForm";
+import TransactionEdit from "./pages/TransactionEdit";
 import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import CategoryForm from "./pages/CategoryForm";
-import CategoryEdit from "./pages/CategoryEdit";
 
 const router = createBrowserRouter([
   {
@@ -67,9 +73,11 @@ const router = createBrowserRouter([
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              const categoryName = formData.get("name");
-              const categoryIcon = formData.get("icon");
-              await editCategory(categoryName, categoryIcon, params.id);
+              await editCategory({
+                name: formData.get("name"),
+                icon: formData.get("icon"),
+                id: params.id,
+              });
               return redirect(`/categories/${params.id}`);
             }
             case "delete": {
@@ -86,9 +94,10 @@ const router = createBrowserRouter([
         element: <CategoryForm />,
         action: async ({ request }) => {
           const formData = await request.formData();
-          const name = formData.get("name");
-          const icon = formData.get("icon");
-          await addCategory(name, icon);
+          await addCategory({
+            name: formData.get("name"),
+            icon: formData.get("icon"),
+          });
           return redirect(`/categories`);
         },
       },
@@ -105,6 +114,55 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           transaction: await getTransaction(params.id),
         }),
+      },
+      {
+        path: "/transactions/:id/edit",
+        element: <TransactionEdit />,
+        loader: async ({ params }) => ({
+          transaction: await getTransaction(params.id),
+          categories: await getCategories(),
+        }),
+        action: async ({ request, params }) => {
+          const formData = await request.formData();
+
+          switch (request.method.toLocaleLowerCase()) {
+            case "put": {
+              await editTransaction({
+                name: formData.get("name"),
+                date: formData.get("date"),
+                amount: parseInt(formData.get("amount"), 10),
+                type: formData.get("type"),
+                categoryId: parseInt(formData.get("category"), 10),
+                id: params.id,
+              });
+              return redirect(`/transactions/${params.id}`);
+            }
+            case "delete": {
+              await deleteTransaction(params.id);
+              return redirect("/transactions");
+            }
+            default:
+              throw new Response("Method Not Allowed", { status: 405 });
+          }
+        },
+      },
+      {
+        path: "/transactions_form",
+        element: <TransactionForm />,
+        loader: async () => ({
+          categories: await getCategories(),
+        }),
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          await addTransaction({
+            name: formData.get("name"),
+            date: formData.get("date"),
+            amount: parseInt(formData.get("amount"), 10),
+            type: formData.get("type"),
+            categoryId: parseInt(formData.get("category"), 10),
+          });
+          return redirect(`/transactions`);
+        },
       },
       {
         path: "/budgets",
