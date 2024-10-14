@@ -18,16 +18,27 @@ export default function Navbar({ authTools }) {
             </li>
           </>
         ) : (
-          <li>
-            <button
-              type="button"
-              onClick={() => {
-                authTools.setAuth(null);
-              }}
-            >
-              Se déconnecter
-            </button>
-          </li>
+          <>
+            <li>
+              <Link to="/transactions">Mes transactions</Link>
+            </li>
+            <li>
+              <Link to="/categories">Mes catégories</Link>
+            </li>
+            <li>
+              <Link to="/budgets">Mes budgets</Link>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={() => {
+                  authTools.setAuth(null);
+                }}
+              >
+                Se déconnecter
+              </button>
+            </li>
+          </>
         )}
       </ul>
     </nav>
