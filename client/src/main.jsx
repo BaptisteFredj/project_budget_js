@@ -70,7 +70,7 @@ const router = createBrowserRouter([
                 icon: formData.get("icon"),
                 id: params.id,
               });
-              return redirect(`/categories/${params.id}`);
+              return redirect(`/categories/`);
             }
             case "delete": {
               await deleteCategory(params.id);
