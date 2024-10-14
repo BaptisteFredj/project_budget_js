@@ -5,8 +5,8 @@ export default function CategoryThumb({ category }) {
   return (
     <ul>
       <li>
-        Nom de la catégorie :
-        <Link to={`/categories/${category.id}`}>{category.name}</Link>
+        Nom de la catégorie : {category.name}{" "}
+        <Link to={`/categories/${category.id}/edit`}>Modifier</Link>
       </li>
     </ul>
   );

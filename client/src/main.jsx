@@ -9,7 +9,7 @@ import {
 
 import {
   getCategory,
-  getCategories,
+  getCategoriesByUserId,
   getTransaction,
   getTransactions,
   getBudget,
@@ -24,7 +24,6 @@ import {
 
 import App from "./App";
 import Categories from "./pages/Categories";
-import CategoryDetails from "./pages/CategoryDetails";
 import CategoryForm from "./pages/CategoryForm";
 import CategoryEdit from "./pages/CategoryEdit";
 import Transactions from "./pages/Transactions";
@@ -52,14 +51,7 @@ const router = createBrowserRouter([
         path: "/categories",
         element: <Categories />,
         loader: async () => ({
-          categories: await getCategories(),
-        }),
-      },
-      {
-        path: "/categories/:id",
-        element: <CategoryDetails />,
-        loader: async ({ params }) => ({
-          category: await getCategory(params.id),
+          categories: await getCategoriesByUserId(),
         }),
       },
       {
@@ -78,7 +70,7 @@ const router = createBrowserRouter([
                 icon: formData.get("icon"),
                 id: params.id,
               });
-              return redirect(`/categories/${params.id}`);
+              return redirect(`/categories/`);
             }
             case "delete": {
               await deleteCategory(params.id);
@@ -120,7 +112,7 @@ const router = createBrowserRouter([
         element: <TransactionEdit />,
         loader: async ({ params }) => ({
           transaction: await getTransaction(params.id),
-          categories: await getCategories(),
+          categories: await getCategoriesByUserId(),
         }),
         action: async ({ request, params }) => {
           const formData = await request.formData();
@@ -150,7 +142,7 @@ const router = createBrowserRouter([
         path: "/transactions_form",
         element: <TransactionForm />,
         loader: async () => ({
-          categories: await getCategories(),
+          categories: await getCategoriesByUserId(),
         }),
         action: async ({ request }) => {
           const formData = await request.formData();

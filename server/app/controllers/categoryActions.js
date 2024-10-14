@@ -1,17 +1,20 @@
 const tables = require("../../database/tables");
 
-const browse = async (req, res, next) => {
+const readCategoriesByUser = async (req, res, next) => {
   try {
-    const categories = await tables.category.readAll();
-    res.json(categories);
+    const category = await tables.category.readCategoriesByUser(
+      req.body.user_id
+    );
+    res.json(category);
   } catch (error) {
     next(error);
   }
 };
 
-const read = async (req, res, next) => {
+const readCategoryById = async (req, res, next) => {
+  req.body.id = req.params.id;
   try {
-    const category = await tables.category.read(req.params.id);
+    const category = await tables.category.readCategoryById(req.body);
     if (category == null) {
       res.sendStatus(404);
     } else {
@@ -23,8 +26,6 @@ const read = async (req, res, next) => {
 };
 
 const add = async (req, res, next) => {
-  // To be changed when token set up
-  req.body.user_id = 1;
   try {
     const result = await tables.category.create(req.body);
     res
@@ -36,9 +37,9 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const category = { ...req.body, id: req.params.id };
+  req.body.id = req.params.id;
   try {
-    await tables.category.update(category);
+    await tables.category.update(req.body);
     res.sendStatus(204);
   } catch (error) {
     next(error);
@@ -46,12 +47,13 @@ const edit = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  req.body.id = req.params.id;
   try {
-    await tables.category.delete(req.params.id);
+    await tables.category.delete(req.body);
     res.sendStatus(204);
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = { browse, read, add, edit, destroy };
+module.exports = { readCategoriesByUser, readCategoryById, add, edit, destroy };

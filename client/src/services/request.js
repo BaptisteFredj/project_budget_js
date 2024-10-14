@@ -3,9 +3,11 @@ import axios from "axios";
 const url = import.meta.env.VITE_API_URL;
 
 // Get all categories from DB
-export function getCategories() {
+export function getCategoriesByUserId() {
   return axios
-    .get(`${url}/api/categories`)
+    .get(`${url}/api/categories`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME
@@ -17,7 +19,9 @@ export function getCategories() {
 // Get a category from its ID
 export function getCategory(id) {
   return axios
-    .get(`${url}/api/categories/${id}`)
+    .get(`${url}/api/categories/${id}`, {
+      withCredentials: true,
+    })
     .then((reponse) => reponse.data)
     .catch((error) => {
       // FIX ME
@@ -29,7 +33,13 @@ export function getCategory(id) {
 // Create a category
 export function addCategory({ name, icon }) {
   return axios
-    .post(`${url}/api/categories`, { name, icon })
+    .post(
+      `${url}/api/categories`,
+      { name, icon },
+      {
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME
@@ -41,7 +51,13 @@ export function addCategory({ name, icon }) {
 // Edit a category
 export function editCategory({ name, icon, id }) {
   return axios
-    .put(`${url}/api/categories/${id}`, { name, icon, user_id: id })
+    .put(
+      `${url}/api/categories/${id}`,
+      { name, icon, user_id: id },
+      {
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME
@@ -53,7 +69,9 @@ export function editCategory({ name, icon, id }) {
 // Delete a category
 export function deleteCategory(id) {
   return axios
-    .delete(`${url}/api/categories/${id}`)
+    .delete(`${url}/api/categories/${id}`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME
@@ -162,7 +180,13 @@ export function getBudget(id) {
 // Login function
 export function login(email, password) {
   return axios
-    .post(`${url}/api/login`, { email, password })
+    .post(
+      `${url}/api/login`,
+      { email, password },
+      {
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       throw error;
@@ -172,7 +196,13 @@ export function login(email, password) {
 // Register function
 export function register(email, password) {
   return axios
-    .post(`${url}/api/users`, { email, password })
+    .post(
+      `${url}/api/users`,
+      { email, password },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    )
     .then((response) => response)
     .catch((error) => {
       throw error;

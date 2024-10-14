@@ -6,7 +6,7 @@ function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const { setUser } = useOutletContext();
+  const { setAuth } = useOutletContext();
 
   const navigate = useNavigate();
 
@@ -14,13 +14,13 @@ function Login() {
     event.preventDefault();
 
     try {
-      const user = await login(
+      const auth = await login(
         emailRef.current.value,
         passwordRef.current.value
       );
 
-      setUser(user);
-      navigate(`/transactions`);
+      setAuth(auth);
+      navigate(`/categories`);
     } catch (err) {
       alert("Identifiants incorrects");
     }

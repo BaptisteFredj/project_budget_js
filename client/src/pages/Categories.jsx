@@ -1,7 +1,7 @@
 import { useLoaderData, Link } from "react-router-dom";
 import CategoryThumb from "../components/CategoryThumb";
 
-function Users() {
+function Categories() {
   const { categories } = useLoaderData();
 
   return (
@@ -15,4 +15,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default Categories;

@@ -5,18 +5,22 @@ class CategoryRepository extends AbstractRepository {
     super({ table: "category" });
   }
 
-  async readAll() {
-    const [rows] = await this.database.query(`SELECT * FROM ${this.table}`);
+  async readCategoriesByUser(userId) {
+    const [rows] = await this.database.query(
+      `
+      SELECT * FROM ${this.table} WHERE user_id = ?`,
+      [userId]
+    );
     return rows;
   }
 
-  async read(id) {
+  async readCategoryById(category) {
     const [rows] = await this.database.query(
       `
-      SELECT * FROM ${this.table} WHERE id = ?`,
-      [id]
+      SELECT * FROM ${this.table} WHERE id = ? AND user_id = ?`,
+      [category.id, category.user_id]
     );
-    return rows[0];
+    return rows;
   }
 
   async create(category) {
@@ -30,16 +34,16 @@ class CategoryRepository extends AbstractRepository {
 
   async update(category) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET name = ?, icon = ? WHERE id = ?`,
-      [category.name, category.icon, category.id]
+      `UPDATE ${this.table} SET name = ?, icon = ? WHERE id = ? AND user_id = ?`,
+      [category.name, category.icon, category.id, category.user_id]
     );
     return result.affectedRows;
   }
 
-  async delete(id) {
+  async delete(category) {
     const [result] = await this.database.query(
-      `DELETE FROM ${this.table} WHERE id = ?`,
-      [id]
+      `DELETE FROM ${this.table} WHERE id = ? AND user_id = ?`,
+      [category.id, category.user_id]
     );
     return result.affectedRows;
   }
