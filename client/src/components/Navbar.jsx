@@ -6,15 +6,15 @@ export default function Navbar({ authTools }) {
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Accueil</Link>
         </li>
         {authTools.auth == null ? (
           <>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/login">Se connecter</Link>
             </li>
             <li>
-              <Link to="/register">Register</Link>
+              <Link to="/register">S'inscrire</Link>
             </li>
           </>
         ) : (
@@ -25,7 +25,7 @@ export default function Navbar({ authTools }) {
                 authTools.setAuth(null);
               }}
             >
-              Logout
+              Se déconnecter
             </button>
           </li>
         )}
