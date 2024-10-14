@@ -12,7 +12,6 @@ export default function TransactionThumb({ transaction }) {
       <li>Montant de la transaction : {transaction.amount}</li>
       <li>Type de transaction : {frenchType(transaction.type)}</li>
       <li>Date de la transaction : {transaction.date}</li>
-      <li>Type de transaction : {transaction.type}</li>
       <li>Catégorie de la transaction : {transaction.category_name}</li>
     </ul>
   );
