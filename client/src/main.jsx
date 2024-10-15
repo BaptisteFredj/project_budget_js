@@ -27,7 +27,6 @@ import Categories from "./pages/Categories";
 import CategoryForm from "./pages/CategoryForm";
 import CategoryEdit from "./pages/CategoryEdit";
 import Transactions from "./pages/Transactions";
-import TransactionDetails from "./pages/TransactionDetails";
 import TransactionForm from "./pages/TransactionForm";
 import TransactionEdit from "./pages/TransactionEdit";
 import Budgets from "./pages/Budgets";
@@ -98,13 +97,6 @@ const router = createBrowserRouter([
         element: <Transactions />,
         loader: async () => ({
           transactions: await getTransactionsByUserId(),
-        }),
-      },
-      {
-        path: "/transactions/:id",
-        element: <TransactionDetails />,
-        loader: async ({ params }) => ({
-          transaction: await getTransaction(params.id),
         }),
       },
       {
