@@ -8,18 +8,18 @@ import {
 } from "react-router-dom";
 
 import {
-  getCategory,
   getCategoriesByUserId,
-  getTransaction,
-  getTransactions,
-  getBudget,
-  getBudgets,
+  getCategory,
   addCategory,
   editCategory,
   deleteCategory,
+  getTransactionsByUserId,
+  getTransaction,
   addTransaction,
   editTransaction,
   deleteTransaction,
+  getBudget,
+  getBudgets,
 } from "./services/request";
 
 import App from "./App";
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
         path: "/transactions",
         element: <Transactions />,
         loader: async () => ({
-          transactions: await getTransactions(),
+          transactions: await getTransactionsByUserId(),
         }),
       },
       {
