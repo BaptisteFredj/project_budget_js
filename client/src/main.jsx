@@ -108,6 +108,7 @@ const router = createBrowserRouter([
         }),
         action: async ({ request, params }) => {
           const formData = await request.formData();
+          console.info("params id MAIN :", params.id);
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
@@ -119,7 +120,7 @@ const router = createBrowserRouter([
                 categoryId: parseInt(formData.get("category"), 10),
                 id: params.id,
               });
-              return redirect(`/transactions/${params.id}`);
+              return redirect(`/transactions/`);
             }
             case "delete": {
               await deleteTransaction(params.id);

@@ -42,7 +42,7 @@ class TransactionRepository extends AbstractRepository {
         t.id = ? AND t.user_id = ?`,
       [transaction.id, transaction.user_id]
     );
-    return rows;
+    return rows[0];
   }
 
   async create(transaction) {

@@ -49,10 +49,10 @@ export function addCategory({ name, icon }) {
 }
 
 // Edit a category
-export function editCategory({ name, icon, categoryId }) {
+export function editCategory({ name, icon, id }) {
   return axios
     .put(
-      `${url}/api/categories/${categoryId}`,
+      `${url}/api/categories/${id}`,
       { name, icon },
       {
         withCredentials: true,
@@ -67,9 +67,9 @@ export function editCategory({ name, icon, categoryId }) {
 }
 
 // Delete a category
-export function deleteCategory({ categoryId }) {
+export function deleteCategory(id) {
   return axios
-    .delete(`${url}/api/categories/${categoryId}`, {
+    .delete(`${url}/api/categories/${id}`, {
       withCredentials: true,
     })
     .then((response) => response.data)
@@ -133,17 +133,10 @@ export function addTransaction({ name, date, amount, type, categoryId }) {
 }
 
 // Edit a transaction
-export function editTransaction({
-  name,
-  date,
-  amount,
-  type,
-  categoryId,
-  transactionId,
-}) {
+export function editTransaction({ name, date, amount, type, categoryId, id }) {
   return axios
     .put(
-      `${url}/api/transactions/${transactionId}`,
+      `${url}/api/transactions/${id}`,
       {
         name,
         date,
@@ -164,9 +157,9 @@ export function editTransaction({
 }
 
 // Delete a transaction
-export function deleteTransaction({ transactionId }) {
+export function deleteTransaction(id) {
   return axios
-    .delete(`${url}/api/transactions/${transactionId}`, {
+    .delete(`${url}/api/transactions/${id}`, {
       withCredentials: true,
     })
     .then((response) => response.data)
