@@ -5,38 +5,42 @@ class BudgetRepository extends AbstractRepository {
     super({ table: "budget" });
   }
 
-  async readAll() {
-    const [rows] = await this.database.query(`SELECT 
-  budget.id,
-  budget.name,
-  budget.amount,
-  DATE_FORMAT(budget.start_date,'%d/%m/%Y') as start_date,
-  DATE_FORMAT(budget.end_date,'%d/%m/%Y') as end_date,
-  category.name AS category_name
-FROM 
-  ${this.table}
-JOIN 
-  category ON budget.category_id = category.id;
-`);
+  async readBudgetsByUser(userId) {
+    const [rows] = await this.database.query(
+      `SELECT 
+        b.id,
+        b.name,
+        b.amount,
+        DATE_FORMAT(b.start_date, '%d/%m/%Y') as start_date,
+        DATE_FORMAT(b.end_date, '%d/%m/%Y') as end_date,
+        c.name AS category_name
+      FROM 
+        ${this.table} b
+      LEFT JOIN 
+        category c ON b.category_id = c.id
+      WHERE 
+        b.user_id = ?`,
+      [userId]
+    );
     return rows;
   }
 
-  async read(id) {
+  async readTransactionById(budget) {
     const [rows] = await this.database.query(
       `SELECT 
-  budget.name,
-  budget.amount,
-  DATE_FORMAT(budget.start_date,'%d/%m/%Y') as start_date,
-  DATE_FORMAT(budget.end_date,'%d/%m/%Y') as end_date,
-  category.name AS category_name
-FROM 
-  ${this.table}
-JOIN 
-  category ON budget.category_id = category.id
-WHERE
-  budget.id = ?;
-`,
-      [id]
+        b.id,
+        b.name,
+        b.amount,
+        DATE_FORMAT(b.start_date, '%d/%m/%Y') as start_date,
+        DATE_FORMAT(b.end_date, '%d/%m/%Y') as end_date,
+        c.name AS category_name
+      FROM 
+        ${this.table} b
+      LEFT JOIN 
+        category c ON b.category_id = c.id
+      WHERE 
+        b.id = ? AND b.user_id = ?`,
+      [budget.id, budget.user_id]
     );
     return rows[0];
   }
@@ -59,7 +63,7 @@ WHERE
 
   async update(budget) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET name = ?, amount = ?, start_date = ?, end_date = ?, category_id = ? WHERE id = ?`,
+      `UPDATE ${this.table} SET name = ?, amount = ?, start_date = ?, end_date = ?, category_id = ? WHERE id = ? AND user_id = ?`,
       [
         budget.name,
         budget.amount,
@@ -67,15 +71,16 @@ WHERE
         budget.end_date,
         budget.category_id,
         budget.id,
+        budget.user_id,
       ]
     );
     return result.affectedRows;
   }
 
-  async delete(id) {
+  async delete(budget) {
     const [result] = await this.database.query(
-      `DELETE FROM ${this.table} WHERE id = ?`,
-      [id]
+      `DELETE FROM ${this.table} WHERE id = ? AND user_id = ?`,
+      [budget.id, budget.user_id]
     );
     return result.affectedRows;
   }
