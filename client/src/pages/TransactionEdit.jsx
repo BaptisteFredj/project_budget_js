@@ -24,6 +24,7 @@ function TransactionEdit() {
           type="number"
           id="amount"
           name="amount"
+          step="0.01"
           defaultValue={transaction.amount}
         />
         <label htmlFor="date">Date de transaction</label>

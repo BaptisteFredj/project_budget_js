@@ -114,7 +114,7 @@ const router = createBrowserRouter([
               await editTransaction({
                 name: formData.get("name"),
                 date: formData.get("date"),
-                amount: parseInt(formData.get("amount"), 10),
+                amount: parseFloat(formData.get("amount")),
                 type: formData.get("type"),
                 categoryId: parseInt(formData.get("category"), 10),
                 id: params.id,
@@ -141,7 +141,7 @@ const router = createBrowserRouter([
           await addTransaction({
             name: formData.get("name"),
             date: formData.get("date"),
-            amount: parseInt(formData.get("amount"), 10),
+            amount: parseFloat(formData.get("amount")),
             type: formData.get("type"),
             categoryId: parseInt(formData.get("category"), 10),
           });
