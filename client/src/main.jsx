@@ -108,7 +108,6 @@ const router = createBrowserRouter([
         }),
         action: async ({ request, params }) => {
           const formData = await request.formData();
-          console.info("params id MAIN :", params.id);
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
