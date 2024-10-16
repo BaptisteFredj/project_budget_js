@@ -46,10 +46,10 @@ router.delete("/transactions/:id", authenticateUser, transaction.destroy);
 // Budget operations routes
 const budget = require("./controllers/budgetActions");
 
-router.get("/budgets", budget.browse);
-router.get("/budgets/:id", budget.read);
-router.post("/budgets", budget.add);
-router.put("/budgets/:id", budget.edit);
-router.delete("/budgets/:id", budget.destroy);
+router.get("/budgets", authenticateUser, budget.readBudgetsByUser);
+router.get("/budgets/:id", authenticateUser, budget.readBudgetsById);
+router.post("/budgets", authenticateUser, budget.add);
+router.put("/budgets/:id", authenticateUser, budget.edit);
+router.delete("/budgets/:id", authenticateUser, budget.destroy);
 
 module.exports = router;
