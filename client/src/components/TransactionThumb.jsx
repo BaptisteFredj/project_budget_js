@@ -5,14 +5,16 @@ import { frenchType } from "../utils/functions";
 export default function TransactionThumb({ transaction }) {
   return (
     <ul>
-      <li>
-        Nom de la transaction :{" "}
-        <Link to={`/transactions/${transaction.id}`}>{transaction.name}</Link>
-      </li>
-      <li>Montant de la transaction : {transaction.amount}</li>
+      <li>Nom de la transaction : {transaction.name}</li>
+      <li>Montant de la transaction : {transaction.amount}€</li>
       <li>Type de transaction : {frenchType(transaction.type)}</li>
       <li>Date de la transaction : {transaction.date}</li>
       <li>Catégorie de la transaction : {transaction.category_name}</li>
+      <li>
+        <Link to={`/transactions/${transaction.id}/edit`}>
+          Modifier la transaction
+        </Link>
+      </li>
     </ul>
   );
 }

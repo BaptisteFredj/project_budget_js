@@ -8,18 +8,18 @@ import {
 } from "react-router-dom";
 
 import {
-  getCategory,
   getCategoriesByUserId,
-  getTransaction,
-  getTransactions,
-  getBudget,
-  getBudgets,
+  getCategory,
   addCategory,
   editCategory,
   deleteCategory,
+  getTransactionsByUserId,
+  getTransaction,
   addTransaction,
   editTransaction,
   deleteTransaction,
+  getBudget,
+  getBudgets,
 } from "./services/request";
 
 import App from "./App";
@@ -27,7 +27,6 @@ import Categories from "./pages/Categories";
 import CategoryForm from "./pages/CategoryForm";
 import CategoryEdit from "./pages/CategoryEdit";
 import Transactions from "./pages/Transactions";
-import TransactionDetails from "./pages/TransactionDetails";
 import TransactionForm from "./pages/TransactionForm";
 import TransactionEdit from "./pages/TransactionEdit";
 import Budgets from "./pages/Budgets";
@@ -97,14 +96,7 @@ const router = createBrowserRouter([
         path: "/transactions",
         element: <Transactions />,
         loader: async () => ({
-          transactions: await getTransactions(),
-        }),
-      },
-      {
-        path: "/transactions/:id",
-        element: <TransactionDetails />,
-        loader: async ({ params }) => ({
-          transaction: await getTransaction(params.id),
+          transactions: await getTransactionsByUserId(),
         }),
       },
       {
@@ -127,7 +119,7 @@ const router = createBrowserRouter([
                 categoryId: parseInt(formData.get("category"), 10),
                 id: params.id,
               });
-              return redirect(`/transactions/${params.id}`);
+              return redirect(`/transactions/`);
             }
             case "delete": {
               await deleteTransaction(params.id);

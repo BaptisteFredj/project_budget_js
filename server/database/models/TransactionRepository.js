@@ -5,50 +5,56 @@ class TransactionRepository extends AbstractRepository {
     super({ table: "transaction" });
   }
 
-  async readAll() {
-    const [rows] = await this.database.query(`SELECT 
-  transaction.id,
-  transaction.name,
-  transaction.amount,
-  DATE_FORMAT(transaction.date,'%d/%m/%Y') as date,
-  transaction.type,
-  category.name AS category_name
-FROM 
-  ${this.table}
-LEFT JOIN 
-  category ON transaction.category_id = category.id;
-`);
+  async readTransactionsByUser(userId) {
+    const [rows] = await this.database.query(
+      `SELECT 
+        t.id,
+        t.name,
+        t.amount,
+        DATE_FORMAT(t.date, '%d/%m/%Y') as date,
+        t.type,
+        c.name AS category_name
+      FROM 
+        ${this.table} t
+      LEFT JOIN 
+        category c ON t.category_id = c.id
+      WHERE 
+        t.user_id = ?`,
+      [userId]
+    );
     return rows;
   }
 
-  async read(id) {
+  async readTransactionById(transaction) {
     const [rows] = await this.database.query(
       `SELECT 
-  transaction.id,    
-  transaction.name,
-  transaction.amount,
-  DATE_FORMAT(transaction.date,'%d/%m/%Y') as date,
-  transaction.type,
-  category.name AS category_name
-FROM 
-  ${this.table}
-JOIN 
-  category ON transaction.category_id = category.id
-  WHERE transaction.id = ?;`,
-      [id]
+        t.id,    
+        t.name,
+        t.amount,
+        DATE_FORMAT(t.date, '%d/%m/%Y') as date,
+        t.type,
+        c.name AS category_name
+      FROM 
+        ${this.table} t
+      LEFT JOIN 
+        category c ON t.category_id = c.id
+      WHERE 
+        t.id = ? AND t.user_id = ?`,
+      [transaction.id, transaction.user_id]
     );
     return rows[0];
   }
 
   async create(transaction) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (name, date, amount, type, category_id) VALUES(?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (name, date, amount, type, category_id, user_id) VALUES(?, ?, ?, ?, ?, ?)`,
       [
         transaction.name,
         transaction.date,
         transaction.amount,
         transaction.type,
         transaction.category_id,
+        transaction.user_id,
       ]
     );
     return result;
@@ -56,22 +62,23 @@ JOIN
 
   async update(transaction) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET date = ?, amount = ?, type = ?, category_id = ? WHERE id = ?`,
+      `UPDATE ${this.table} SET date = ?, amount = ?, type = ?, category_id = ? WHERE id = ? AND user_id = ?`,
       [
         transaction.date,
         transaction.amount,
         transaction.type,
         transaction.category_id,
         transaction.id,
+        transaction.user_id,
       ]
     );
     return result.affectedRows;
   }
 
-  async delete(id) {
+  async delete(transaction) {
     const [result] = await this.database.query(
-      `DELETE FROM ${this.table} WHERE id = ?`,
-      [id]
+      `DELETE FROM ${this.table} WHERE id = ? AND user_id = ?`,
+      [transaction.id, transaction.user_id]
     );
     return result.affectedRows;
   }

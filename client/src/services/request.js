@@ -2,7 +2,7 @@ import axios from "axios";
 
 const url = import.meta.env.VITE_API_URL;
 
-// Get all categories from DB
+// Get all the user's categories
 export function getCategoriesByUserId() {
   return axios
     .get(`${url}/api/categories`, {
@@ -16,7 +16,7 @@ export function getCategoriesByUserId() {
     });
 }
 
-// Get a category from its ID
+// Get a category by its ID
 export function getCategory(id) {
   return axios
     .get(`${url}/api/categories/${id}`, {
@@ -53,7 +53,7 @@ export function editCategory({ name, icon, id }) {
   return axios
     .put(
       `${url}/api/categories/${id}`,
-      { name, icon, user_id: id },
+      { name, icon },
       {
         withCredentials: true,
       }
@@ -80,10 +80,12 @@ export function deleteCategory(id) {
     });
 }
 
-// Get all transactions from DB
-export function getTransactions() {
+// Get all the user's transactions
+export function getTransactionsByUserId() {
   return axios
-    .get(`${url}/api/transactions`)
+    .get(`${url}/api/transactions`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME
@@ -92,10 +94,12 @@ export function getTransactions() {
     });
 }
 
-// Get a transaction from its ID
+// Get a transaction by its ID
 export function getTransaction(id) {
   return axios
-    .get(`${url}/api/transactions/${id}`)
+    .get(`${url}/api/transactions/${id}`, {
+      withCredentials: true,
+    })
     .then((reponse) => reponse.data)
     .catch((error) => {
       // FIX ME
@@ -107,13 +111,19 @@ export function getTransaction(id) {
 // Create a transaction
 export function addTransaction({ name, date, amount, type, categoryId }) {
   return axios
-    .post(`${url}/api/transactions`, {
-      name,
-      date,
-      amount,
-      type,
-      category_id: categoryId,
-    })
+    .post(
+      `${url}/api/transactions`,
+      {
+        name,
+        date,
+        amount,
+        type,
+        category_id: categoryId,
+      },
+      {
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME
@@ -125,14 +135,19 @@ export function addTransaction({ name, date, amount, type, categoryId }) {
 // Edit a transaction
 export function editTransaction({ name, date, amount, type, categoryId, id }) {
   return axios
-    .put(`${url}/api/transactions/${id}`, {
-      name,
-      date,
-      amount,
-      type,
-      category_id: categoryId,
-      id,
-    })
+    .put(
+      `${url}/api/transactions/${id}`,
+      {
+        name,
+        date,
+        amount,
+        type,
+        category_id: categoryId,
+      },
+      {
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME
@@ -144,7 +159,9 @@ export function editTransaction({ name, date, amount, type, categoryId, id }) {
 // Delete a transaction
 export function deleteTransaction(id) {
   return axios
-    .delete(`${url}/api/transactions/${id}`)
+    .delete(`${url}/api/transactions/${id}`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME

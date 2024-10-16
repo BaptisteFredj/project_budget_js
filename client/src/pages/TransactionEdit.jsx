@@ -4,7 +4,7 @@ import { toIso } from "../utils/functions";
 function TransactionEdit() {
   const { transaction, categories } = useLoaderData();
 
-  const previousCategory = categories.find(
+  const previousCategory = categories?.find(
     (category) => category.name === transaction.category_name
   );
 
@@ -45,7 +45,7 @@ function TransactionEdit() {
         <select
           id="category"
           name="category"
-          defaultValue={previousCategory.id}
+          defaultValue={previousCategory ? previousCategory.id : ""}
         >
           <option value="">Aucune catégorie</option>
           {categories.map((category) => (

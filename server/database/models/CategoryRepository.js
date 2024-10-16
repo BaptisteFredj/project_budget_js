@@ -20,7 +20,7 @@ class CategoryRepository extends AbstractRepository {
       SELECT * FROM ${this.table} WHERE id = ? AND user_id = ?`,
       [category.id, category.user_id]
     );
-    return rows;
+    return rows[0];
   }
 
   async create(category) {

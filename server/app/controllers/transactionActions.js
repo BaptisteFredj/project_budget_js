@@ -1,17 +1,20 @@
 const tables = require("../../database/tables");
 
-const browse = async (req, res, next) => {
+const readTransactionsByUser = async (req, res, next) => {
   try {
-    const transactions = await tables.transaction.readAll();
-    res.json(transactions);
+    const transaction = await tables.transaction.readTransactionsByUser(
+      req.body.user_id
+    );
+    res.json(transaction);
   } catch (error) {
     next(error);
   }
 };
 
-const read = async (req, res, next) => {
+const readTransactionById = async (req, res, next) => {
+  req.body.id = req.params.id;
   try {
-    const transaction = await tables.transaction.read(req.params.id);
+    const transaction = await tables.transaction.readTransactionById(req.body);
     if (transaction == null) {
       res.sendStatus(404);
     } else {
@@ -34,9 +37,9 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const transaction = { ...req.body, id: req.params.id };
+  req.body.id = req.params.id;
   try {
-    await tables.transaction.update(transaction);
+    await tables.transaction.update(req.body);
     res.sendStatus(204);
   } catch (error) {
     next(error);
@@ -44,12 +47,19 @@ const edit = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  req.body.id = req.params.id;
   try {
-    await tables.transaction.delete(req.params.id);
+    await tables.transaction.delete(req.body);
     res.sendStatus(204);
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = { browse, read, add, edit, destroy };
+module.exports = {
+  readTransactionById,
+  readTransactionsByUser,
+  add,
+  edit,
+  destroy,
+};

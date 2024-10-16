@@ -29,11 +29,19 @@ router.delete("/categories/:id", authenticateUser, category.destroy);
 // Transaction operations routes
 const transaction = require("./controllers/transactionActions");
 
-router.get("/transactions", transaction.browse);
-router.get("/transactions/:id", transaction.read);
-router.post("/transactions", transaction.add);
-router.put("/transactions/:id", transaction.edit);
-router.delete("/transactions/:id", transaction.destroy);
+router.get(
+  "/transactions",
+  authenticateUser,
+  transaction.readTransactionsByUser
+);
+router.get(
+  "/transactions/:id",
+  authenticateUser,
+  transaction.readTransactionById
+);
+router.post("/transactions", authenticateUser, transaction.add);
+router.put("/transactions/:id", authenticateUser, transaction.edit);
+router.delete("/transactions/:id", authenticateUser, transaction.destroy);
 
 // Budget operations routes
 const budget = require("./controllers/budgetActions");
