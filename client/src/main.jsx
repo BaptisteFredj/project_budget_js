@@ -18,8 +18,11 @@ import {
   addTransaction,
   editTransaction,
   deleteTransaction,
+  getBudgetsByUserId,
   getBudget,
-  getBudgets,
+  addBudget,
+  editBudget,
+  deleteBudget,
 } from "./services/request";
 
 import App from "./App";
@@ -33,6 +36,8 @@ import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import BudgetForm from "./pages/BudgetForm";
+import BudgetEdit from "./pages/BudgetEdit";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +57,18 @@ const router = createBrowserRouter([
         loader: async () => ({
           categories: await getCategoriesByUserId(),
         }),
+      },
+      {
+        path: "/categories_form",
+        element: <CategoryForm />,
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          await addCategory({
+            name: formData.get("name"),
+            icon: formData.get("icon"),
+          });
+          return redirect(`/categories`);
+        },
       },
       {
         path: "/categories/:id/edit",
@@ -81,23 +98,29 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/categories_form",
-        element: <CategoryForm />,
-        action: async ({ request }) => {
-          const formData = await request.formData();
-          await addCategory({
-            name: formData.get("name"),
-            icon: formData.get("icon"),
-          });
-          return redirect(`/categories`);
-        },
-      },
-      {
         path: "/transactions",
         element: <Transactions />,
         loader: async () => ({
           transactions: await getTransactionsByUserId(),
         }),
+      },
+      {
+        path: "/transactions_form",
+        element: <TransactionForm />,
+        loader: async () => ({
+          categories: await getCategoriesByUserId(),
+        }),
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          await addTransaction({
+            name: formData.get("name"),
+            date: formData.get("date"),
+            amount: parseFloat(formData.get("amount")),
+            type: formData.get("type"),
+            categoryId: parseInt(formData.get("category"), 10),
+          });
+          return redirect(`/transactions`);
+        },
       },
       {
         path: "/transactions/:id/edit",
@@ -130,29 +153,12 @@ const router = createBrowserRouter([
           }
         },
       },
-      {
-        path: "/transactions_form",
-        element: <TransactionForm />,
-        loader: async () => ({
-          categories: await getCategoriesByUserId(),
-        }),
-        action: async ({ request }) => {
-          const formData = await request.formData();
-          await addTransaction({
-            name: formData.get("name"),
-            date: formData.get("date"),
-            amount: parseFloat(formData.get("amount")),
-            type: formData.get("type"),
-            categoryId: parseInt(formData.get("category"), 10),
-          });
-          return redirect(`/transactions`);
-        },
-      },
+
       {
         path: "/budgets",
         element: <Budgets />,
         loader: async () => ({
-          budgets: await getBudgets(),
+          budgets: await getBudgetsByUserId(),
         }),
       },
       {
@@ -161,6 +167,55 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           budget: await getBudget(params.id),
         }),
+      },
+      {
+        path: "/budgets_form",
+        element: <BudgetForm />,
+        loader: async () => ({
+          categories: await getCategoriesByUserId(),
+        }),
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          await addBudget({
+            name: formData.get("name"),
+            amount: parseInt(formData.get("amount"), 10),
+            startDate: formData.get("start_date"),
+            endDate: formData.get("end_date"),
+            categoryId: parseInt(formData.get("category"), 10),
+          });
+          return redirect(`/budgets`);
+        },
+      },
+      {
+        path: "/budgets/:id/edit",
+        element: <BudgetEdit />,
+        loader: async ({ params }) => ({
+          transaction: await getBudget(params.id),
+          categories: await getCategoriesByUserId(),
+        }),
+        action: async ({ request, params }) => {
+          const formData = await request.formData();
+
+          switch (request.method.toLocaleLowerCase()) {
+            case "put": {
+              await editBudget({
+                name: formData.get("name"),
+                amount: parseInt(formData.get("amount"), 10),
+                startDate: formData.get("start_date"),
+                endDate: formData.get("end_date"),
+                categoryId: parseInt(formData.get("category"), 10),
+                id: params.id,
+              });
+              return redirect(`/budgets/`);
+            }
+            case "delete": {
+              await deleteBudget(params.id);
+              return redirect("/budgets");
+            }
+            default:
+              throw new Response("Method Not Allowed", { status: 405 });
+          }
+        },
       },
     ],
   },

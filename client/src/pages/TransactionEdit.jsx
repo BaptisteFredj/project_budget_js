@@ -48,7 +48,7 @@ function TransactionEdit() {
           name="category"
           defaultValue={previousCategory ? previousCategory.id : ""}
         >
-          <option value="">Aucune catégorie</option>
+          <option value="">Sans catégorie</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
