@@ -202,7 +202,7 @@ export function getBudget(id) {
 export function addBudget({ name, amount, startDate, endDate, categoryId }) {
   return axios
     .post(
-      `${url}/api/transactions`,
+      `${url}/api/budgets`,
       {
         name,
         amount,
@@ -233,7 +233,7 @@ export function editBudget({
 }) {
   return axios
     .put(
-      `${url}/api/transactions/${id}`,
+      `${url}/api/budgets/${id}`,
       {
         name,
         amount,

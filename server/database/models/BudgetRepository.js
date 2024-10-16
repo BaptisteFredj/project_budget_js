@@ -25,7 +25,7 @@ class BudgetRepository extends AbstractRepository {
     return rows;
   }
 
-  async readTransactionById(budget) {
+  async readBudgetById(budget) {
     const [rows] = await this.database.query(
       `SELECT 
         b.id,

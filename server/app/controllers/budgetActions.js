@@ -9,10 +9,10 @@ const readBudgetsByUser = async (req, res, next) => {
   }
 };
 
-const readBudgetsById = async (req, res, next) => {
+const readBudgetById = async (req, res, next) => {
   req.body.id = req.params.id;
   try {
-    const budget = await tables.budget.readBudgetsById(req.body);
+    const budget = await tables.budget.readBudgetById(req.body);
     if (budget == null) {
       res.sendStatus(404);
     } else {
@@ -52,4 +52,4 @@ const destroy = async (req, res, next) => {
   }
 };
 
-module.exports = { readBudgetsById, readBudgetsByUser, add, edit, destroy };
+module.exports = { readBudgetById, readBudgetsByUser, add, edit, destroy };
