@@ -190,7 +190,7 @@ const router = createBrowserRouter([
         path: "/budgets/:id/edit",
         element: <BudgetEdit />,
         loader: async ({ params }) => ({
-          transaction: await getBudget(params.id),
+          budget: await getBudget(params.id),
           categories: await getCategoriesByUserId(),
         }),
         action: async ({ request, params }) => {

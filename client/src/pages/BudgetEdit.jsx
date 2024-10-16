@@ -53,7 +53,7 @@ function BudgetEdit() {
       </Form>
 
       <Form method="delete">
-        <button type="submit">Supprimer cette transaction</button>
+        <button type="submit">Supprimer ce budget</button>
       </Form>
     </>
   );
