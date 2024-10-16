@@ -1,17 +1,18 @@
 const tables = require("../../database/tables");
 
-const browse = async (req, res, next) => {
+const readBudgetsByUser = async (req, res, next) => {
   try {
-    const budgets = await tables.budget.readAll();
+    const budgets = await tables.budget.readBudgetsByUser(req.body.user_id);
     res.json(budgets);
   } catch (error) {
     next(error);
   }
 };
 
-const read = async (req, res, next) => {
+const readBudgetsById = async (req, res, next) => {
+  req.body.id = req.params.id;
   try {
-    const budget = await tables.budget.read(req.params.id);
+    const budget = await tables.budget.readBudgetsById(req.body);
     if (budget == null) {
       res.sendStatus(404);
     } else {
@@ -32,9 +33,9 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const budget = { ...req.body, id: req.params.id };
+  req.body.id = req.params.id;
   try {
-    await tables.budget.update(budget);
+    await tables.budget.update(req.body);
     res.sendStatus(204);
   } catch (error) {
     next(error);
@@ -42,12 +43,13 @@ const edit = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  req.body.id = req.params.id;
   try {
-    await tables.budget.delete(req.params.id);
+    await tables.budget.delete(req.body);
     res.sendStatus(204);
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = { browse, read, add, edit, destroy };
+module.exports = { readBudgetsById, readBudgetsByUser, add, edit, destroy };
