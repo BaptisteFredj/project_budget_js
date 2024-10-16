@@ -2,7 +2,7 @@ import axios from "axios";
 
 const url = import.meta.env.VITE_API_URL;
 
-// Get all the user's categories
+// Get all user's categories
 export function getCategoriesByUserId() {
   return axios
     .get(`${url}/api/categories`, {
@@ -80,7 +80,7 @@ export function deleteCategory(id) {
     });
 }
 
-// Get all the user's transactions
+// Get all user's transactions
 export function getTransactionsByUserId() {
   return axios
     .get(`${url}/api/transactions`, {
@@ -170,10 +170,12 @@ export function deleteTransaction(id) {
     });
 }
 
-// Get all budgets from DB
-export function getBudgets() {
+// Get all user's budgets
+export function getBudgetsByUserId() {
   return axios
-    .get(`${url}/api/budgets`)
+    .get(`${url}/api/budgets`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME
@@ -185,8 +187,79 @@ export function getBudgets() {
 // Get a budget from its ID
 export function getBudget(id) {
   return axios
-    .get(`${url}/api/budgets/${id}`)
+    .get(`${url}/api/budgets/${id}`, {
+      withCredentials: true,
+    })
     .then((reponse) => reponse.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
+// Create a budget
+export function addBudget({ name, amount, startDate, endDate, categoryId }) {
+  return axios
+    .post(
+      `${url}/api/transactions`,
+      {
+        name,
+        amount,
+        start_date: startDate,
+        end_date: endDate,
+        category_id: categoryId,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return null;
+    });
+}
+
+// Edit a budget
+export function editBudget({
+  name,
+  amount,
+  startDate,
+  endDate,
+  categoryId,
+  id,
+}) {
+  return axios
+    .put(
+      `${url}/api/transactions/${id}`,
+      {
+        name,
+        amount,
+        start_date: startDate,
+        end_date: endDate,
+        category_id: categoryId,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
+// Delete a budget
+export function deleteBudget(id) {
+  return axios
+    .delete(`${url}/api/budgets/${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
     .catch((error) => {
       // FIX ME
       console.error(error);
