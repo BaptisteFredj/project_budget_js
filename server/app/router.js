@@ -2,6 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const validator = require("./services/dataValidator");
+
 // User operations routes
 const user = require("./controllers/userActions");
 const { hashPassword, authenticateUser } = require("./services/auth");
@@ -48,7 +50,12 @@ const budget = require("./controllers/budgetActions");
 
 router.get("/budgets", authenticateUser, budget.readBudgetsByUser);
 router.get("/budgets/:id", authenticateUser, budget.readBudgetById);
-router.post("/budgets", authenticateUser, budget.add);
+router.post(
+  "/budgets",
+  authenticateUser,
+  validator.budgetFormValidator,
+  budget.add
+);
 router.put("/budgets/:id", authenticateUser, budget.edit);
 router.delete("/budgets/:id", authenticateUser, budget.destroy);
 
