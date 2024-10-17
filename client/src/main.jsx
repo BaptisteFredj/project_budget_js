@@ -176,13 +176,19 @@ const router = createBrowserRouter([
         }),
         action: async ({ request }) => {
           const formData = await request.formData();
-          await addBudget({
+          const result = await addBudget({
             name: formData.get("name"),
             amount: parseInt(formData.get("amount"), 10),
             startDate: formData.get("start_date"),
             endDate: formData.get("end_date"),
             categoryId: parseInt(formData.get("category"), 10),
           });
+          console.info("result in main : ", result);
+
+          if (result && typeof result.message === "string") {
+            return { error: result };
+          }
+
           return redirect(`/budgets`);
         },
       },

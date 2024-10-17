@@ -215,11 +215,7 @@ export function addBudget({ name, amount, startDate, endDate, categoryId }) {
       }
     )
     .then((response) => response.data)
-    .catch((error) => {
-      // FIX ME
-      console.error(error);
-      return null;
-    });
+    .catch((error) => error.response.data);
 }
 
 // Edit a budget
