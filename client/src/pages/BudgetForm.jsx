@@ -14,7 +14,8 @@ function BudgetForm() {
       <Form method="post">
         <label htmlFor="name">Nom du budget</label>
         <input type="text" id="name" name="name" placeholder="Nom du budget" />
-        {errors?.error?.name === "NameError" ? (
+        {errors?.error?.name === "NameError" ||
+        errors?.error?.name === "CharacterError" ? (
           <p>{errors.error.message}</p>
         ) : null}
         <label htmlFor="amount">Montant du budget</label>
