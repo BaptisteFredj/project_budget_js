@@ -1,6 +1,6 @@
 const budgetFormValidator = async (req, res, next) => {
   const formData = req.body;
-  const specialCharacters = /[^a-zA-Z0-9 ]/g;
+  const specialCharacters = /[^\p{L}0-9 ]/gu;
 
   try {
     if (formData.name.length > 100) {
