@@ -252,11 +252,7 @@ export function deleteBudget(id) {
       withCredentials: true,
     })
     .then((response) => response.data)
-    .catch((error) => {
-      // FIX ME
-      console.error(error);
-      return [];
-    });
+    .catch((error) => error.response.data);
 }
 
 // Login function
