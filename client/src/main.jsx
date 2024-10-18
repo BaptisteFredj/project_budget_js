@@ -183,7 +183,6 @@ const router = createBrowserRouter([
             endDate: formData.get("end_date"),
             categoryId: parseInt(formData.get("category"), 10),
           });
-          console.info("result in main : ", result);
 
           if (result && typeof result.message === "string") {
             return { error: result };
