@@ -203,7 +203,7 @@ const router = createBrowserRouter([
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              await editBudget({
+              const result = await editBudget({
                 name: formData.get("name"),
                 amount: parseInt(formData.get("amount"), 10),
                 startDate: formData.get("start_date"),
@@ -211,6 +211,11 @@ const router = createBrowserRouter([
                 categoryId: parseInt(formData.get("category"), 10),
                 id: params.id,
               });
+
+              if (result && typeof result.message === "string") {
+                return { error: result };
+              }
+
               return redirect(`/budgets/`);
             }
             case "delete": {

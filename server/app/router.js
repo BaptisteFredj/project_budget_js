@@ -56,7 +56,12 @@ router.post(
   validator.budgetFormValidator,
   budget.add
 );
-router.put("/budgets/:id", authenticateUser, budget.edit);
+router.put(
+  "/budgets/:id",
+  authenticateUser,
+  validator.budgetFormValidator,
+  budget.edit
+);
 router.delete("/budgets/:id", authenticateUser, budget.destroy);
 
 module.exports = router;

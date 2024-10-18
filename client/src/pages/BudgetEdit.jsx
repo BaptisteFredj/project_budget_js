@@ -1,8 +1,9 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useActionData } from "react-router-dom";
 import { toIso } from "../utils/functions";
 
 function BudgetEdit() {
   const { budget, categories } = useLoaderData();
+  const errors = useActionData();
 
   const previousCategory = categories?.find(
     (category) => category.name === budget.category_name
@@ -49,6 +50,7 @@ function BudgetEdit() {
             </option>
           ))}
         </select>
+        {errors ? <p>{errors.error.message}</p> : null}
         <button type="submit">Modifier</button>
       </Form>
 
