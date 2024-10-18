@@ -242,11 +242,7 @@ export function editBudget({
       }
     )
     .then((response) => response.data)
-    .catch((error) => {
-      // FIX ME
-      console.error(error);
-      return [];
-    });
+    .catch((error) => error.response.data);
 }
 
 // Delete a budget
