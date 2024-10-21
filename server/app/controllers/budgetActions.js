@@ -46,8 +46,17 @@ const add = async (req, res, next) => {
 const edit = async (req, res, next) => {
   req.body.id = req.params.id;
   try {
-    await tables.budget.update(req.body);
-    res.sendStatus(204);
+    const isCategory = await tables.category.readCategoryById({
+      id: req.body.category_id,
+      user_id: req.body.user_id,
+    });
+
+    if (isCategory) {
+      await tables.budget.update(req.body);
+      res.sendStatus(204);
+    } else {
+      res.status(401).send(`La catégorie n'existe pas.`);
+    }
   } catch (error) {
     next(error);
   }
