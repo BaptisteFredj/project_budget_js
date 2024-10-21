@@ -2,10 +2,10 @@ const tables = require("../../database/tables");
 
 const readTransactionsByUser = async (req, res, next) => {
   try {
-    const transaction = await tables.transaction.readTransactionsByUser(
+    const transactions = await tables.transaction.readTransactionsByUser(
       req.body.user_id
     );
-    res.json(transaction);
+    res.json(transactions);
   } catch (error) {
     next(error);
   }

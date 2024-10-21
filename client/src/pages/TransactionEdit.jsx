@@ -24,6 +24,7 @@ function TransactionEdit() {
           type="number"
           id="amount"
           name="amount"
+          step="0.01"
           defaultValue={transaction.amount}
         />
         <label htmlFor="date">Date de transaction</label>
@@ -47,7 +48,7 @@ function TransactionEdit() {
           name="category"
           defaultValue={previousCategory ? previousCategory.id : ""}
         >
-          <option value="">Aucune catégorie</option>
+          <option value="">Sans catégorie</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
