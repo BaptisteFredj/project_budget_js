@@ -25,8 +25,19 @@ const readBudgetById = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   try {
-    const result = await tables.budget.create(req.body);
-    res.status(201).send(`Budget ajouté avec succès. ID : ${result.insertId}`);
+    const isCategory = await tables.category.readCategoryById({
+      id: req.body.category_id,
+      user_id: req.body.user_id,
+    });
+
+    if (isCategory) {
+      const result = await tables.budget.create(req.body);
+      res
+        .status(201)
+        .send(`Budget ajouté avec succès. ID : ${result.insertId}`);
+    } else {
+      res.status(401).send(`La catégorie n'existe pas.`);
+    }
   } catch (error) {
     next(error);
   }
