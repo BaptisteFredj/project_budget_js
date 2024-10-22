@@ -15,7 +15,7 @@ export function toIso(europeanDate) {
   return `${year}-${month}-${day}`;
 }
 
-export function budgetFormValidator({ formData }) {
+export function budgetFormValidator(formData) {
   const errors = {};
   const specialCharacters = /[^\p{L}0-9 ]/gu;
 
