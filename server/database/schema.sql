@@ -27,7 +27,7 @@
   
   create table budget (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
+    name VARCHAR(255) NOT NULL,
     amount INT NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,

@@ -14,13 +14,20 @@ function BudgetEdit() {
       <h1>Modifier votre budget</h1>
       <Form method="put">
         <label htmlFor="name">Nom du budget</label>
-        <input type="text" id="name" name="name" defaultValue={budget.name} />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          defaultValue={budget.name}
+          required
+        />
         <label htmlFor="amount">Montant du budget</label>
         <input
           type="number"
           id="amount"
           name="amount"
           defaultValue={budget.amount}
+          required
         />
         <label htmlFor="start_date">Date de début du budget</label>
         <input
@@ -28,6 +35,7 @@ function BudgetEdit() {
           id="start_date"
           name="start_date"
           defaultValue={toIso(budget.start_date)}
+          required
         />
         <label htmlFor="end_date">Date de fin du budget</label>
         <input
@@ -35,6 +43,7 @@ function BudgetEdit() {
           id="end_date"
           name="end_date"
           defaultValue={toIso(budget.end_date)}
+          required
         />
 
         <label htmlFor="category">Catégorie du budget</label>

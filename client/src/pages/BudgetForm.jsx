@@ -9,15 +9,28 @@ function BudgetForm() {
       <h1>Créer un budget</h1>
       <Form method="post">
         <label htmlFor="name">Nom du budget</label>
-        <input type="text" id="name" name="name" placeholder="Nom du budget" />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Nom du budget"
+          required
+        />
         <label htmlFor="amount">Montant du budget</label>
-        <input type="number" id="amount" name="amount" placeholder="Montant" />
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          placeholder="Montant"
+          required
+        />
         <label htmlFor="start_date">Date de début du budget</label>
         <input
           type="date"
           id="start_date"
           name="start_date"
           placeholder="Date de début du budget"
+          required
         />
         <label htmlFor="end_date">Date de fin du budget</label>
         <input
@@ -25,6 +38,7 @@ function BudgetForm() {
           id="end_date"
           name="end_date"
           placeholder="Date de fin du budget"
+          required
         />
         <label htmlFor="category">Catégorie du budget</label>
         <select id="category" name="category">
