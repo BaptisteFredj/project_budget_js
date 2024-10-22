@@ -25,11 +25,15 @@ const readBudgetById = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   try {
-    const categoryBelongsToUser = await tables.category.readCategoryById({
-      id: req.body.category_id,
-      user_id: req.body.user_id,
-    });
-
+    let categoryBelongsToUser;
+    if (req.body.category_id === null) {
+      categoryBelongsToUser = true;
+    } else {
+      categoryBelongsToUser = await tables.category.readCategoryById({
+        id: req.body.category_id,
+        user_id: req.body.user_id,
+      });
+    }
     if (categoryBelongsToUser) {
       const result = await tables.budget.create(req.body);
       res
@@ -46,11 +50,15 @@ const add = async (req, res, next) => {
 const edit = async (req, res, next) => {
   req.body.id = req.params.id;
   try {
-    const categoryBelongsToUser = await tables.category.readCategoryById({
-      id: req.body.category_id,
-      user_id: req.body.user_id,
-    });
-
+    let categoryBelongsToUser;
+    if (req.body.category_id === null) {
+      categoryBelongsToUser = true;
+    } else {
+      categoryBelongsToUser = await tables.category.readCategoryById({
+        id: req.body.category_id,
+        user_id: req.body.user_id,
+      });
+    }
     if (categoryBelongsToUser) {
       await tables.budget.update(req.body);
       res.sendStatus(204);
