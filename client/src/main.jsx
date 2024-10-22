@@ -185,13 +185,13 @@ const router = createBrowserRouter([
             endDate: formData.get("end_date"),
             categoryId: parseInt(formData.get("category"), 10),
           };
-          const validatedData = budgetFormValidator({
-            formData: formDataObject,
-          });
+          const validatedData = budgetFormValidator(formDataObject);
 
           if (Object.keys(validatedData).length > 0) {
             return validatedData;
           }
+
+          formDataObject.name = formDataObject.name.trim();
 
           await addBudget(formDataObject);
 
@@ -221,6 +221,7 @@ const router = createBrowserRouter([
           if (Object.keys(validatedData).length > 0) {
             return validatedData;
           }
+          formDataObject.name = formDataObject.name.trim();
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
