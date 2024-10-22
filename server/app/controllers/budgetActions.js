@@ -25,12 +25,12 @@ const readBudgetById = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   try {
-    const isCategory = await tables.category.readCategoryById({
+    const categoryBelongsToUser = await tables.category.readCategoryById({
       id: req.body.category_id,
       user_id: req.body.user_id,
     });
 
-    if (isCategory) {
+    if (categoryBelongsToUser) {
       const result = await tables.budget.create(req.body);
       res
         .status(201)
@@ -46,12 +46,12 @@ const add = async (req, res, next) => {
 const edit = async (req, res, next) => {
   req.body.id = req.params.id;
   try {
-    const isCategory = await tables.category.readCategoryById({
+    const categoryBelongsToUser = await tables.category.readCategoryById({
       id: req.body.category_id,
       user_id: req.body.user_id,
     });
 
-    if (isCategory) {
+    if (categoryBelongsToUser) {
       await tables.budget.update(req.body);
       res.sendStatus(204);
     } else {
