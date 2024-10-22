@@ -23,6 +23,10 @@ export function budgetFormValidator(formData) {
     errors.NameError = "Nom trop long : maximum 100 caractères.";
   }
 
+  if (formData.name.length < 3) {
+    errors.NameError = "Nom trop court : 3 caractères minimum.";
+  }
+
   if (formData.name.match(specialCharacters)) {
     errors.CharacterError =
       "Seulement les caractères alphanumériques sont autorisés.";
