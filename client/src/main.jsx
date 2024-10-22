@@ -25,6 +25,8 @@ import {
   deleteBudget,
 } from "./services/request";
 
+import { budgetFormValidator } from "./utils/functions";
+
 import App from "./App";
 import Categories from "./pages/Categories";
 import CategoryForm from "./pages/CategoryForm";
@@ -176,17 +178,22 @@ const router = createBrowserRouter([
         }),
         action: async ({ request }) => {
           const formData = await request.formData();
-          const result = await addBudget({
+          const formDataObject = {
             name: formData.get("name"),
             amount: parseInt(formData.get("amount"), 10),
             startDate: formData.get("start_date"),
             endDate: formData.get("end_date"),
             categoryId: parseInt(formData.get("category"), 10),
+          };
+          const validatedData = budgetFormValidator({
+            formData: formDataObject,
           });
 
-          if (result && typeof result.message === "string") {
-            return { error: result };
+          if (Object.keys(validatedData).length > 0) {
+            return validatedData;
           }
+
+          await addBudget(formDataObject);
 
           return redirect(`/budgets`);
         },
@@ -200,6 +207,21 @@ const router = createBrowserRouter([
         }),
         action: async ({ request, params }) => {
           const formData = await request.formData();
+          const formDataObject = {
+            name: formData.get("name"),
+            amount: parseInt(formData.get("amount"), 10),
+            startDate: formData.get("start_date"),
+            endDate: formData.get("end_date"),
+            categoryId: parseInt(formData.get("category"), 10),
+          };
+
+          const validatedData = budgetFormValidator({
+            formData: formDataObject,
+          });
+
+          if (Object.keys(validatedData).length > 0) {
+            return validatedData;
+          }
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {

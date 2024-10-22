@@ -16,6 +16,9 @@ function BudgetForm() {
           placeholder="Nom du budget"
           required
         />
+        {errors?.NameError ? errors.NameError : null}
+        {errors?.CharacterError ? errors.CharacterError : null}
+
         <label htmlFor="amount">Montant du budget</label>
         <input
           type="number"
@@ -24,6 +27,8 @@ function BudgetForm() {
           placeholder="Montant"
           required
         />
+        {errors?.AmountError ? errors.AmountError : null}
+
         <label htmlFor="start_date">Date de début du budget</label>
         <input
           type="date"
@@ -32,6 +37,8 @@ function BudgetForm() {
           placeholder="Date de début du budget"
           required
         />
+        {errors?.DateError ? errors.DateError : null}
+
         <label htmlFor="end_date">Date de fin du budget</label>
         <input
           type="date"
@@ -49,7 +56,6 @@ function BudgetForm() {
             </option>
           ))}
         </select>
-        {errors ? <p>{errors.error.message}</p> : null}
         <button type="submit">Ajouter</button>
       </Form>
     </>
