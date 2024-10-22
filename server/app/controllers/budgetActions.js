@@ -36,7 +36,7 @@ const add = async (req, res, next) => {
         .status(201)
         .send(`Budget ajouté avec succès. ID : ${result.insertId}`);
     } else {
-      res.status(401).send(`La catégorie n'existe pas.`);
+      res.status(404).send(`La catégorie n'existe pas.`);
     }
   } catch (error) {
     next(error);
@@ -55,7 +55,7 @@ const edit = async (req, res, next) => {
       await tables.budget.update(req.body);
       res.sendStatus(204);
     } else {
-      res.status(401).send(`La catégorie n'existe pas.`);
+      res.status(404).send(`La catégorie n'existe pas.`);
     }
   } catch (error) {
     next(error);
