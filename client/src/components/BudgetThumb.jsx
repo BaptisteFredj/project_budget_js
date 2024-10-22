@@ -19,7 +19,7 @@ export default function BudgetThumb({ budget }) {
 BudgetThumb.propTypes = {
   budget: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    category_name: PropTypes.string.isRequired,
+    category_name: PropTypes.string,
     amount: PropTypes.number.isRequired,
     start_date: PropTypes.string.isRequired,
     end_date: PropTypes.string.isRequired,
