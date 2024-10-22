@@ -216,12 +216,12 @@ const router = createBrowserRouter([
             id: params.id,
           };
 
+          formDataObject.name = formDataObject.name.trim();
           const validatedData = budgetFormValidator(formDataObject);
 
           if (Object.keys(validatedData).length > 0) {
             return validatedData;
           }
-          formDataObject.name = formDataObject.name.trim();
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
