@@ -1,7 +1,8 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useActionData } from "react-router-dom";
 
 function TransactionForm() {
   const { categories } = useLoaderData();
+  const errors = useActionData();
 
   return (
     <>
@@ -14,6 +15,9 @@ function TransactionForm() {
           name="name"
           placeholder="Nom de la transaction"
         />
+        {errors?.NameError}
+        {errors?.CharacterError}
+
         <label htmlFor="amount">Montant de la transaction</label>
         <input
           type="number"
@@ -22,6 +26,8 @@ function TransactionForm() {
           placeholder="Montant"
           step="0.01"
         />
+        {errors?.AmountError}
+
         <label htmlFor="date">Date de transaction</label>
         <input
           type="date"

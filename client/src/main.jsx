@@ -25,7 +25,10 @@ import {
   deleteBudget,
 } from "./services/request";
 
-import { budgetFormValidator } from "./utils/functions";
+import {
+  budgetFormValidator,
+  transactionFormValidator,
+} from "./utils/dataValidators";
 
 import App from "./App";
 import Categories from "./pages/Categories";
@@ -114,13 +117,22 @@ const router = createBrowserRouter([
         }),
         action: async ({ request }) => {
           const formData = await request.formData();
-          await addTransaction({
+          const formDataObject = {
             name: formData.get("name"),
             date: formData.get("date"),
             amount: parseFloat(formData.get("amount")),
             type: formData.get("type"),
             categoryId: parseInt(formData.get("category"), 10),
-          });
+          };
+
+          formDataObject.name = formDataObject.name.trim();
+          const validatedData = transactionFormValidator(formDataObject);
+
+          if (Object.keys(validatedData).length > 0) {
+            return validatedData;
+          }
+
+          await addTransaction(formDataObject);
           return redirect(`/transactions`);
         },
       },
@@ -133,17 +145,25 @@ const router = createBrowserRouter([
         }),
         action: async ({ request, params }) => {
           const formData = await request.formData();
+          const formDataObject = {
+            name: formData.get("name"),
+            date: formData.get("date"),
+            amount: parseFloat(formData.get("amount")),
+            type: formData.get("type"),
+            categoryId: parseInt(formData.get("category"), 10),
+            id: params.id,
+          };
+
+          formDataObject.name = formDataObject.name.trim();
+          const validatedData = transactionFormValidator(formDataObject);
+
+          if (Object.keys(validatedData).length > 0) {
+            return validatedData;
+          }
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              await editTransaction({
-                name: formData.get("name"),
-                date: formData.get("date"),
-                amount: parseFloat(formData.get("amount")),
-                type: formData.get("type"),
-                categoryId: parseInt(formData.get("category"), 10),
-                id: params.id,
-              });
+              await editTransaction(formDataObject);
               return redirect(`/transactions/`);
             }
             case "delete": {

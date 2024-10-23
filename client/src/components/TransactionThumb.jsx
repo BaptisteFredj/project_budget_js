@@ -21,7 +21,7 @@ export default function TransactionThumb({ transaction }) {
 
 TransactionThumb.propTypes = {
   transaction: PropTypes.shape({
-    amount: PropTypes.number.isRequired,
+    amount: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     category_name: PropTypes.string,
