@@ -63,6 +63,36 @@ const budgetFormValidator = async (req, res, next) => {
   }
 };
 
+const transactionFormValidator = async (req, res, next) => {
+  const { amount } = req.body;
+
+  // Regex to allow positive numbers, forbid 0, allow up to 2 decimal places - more info below exports for clarity
+  const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
+
+  try {
+    await nameValidator(req);
+
+    if (!amount.toString().match(validNumber)) {
+      const error = new Error(
+        "Seul les nombres positifs sont acceptés, jusqu'à 2 décimales."
+      );
+      error.name = "AmountError";
+      throw error;
+    }
+
+    return next();
+  } catch (error) {
+    return res.json({ name: error.name, message: error.message });
+  }
+};
+
 module.exports = {
   budgetFormValidator,
+  transactionFormValidator,
 };
+
+// regex = /^(?!0$)\d+(\.\d{1,2})?$/;
+// (?!0$) : forbid 0
+// \d+ : the integer part of the number can have 1 or more digits
+// (\.\d{1,2})? : allow decimal point followed by 1 or 2 digits (fractional part). The "?" means it's optional
+// "^" means start of the string, and "$" the end of it

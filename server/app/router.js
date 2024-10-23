@@ -41,8 +41,18 @@ router.get(
   authenticateUser,
   transaction.readTransactionById
 );
-router.post("/transactions", authenticateUser, transaction.add);
-router.put("/transactions/:id", authenticateUser, transaction.edit);
+router.post(
+  "/transactions",
+  authenticateUser,
+  validator.transactionFormValidator,
+  transaction.add
+);
+router.put(
+  "/transactions/:id",
+  authenticateUser,
+  validator.transactionFormValidator,
+  transaction.edit
+);
 router.delete("/transactions/:id", authenticateUser, transaction.destroy);
 
 // Budget operations routes
