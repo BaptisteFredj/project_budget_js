@@ -23,6 +23,7 @@ import {
   addBudget,
   editBudget,
   deleteBudget,
+  getIcons,
 } from "./services/request";
 
 import {
@@ -66,6 +67,9 @@ const router = createBrowserRouter([
       {
         path: "/categories_form",
         element: <CategoryForm />,
+        loader: async () => ({
+          icons: await getIcons(),
+        }),
         action: async ({ request }) => {
           const formData = await request.formData();
           await addCategory({

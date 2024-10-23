@@ -1,8 +1,9 @@
-import { Form, useNavigate } from "react-router-dom";
+import { Form, useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { addCategory } from "../services/request";
 
 function CategoryForm() {
+  const { icons } = useLoaderData();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -43,6 +44,17 @@ function CategoryForm() {
           placeholder="Nom de la catégorie"
           required
         />
+
+        <h3>All icons !</h3>
+        {icons.map((icon) => (
+          <div key={icon.id}>
+            <img
+              src={`${import.meta.env.VITE_API_URL}${icon.path}`}
+              alt={`Icon ${icon.id}`}
+            />
+          </div>
+        ))}
+
         <label htmlFor="icon">Icone de la catégorie</label>
         <input type="text" id="icon" name="icon" placeholder="Icône" />
         <button type="submit">Ajouter</button>

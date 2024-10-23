@@ -2,6 +2,20 @@ import axios from "axios";
 
 const url = import.meta.env.VITE_API_URL;
 
+// Get all icons
+export function getIcons() {
+  return axios
+    .get(`${url}/api/icons`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
 // Get all user's categories
 export function getCategoriesByUserId() {
   return axios
