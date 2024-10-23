@@ -1,12 +1,27 @@
 const budgetFormValidator = async (req, res, next) => {
   const formData = req.body;
-  const specialCharacters = /[^\p{L}0-9 ]/gu;
+  const specialCharacters = /[^A-Za-zÀ-ÿ0-9 ]/;
 
   try {
-    if (formData.name.length > 100) {
-      const error = new Error("Nom trop long : maximum 100 caractères.");
+    if (!formData.name) {
+      const error = new Error(
+        "Le nom ne peut pas être vide ou composé uniquement d'espaces. Les espaces en début et fin de nom ne comptent pas comme un caractère."
+      );
       error.name = "NameError";
-      throw error;
+    }
+
+    if (formData.name) {
+      if (formData.name.length > 100) {
+        const error = new Error("Nom trop long : maximum 100 caractères.");
+        error.name = "NameError";
+        throw error;
+      }
+      if (formData.name.length < 3) {
+        const error = new Error(
+          "Nom trop court : 3 caractères minimum. Les espaces en début et fin de nom ne comptent pas comme un caractère."
+        );
+        error.name = "NameError";
+      }
     }
 
     if (formData.name.match(specialCharacters)) {

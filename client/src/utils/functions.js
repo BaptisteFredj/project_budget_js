@@ -19,7 +19,7 @@ export function budgetFormValidator(formData) {
   const errors = {};
   const specialCharacters = /[^A-Za-zÀ-ÿ0-9 ]/;
 
-  if (!formData.name.length) {
+  if (!formData.name) {
     errors.NameError =
       "Le nom ne peut pas être vide ou composé uniquement d'espaces. Les espaces en début et fin de nom ne comptent pas comme un caractère.";
   }
