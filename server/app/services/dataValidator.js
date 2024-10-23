@@ -1,5 +1,4 @@
-const nameValidator = async (req) => {
-  const { name } = req.body;
+const nameValidator = async (name) => {
   const specialCharacters = /[^A-Za-zÀ-ÿ0-9 ]/;
   const trimmedName = name.trim();
 
@@ -39,7 +38,7 @@ const budgetFormValidator = async (req, res, next) => {
   const { amount, start_date: startDate, end_date: endDate } = req.body;
 
   try {
-    await nameValidator(req);
+    await nameValidator(req.body.name);
 
     // At first, i add a "or" condition to check if input is an integer, but the form already does it
     if (Number(amount) <= 0) {
@@ -70,7 +69,7 @@ const transactionFormValidator = async (req, res, next) => {
   const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
 
   try {
-    await nameValidator(req);
+    await nameValidator(req.body.name);
 
     if (!amount.toString().match(validNumber)) {
       const error = new Error(
