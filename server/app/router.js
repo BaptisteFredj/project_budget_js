@@ -19,6 +19,11 @@ const auth = require("./controllers/authActions");
 
 router.post("/login", auth.login);
 
+// Transaction operations routes
+const icon = require("./controllers/iconActions");
+
+router.get("/icons", icon.browse);
+
 // Category operations routes
 const category = require("./controllers/categoryActions");
 
