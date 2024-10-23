@@ -25,7 +25,7 @@ import {
   deleteBudget,
 } from "./services/request";
 
-import { budgetFormValidator } from "./utils/functions";
+import budgetFormValidator from "./utils/dataValidators";
 
 import App from "./App";
 import Categories from "./pages/Categories";
