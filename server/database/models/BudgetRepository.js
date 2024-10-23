@@ -25,7 +25,7 @@ class BudgetRepository extends AbstractRepository {
     return rows;
   }
 
-  async readBudgetById(budget) {
+  async readBudgetById(budgetId, userId) {
     const [rows] = await this.database.query(
       `SELECT 
         b.id,
@@ -40,7 +40,7 @@ class BudgetRepository extends AbstractRepository {
         category c ON b.category_id = c.id
       WHERE 
         b.id = ? AND b.user_id = ?`,
-      [budget.id, budget.user_id]
+      [budgetId, userId]
     );
     return rows[0];
   }
@@ -77,10 +77,10 @@ class BudgetRepository extends AbstractRepository {
     return result.affectedRows;
   }
 
-  async delete(budget) {
+  async delete(budgetId, userId) {
     const [result] = await this.database.query(
       `DELETE FROM ${this.table} WHERE id = ? AND user_id = ?`,
-      [budget.id, budget.user_id]
+      [budgetId, userId]
     );
     return result.affectedRows;
   }

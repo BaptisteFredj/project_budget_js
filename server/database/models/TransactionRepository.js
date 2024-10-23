@@ -25,7 +25,7 @@ class TransactionRepository extends AbstractRepository {
     return rows;
   }
 
-  async readTransactionById(transaction) {
+  async readTransactionById(transactionId, userId) {
     const [rows] = await this.database.query(
       `SELECT 
         t.id,    
@@ -40,7 +40,7 @@ class TransactionRepository extends AbstractRepository {
         category c ON t.category_id = c.id
       WHERE 
         t.id = ? AND t.user_id = ?`,
-      [transaction.id, transaction.user_id]
+      [transactionId, userId]
     );
     return rows[0];
   }
@@ -75,10 +75,10 @@ class TransactionRepository extends AbstractRepository {
     return result.affectedRows;
   }
 
-  async delete(transaction) {
+  async delete(transactionId, userId) {
     const [result] = await this.database.query(
       `DELETE FROM ${this.table} WHERE id = ? AND user_id = ?`,
-      [transaction.id, transaction.user_id]
+      [transactionId, userId]
     );
     return result.affectedRows;
   }

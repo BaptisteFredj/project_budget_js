@@ -14,11 +14,11 @@ class CategoryRepository extends AbstractRepository {
     return rows;
   }
 
-  async readCategoryById(category) {
+  async readCategoryById(categoryId, userId) {
     const [rows] = await this.database.query(
       `
       SELECT * FROM ${this.table} WHERE id = ? AND user_id = ?`,
-      [category.id, category.user_id]
+      [categoryId, userId]
     );
     return rows[0];
   }
@@ -40,10 +40,10 @@ class CategoryRepository extends AbstractRepository {
     return result.affectedRows;
   }
 
-  async delete(category) {
+  async delete(categoryId, userId) {
     const [result] = await this.database.query(
       `DELETE FROM ${this.table} WHERE id = ? AND user_id = ?`,
-      [category.id, category.user_id]
+      [categoryId, userId]
     );
     return result.affectedRows;
   }
