@@ -24,7 +24,7 @@ function nameValidator(name) {
   return errors;
 }
 
-export default function budgetFormValidator(formData) {
+export function budgetFormValidator(formData) {
   const errors = {};
   Object.assign(errors, nameValidator(formData.name));
 
@@ -35,6 +35,20 @@ export default function budgetFormValidator(formData) {
   if (new Date(formData.startDate) > new Date(formData.endDate)) {
     errors.DateError =
       "La date de démarrage d'un budget doit forcément être avant sa date de fin.";
+  }
+
+  return errors;
+}
+
+export function transactionFormValidator(formData) {
+  const errors = {};
+  Object.assign(errors, nameValidator(formData.name));
+
+  const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
+
+  if (!formData.name.toString().match(validNumber)) {
+    errors.AmountError =
+      "Seul les nombres positifs sont acceptés, jusqu'à 2 décimales.";
   }
 
   return errors;
