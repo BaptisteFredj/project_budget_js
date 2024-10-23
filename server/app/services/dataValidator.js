@@ -8,6 +8,7 @@ const budgetFormValidator = async (req, res, next) => {
         "Le nom ne peut pas être vide ou composé uniquement d'espaces. Les espaces en début et fin de nom ne comptent pas comme un caractère."
       );
       error.name = "NameError";
+      throw error;
     }
 
     if (formData.name) {
@@ -21,6 +22,7 @@ const budgetFormValidator = async (req, res, next) => {
           "Nom trop court : 3 caractères minimum. Les espaces en début et fin de nom ne comptent pas comme un caractère."
         );
         error.name = "NameError";
+        throw error;
       }
     }
 
