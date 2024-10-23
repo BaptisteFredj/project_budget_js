@@ -2,19 +2,21 @@ const tables = require("../../database/tables");
 
 const readTransactionsByUser = async (req, res, next) => {
   try {
-    const transaction = await tables.transaction.readTransactionsByUser(
+    const transactions = await tables.transaction.readTransactionsByUser(
       req.body.user_id
     );
-    res.json(transaction);
+    res.json(transactions);
   } catch (error) {
     next(error);
   }
 };
 
 const readTransactionById = async (req, res, next) => {
-  req.body.id = req.params.id;
   try {
-    const transaction = await tables.transaction.readTransactionById(req.body);
+    const transaction = await tables.transaction.readTransactionById(
+      req.params.id,
+      req.body.user_id
+    );
     if (transaction == null) {
       res.sendStatus(404);
     } else {
@@ -47,9 +49,8 @@ const edit = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
-  req.body.id = req.params.id;
   try {
-    await tables.transaction.delete(req.body);
+    await tables.transaction.delete(req.params.id, req.body.user_id);
     res.sendStatus(204);
   } catch (error) {
     next(error);

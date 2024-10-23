@@ -15,7 +15,13 @@ function TransactionForm() {
           placeholder="Nom de la transaction"
         />
         <label htmlFor="amount">Montant de la transaction</label>
-        <input type="number" id="amount" name="amount" placeholder="Montant" />
+        <input
+          type="number"
+          id="amount"
+          name="amount"
+          placeholder="Montant"
+          step="0.01"
+        />
         <label htmlFor="date">Date de transaction</label>
         <input
           type="date"
@@ -33,7 +39,7 @@ function TransactionForm() {
 
         <label htmlFor="category">Catégorie de transaction</label>
         <select id="category" name="category">
-          <option value="">Aucune catégorie</option>
+          <option value="">Sans catégorie</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}

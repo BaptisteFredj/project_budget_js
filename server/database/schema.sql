@@ -15,9 +15,9 @@
   
   create table transaction (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    date DATE,
-    amount INT,
+    name VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
     type VARCHAR(255) NOT NULL,
     user_id INT NOT NULL,
     category_id INT,
@@ -27,10 +27,10 @@
   
   create table budget (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    amount INT,
-    start_date DATE,
-    end_date DATE,
+    name VARCHAR(255) NOT NULL,
+    amount INT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
     category_id INT,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(id),

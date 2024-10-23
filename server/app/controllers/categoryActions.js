@@ -12,9 +12,11 @@ const readCategoriesByUser = async (req, res, next) => {
 };
 
 const readCategoryById = async (req, res, next) => {
-  req.body.id = req.params.id;
   try {
-    const category = await tables.category.readCategoryById(req.body);
+    const category = await tables.category.readCategoryById(
+      req.params.id,
+      req.body.user_id
+    );
     if (category == null) {
       res.sendStatus(404);
     } else {
@@ -47,9 +49,8 @@ const edit = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
-  req.body.id = req.params.id;
   try {
-    await tables.category.delete(req.body);
+    await tables.category.delete(req.params.id, req.body.user_id);
     res.sendStatus(204);
   } catch (error) {
     next(error);

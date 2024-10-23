@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import BudgetThumb from "../components/BudgetThumb";
 
 function Users() {
@@ -10,6 +10,7 @@ function Users() {
       {budgets.map((budget) => (
         <BudgetThumb budget={budget} key={budget.id} />
       ))}
+      <Link to="/budgets_form">Créer un budget</Link>
     </>
   );
 }
