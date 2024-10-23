@@ -35,10 +35,10 @@ const nameValidator = async (name) => {
 };
 
 const budgetFormValidator = async (req, res, next) => {
-  const { amount, start_date: startDate, end_date: endDate } = req.body;
+  const { name, amount, start_date: startDate, end_date: endDate } = req.body;
 
   try {
-    await nameValidator(req.body.name);
+    await nameValidator(name);
 
     // At first, i add a "or" condition to check if input is an integer, but the form already does it
     if (Number(amount) <= 0) {
@@ -63,13 +63,13 @@ const budgetFormValidator = async (req, res, next) => {
 };
 
 const transactionFormValidator = async (req, res, next) => {
-  const { amount } = req.body;
+  const { name, amount } = req.body;
 
   // Regex to allow positive numbers, forbid 0, allow up to 2 decimal places - more info below exports for clarity
   const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
 
   try {
-    await nameValidator(req.body.name);
+    await nameValidator(name);
 
     if (!amount.toString().match(validNumber)) {
       const error = new Error(
