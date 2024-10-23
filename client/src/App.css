@@ -13,3 +13,7 @@ html {
 li {
   list-style: none;
 }
+
+button {
+  all: unset;
+}

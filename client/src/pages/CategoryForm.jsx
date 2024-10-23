@@ -2,6 +2,8 @@ import { Form, useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { addCategory } from "../services/request";
 
+import "../assets/styles/categoryform.css";
+
 function CategoryForm() {
   const { icons } = useLoaderData();
   const [error, setError] = useState(null);
@@ -46,14 +48,17 @@ function CategoryForm() {
         />
 
         <h3>All icons !</h3>
-        {icons.map((icon) => (
-          <div key={icon.id}>
-            <img
-              src={`${import.meta.env.VITE_API_URL}${icon.path}`}
-              alt={`Icon ${icon.id}`}
-            />
-          </div>
-        ))}
+        <ul className="icons_img">
+          {icons.map((icon) => (
+            <li key={icon.id}>
+              <img
+                className="icon_img"
+                src={`${import.meta.env.VITE_API_URL}${icon.path}`}
+                alt={`Icon ${icon.id}`}
+              />
+            </li>
+          ))}
+        </ul>
 
         <label htmlFor="icon">Icone de la catégorie</label>
         <input type="text" id="icon" name="icon" placeholder="Icône" />
