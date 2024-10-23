@@ -46,7 +46,7 @@ export function transactionFormValidator(formData) {
 
   const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
 
-  if (!formData.name.toString().match(validNumber)) {
+  if (!formData.amount.toString().match(validNumber)) {
     errors.AmountError =
       "Seul les nombres positifs sont acceptés, jusqu'à 2 décimales.";
   }

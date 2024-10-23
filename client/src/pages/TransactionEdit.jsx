@@ -1,8 +1,9 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useActionData } from "react-router-dom";
 import { toIso } from "../utils/functions";
 
 function TransactionEdit() {
   const { transaction, categories } = useLoaderData();
+  const errors = useActionData();
 
   const previousCategory = categories?.find(
     (category) => category.name === transaction.category_name
@@ -19,6 +20,9 @@ function TransactionEdit() {
           name="name"
           defaultValue={transaction.name}
         />
+        {errors?.NameError}
+        {errors?.CharacterError}
+
         <label htmlFor="amount">Montant de la transaction</label>
         <input
           type="number"
@@ -27,6 +31,8 @@ function TransactionEdit() {
           step="0.01"
           defaultValue={transaction.amount}
         />
+        {errors?.AmountError}
+
         <label htmlFor="date">Date de transaction</label>
         <input
           type="date"
