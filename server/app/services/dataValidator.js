@@ -1,5 +1,6 @@
 const budgetFormValidator = async (req, res, next) => {
   const formData = req.body;
+  const { amount, start_date: startDate, end_date: endDate } = req.body;
   const specialCharacters = /[^A-Za-zÀ-ÿ0-9 ]/;
 
   try {
@@ -35,7 +36,7 @@ const budgetFormValidator = async (req, res, next) => {
     }
 
     // At first, i add a "or" condition to check if input is an integer, but the form already does it
-    if (Number(formData.amount) <= 0) {
+    if (Number(amount) <= 0) {
       const error = new Error(
         "Seul les nombres entiers positifs sont acceptés."
       );
@@ -43,7 +44,7 @@ const budgetFormValidator = async (req, res, next) => {
       throw error;
     }
 
-    if (new Date(formData.start_date) > new Date(formData.end_date)) {
+    if (new Date(startDate) > new Date(endDate)) {
       const error = new Error(
         "La date de démarrage d'un budget doit forcément être avant sa date de fin."
       );
