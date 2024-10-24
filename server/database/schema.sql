@@ -13,7 +13,7 @@
   create table category (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100),
-    icon_id INT DEFAULT 1,
+    icon_id INT NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY(icon_id) REFERENCES icon(id),
     FOREIGN KEY(user_id) REFERENCES user(id)
