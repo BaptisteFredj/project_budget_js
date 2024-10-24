@@ -45,11 +45,11 @@ export function getCategory(id) {
 }
 
 // Create a category
-export function addCategory({ name, icon }) {
+export function addCategory({ name, iconId }) {
   return axios
     .post(
       `${url}/api/categories`,
-      { name, icon },
+      { name, icon_id: iconId },
       {
         withCredentials: true,
       }
@@ -63,11 +63,11 @@ export function addCategory({ name, icon }) {
 }
 
 // Edit a category
-export function editCategory({ name, icon, id }) {
+export function editCategory({ name, iconId, id }) {
   return axios
     .put(
       `${url}/api/categories/${id}`,
-      { name, icon },
+      { name, icon_id: iconId },
       {
         withCredentials: true,
       }

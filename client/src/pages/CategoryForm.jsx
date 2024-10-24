@@ -30,16 +30,10 @@ function CategoryForm() {
           required
         />
         {selectedIcon && (
-          <input type="hidden" name="icon" value={selectedIcon.id} />
+          <input type="hidden" name="iconId" value={selectedIcon.id} />
         )}
-
-        <h2>Une icône</h2>
-        <button type="button" onClick={handleIconListClick}>
-          {selectedIcon ? "🔄" : "➕"}
-        </button>
-
         <p>
-          Icône choisie :
+          Icône :
           {selectedIcon ? (
             <img
               className="icon_img"
@@ -50,6 +44,12 @@ function CategoryForm() {
             "Aucune icône sélectionnée"
           )}
         </p>
+        <p>
+          Nos icônes :
+          <button type="button" onClick={handleIconListClick}>
+            {selectedIcon ? "🔄" : "➕"}
+          </button>
+        </p>
 
         {showPopover && (
           <IconsPopover
@@ -58,7 +58,7 @@ function CategoryForm() {
             onIconSelect={handleIconSelect}
           />
         )}
-        <button type="submit">Ajouter</button>
+        <button type="submit">Confirmer la création</button>
       </Form>
     </>
   );

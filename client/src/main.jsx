@@ -72,11 +72,12 @@ const router = createBrowserRouter([
         }),
         action: async ({ request }) => {
           const formData = await request.formData();
-          console.info("icon from main: ", formData.get("icon"));
-          await addCategory({
+          const formDataObject = {
             name: formData.get("name"),
-            icon: formData.get("icon"),
-          });
+            iconId: parseInt(formData.get("iconId"), 10),
+          };
+
+          await addCategory(formDataObject);
           return redirect(`/categories`);
         },
       },
@@ -85,17 +86,19 @@ const router = createBrowserRouter([
         element: <CategoryEdit />,
         loader: async ({ params }) => ({
           category: await getCategory(params.id),
+          icons: await getIcons(),
         }),
         action: async ({ request, params }) => {
           const formData = await request.formData();
+          const formDataObject = {
+            name: formData.get("name"),
+            iconId: parseInt(formData.get("iconId"), 10),
+            id: params.id,
+          };
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              await editCategory({
-                name: formData.get("name"),
-                icon: formData.get("icon"),
-                id: params.id,
-              });
+              await editCategory(formDataObject);
               return redirect(`/categories/`);
             }
             case "delete": {

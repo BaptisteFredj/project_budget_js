@@ -6,7 +6,7 @@ export default function CategoryThumb({ category }) {
     <div>
       <img
         className="icon_img"
-        src={`${import.meta.env.VITE_API_URL}${category.path}`}
+        src={`${import.meta.env.VITE_API_URL}${category.icon_path}`}
         alt={category.name}
       />
       {category.name}
@@ -18,7 +18,7 @@ export default function CategoryThumb({ category }) {
 CategoryThumb.propTypes = {
   category: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    path: PropTypes.string,
+    icon_path: PropTypes.string,
     id: PropTypes.number,
   }).isRequired,
 };
