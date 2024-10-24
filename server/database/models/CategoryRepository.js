@@ -10,7 +10,7 @@ class CategoryRepository extends AbstractRepository {
       `
       SELECT c.id AS id, c.name AS name, c.icon_id, i.path AS icon_path
       FROM ${this.table} AS c
-      LEFT JOIN icon AS i ON c.icon_id = i.id
+      INNER JOIN icon AS i ON c.icon_id = i.id
       WHERE user_id = ?`,
       [userId]
     );
@@ -22,7 +22,7 @@ class CategoryRepository extends AbstractRepository {
       `
     SELECT c.id AS id, c.name AS name, c.icon_id, i.path AS icon_path
     FROM ${this.table} AS c
-    LEFT JOIN icon AS i ON c.icon_id = i.id
+    INNER JOIN icon AS i ON c.icon_id = i.id
     WHERE c.id = ? AND c.user_id = ?`,
       [categoryId, userId]
     );
