@@ -1,41 +1,28 @@
-import { Form, useNavigate } from "react-router-dom";
+import { Form, useLoaderData, useActionData } from "react-router-dom";
 import { useState } from "react";
-import { addCategory } from "../services/request";
+import IconsPopover from "../components/IconsPopover";
+
+import "../assets/styles/categoryform.css";
 
 function CategoryForm() {
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const errors = useActionData();
+  const { icons } = useLoaderData();
+  const [showPopover, setShowPopover] = useState(false);
+  const [selectedIcon, setSelectedIcon] = useState(null);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleIconListClick = () => {
+    setShowPopover(true);
+  };
 
-    const formData = new FormData(event.target);
-
-    try {
-      const response = await addCategory({
-        name: formData.get("name"),
-        icon: formData.get("icon"),
-      });
-
-      if (response) {
-        navigate(`/categories`);
-      } else {
-        setError("La catégorie n'a pas pu être créée.");
-      }
-    } catch (err) {
-      console.error(err);
-      setError(
-        "Une erreur s'est produite lors de la création de la catégorie."
-      );
-    }
+  const handleIconSelect = (icon) => {
+    setSelectedIcon(icon);
   };
 
   return (
     <>
       <h1>Créer une catégorie</h1>
-      {error && <p>{error}</p>}
-      <Form method="post" onSubmit={handleSubmit}>
-        <label htmlFor="name">Nom de la catégorie</label>
+      <Form method="post">
+        <label htmlFor="name">Nom</label>
         <input
           type="text"
           id="name"
@@ -43,9 +30,38 @@ function CategoryForm() {
           placeholder="Nom de la catégorie"
           required
         />
-        <label htmlFor="icon">Icone de la catégorie</label>
-        <input type="text" id="icon" name="icon" placeholder="Icône" />
-        <button type="submit">Ajouter</button>
+        {errors?.NameError}
+        {errors?.CharacterError}
+        {selectedIcon && (
+          <input type="hidden" name="iconId" value={selectedIcon.id} />
+        )}
+        <p>
+          Icône :
+          {selectedIcon ? (
+            <img
+              className="icon_img"
+              src={`${import.meta.env.VITE_API_URL}${selectedIcon.path}`}
+              alt="Icône de la catégorie"
+            />
+          ) : (
+            "Aucune icône sélectionnée"
+          )}
+        </p>
+        <p>
+          Nos icônes :
+          <button type="button" onClick={handleIconListClick}>
+            {selectedIcon ? "🔄" : "➕"}
+          </button>
+        </p>
+
+        {showPopover && (
+          <IconsPopover
+            icons={icons}
+            onClose={() => setShowPopover(false)}
+            onIconSelect={handleIconSelect}
+          />
+        )}
+        <button type="submit">Confirmer la création</button>
       </Form>
     </>
   );

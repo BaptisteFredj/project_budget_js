@@ -23,11 +23,13 @@ import {
   addBudget,
   editBudget,
   deleteBudget,
+  getIcons,
 } from "./services/request";
 
 import {
   budgetFormValidator,
   transactionFormValidator,
+  categoryFormValidator,
 } from "./utils/dataValidators";
 
 import App from "./App";
@@ -66,12 +68,23 @@ const router = createBrowserRouter([
       {
         path: "/categories_form",
         element: <CategoryForm />,
+        loader: async () => ({
+          icons: await getIcons(),
+        }),
         action: async ({ request }) => {
           const formData = await request.formData();
-          await addCategory({
+          const formDataObject = {
             name: formData.get("name"),
-            icon: formData.get("icon"),
-          });
+            iconId: parseInt(formData.get("iconId"), 10),
+          };
+          formDataObject.name = formDataObject.name.trim();
+          const validatedData = categoryFormValidator(formDataObject);
+
+          if (Object.keys(validatedData).length > 0) {
+            return validatedData;
+          }
+
+          await addCategory(formDataObject);
           return redirect(`/categories`);
         },
       },
@@ -80,17 +93,26 @@ const router = createBrowserRouter([
         element: <CategoryEdit />,
         loader: async ({ params }) => ({
           category: await getCategory(params.id),
+          icons: await getIcons(),
         }),
         action: async ({ request, params }) => {
           const formData = await request.formData();
+          const formDataObject = {
+            name: formData.get("name"),
+            iconId: parseInt(formData.get("iconId"), 10),
+            id: params.id,
+          };
+
+          formDataObject.name = formDataObject.name.trim();
+          const validatedData = categoryFormValidator(formDataObject);
+
+          if (Object.keys(validatedData).length > 0) {
+            return validatedData;
+          }
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {
-              await editCategory({
-                name: formData.get("name"),
-                icon: formData.get("icon"),
-                id: params.id,
-              });
+              await editCategory(formDataObject);
               return redirect(`/categories/`);
             }
             case "delete": {

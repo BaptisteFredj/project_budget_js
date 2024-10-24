@@ -53,3 +53,10 @@ export function transactionFormValidator(formData) {
 
   return errors;
 }
+
+export function categoryFormValidator(formData) {
+  const errors = {};
+  Object.assign(errors, nameValidator(formData.name));
+
+  return errors;
+}

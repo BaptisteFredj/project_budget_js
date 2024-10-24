@@ -3,21 +3,22 @@ import { PropTypes } from "prop-types";
 
 export default function CategoryThumb({ category }) {
   return (
-    <ul>
-      <li>
-        Nom de la catégorie : {category.name}
-        <Link to={`/categories/${category.id}/edit`}>
-          Modifier la catégorie
-        </Link>
-      </li>
-    </ul>
+    <div>
+      <img
+        className="icon_img"
+        src={`${import.meta.env.VITE_API_URL}${category.icon_path}`}
+        alt={category.name}
+      />
+      {category.name}
+      <Link to={`/categories/${category.id}/edit`}>Modifier la catégorie</Link>
+    </div>
   );
 }
 
 CategoryThumb.propTypes = {
   category: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+    icon_path: PropTypes.string,
+    id: PropTypes.number,
   }).isRequired,
 };
