@@ -29,6 +29,7 @@ import {
 import {
   budgetFormValidator,
   transactionFormValidator,
+  categoryFormValidator,
 } from "./utils/dataValidators";
 
 import App from "./App";
@@ -76,6 +77,12 @@ const router = createBrowserRouter([
             name: formData.get("name"),
             iconId: parseInt(formData.get("iconId"), 10),
           };
+          formDataObject.name = formDataObject.name.trim();
+          const validatedData = categoryFormValidator(formDataObject);
+
+          if (Object.keys(validatedData).length > 0) {
+            return validatedData;
+          }
 
           await addCategory(formDataObject);
           return redirect(`/categories`);
@@ -95,6 +102,13 @@ const router = createBrowserRouter([
             iconId: parseInt(formData.get("iconId"), 10),
             id: params.id,
           };
+
+          formDataObject.name = formDataObject.name.trim();
+          const validatedData = categoryFormValidator(formDataObject);
+
+          if (Object.keys(validatedData).length > 0) {
+            return validatedData;
+          }
 
           switch (request.method.toLocaleLowerCase()) {
             case "put": {

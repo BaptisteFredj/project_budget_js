@@ -1,10 +1,11 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form, useLoaderData, useActionData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import IconsPopover from "../components/IconsPopover";
 
 import "../assets/styles/categoryform.css";
 
 function CategoryEdit() {
+  const errors = useActionData();
   const { category, icons } = useLoaderData();
   const [showPopover, setShowPopover] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -34,6 +35,8 @@ function CategoryEdit() {
           defaultValue={category.name}
           required
         />
+        {errors?.NameError}
+        {errors?.CharacterError}
         {selectedIcon && (
           <input type="hidden" name="iconId" value={selectedIcon.id} />
         )}
