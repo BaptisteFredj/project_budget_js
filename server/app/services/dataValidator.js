@@ -85,9 +85,21 @@ const transactionFormValidator = async (req, res, next) => {
   }
 };
 
+const categoryFormValidator = async (req, res, next) => {
+  const { name } = req.body;
+  try {
+    await nameValidator(name);
+
+    return next();
+  } catch (error) {
+    return res.json({ name: error.name, message: error.message });
+  }
+};
+
 module.exports = {
   budgetFormValidator,
   transactionFormValidator,
+  categoryFormValidator,
 };
 
 // regex = /^(?!0$)\d+(\.\d{1,2})?$/;

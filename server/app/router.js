@@ -29,8 +29,18 @@ const category = require("./controllers/categoryActions");
 
 router.get("/categories", authenticateUser, category.readCategoriesByUser);
 router.get("/categories/:id", authenticateUser, category.readCategoryById);
-router.post("/categories", authenticateUser, category.add);
-router.put("/categories/:id", authenticateUser, category.edit);
+router.post(
+  "/categories",
+  authenticateUser,
+  validator.categoryFormValidator,
+  category.add
+);
+router.put(
+  "/categories/:id",
+  authenticateUser,
+  validator.categoryFormValidator,
+  category.edit
+);
 router.delete("/categories/:id", authenticateUser, category.destroy);
 
 // Transaction operations routes
