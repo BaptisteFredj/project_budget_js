@@ -72,6 +72,7 @@ const router = createBrowserRouter([
         }),
         action: async ({ request }) => {
           const formData = await request.formData();
+          console.info("icon from main: ", formData.get("icon"));
           await addCategory({
             name: formData.get("name"),
             icon: formData.get("icon"),
