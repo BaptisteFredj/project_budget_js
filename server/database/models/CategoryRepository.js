@@ -8,7 +8,10 @@ class CategoryRepository extends AbstractRepository {
   async readCategoriesByUser(userId) {
     const [rows] = await this.database.query(
       `
-      SELECT * FROM ${this.table} WHERE user_id = ?`,
+      SELECT c.id AS id, c.name AS name, c.icon_id, i.path AS path
+      FROM ${this.table} AS c
+      LEFT JOIN icon AS i ON c.id = i.id
+      WHERE user_id = ?`,
       [userId]
     );
     return rows;
@@ -17,7 +20,10 @@ class CategoryRepository extends AbstractRepository {
   async readCategoryById(categoryId, userId) {
     const [rows] = await this.database.query(
       `
-      SELECT * FROM ${this.table} WHERE id = ? AND user_id = ?`,
+    SELECT c.id AS id, c.name AS name, c.icon_id, i.path AS path
+    FROM ${this.table} AS c
+    LEFT JOIN icon AS i ON c.id = i.id
+    WHERE c.id = ? AND c.user_id = ?`,
       [categoryId, userId]
     );
     return rows[0];
@@ -25,8 +31,8 @@ class CategoryRepository extends AbstractRepository {
 
   async create(category) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (name, icon, user_id) VALUES(?, ?, ?)`,
-      [category.name, category.icon, category.user_id]
+      `INSERT INTO ${this.table} (name, icon_id, user_id) VALUES(?, ?, ?)`,
+      [category.name, category.icon_id, category.user_id]
     );
 
     return result;
@@ -34,8 +40,8 @@ class CategoryRepository extends AbstractRepository {
 
   async update(category) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET name = ?, icon = ? WHERE id = ? AND user_id = ?`,
-      [category.name, category.icon, category.id, category.user_id]
+      `UPDATE ${this.table} SET name = ?, icon_id = ? WHERE id = ? AND user_id = ?`,
+      [category.name, category.icon_id, category.id, category.user_id]
     );
     return result.affectedRows;
   }
