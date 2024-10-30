@@ -52,9 +52,9 @@ export function transactionFormValidator(formData) {
   }
 
   if (
-    !formData.type !== "expense" ||
-    !formData.type !== "income" ||
-    !formData.type !== "transfer"
+    formData.type !== "expense" &&
+    formData.type !== "income" &&
+    formData.type !== "transfer"
   ) {
     errors.TypeError = "Veuillez sélectionner un type de transaction.";
   }

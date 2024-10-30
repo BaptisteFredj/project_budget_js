@@ -79,7 +79,7 @@ const transactionFormValidator = async (req, res, next) => {
       throw error;
     }
 
-    if (!type !== "expense" || !type !== "income" || !type !== "transfer") {
+    if (type !== "expense" && type !== "income" && type !== "transfer") {
       const error = new Error("Veuillez sélectionner un type de transaction.");
       error.name = "TypeError";
       throw error;
