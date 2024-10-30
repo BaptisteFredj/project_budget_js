@@ -2,7 +2,6 @@
   margin-top: 1.5rem;
   display: flex;
   font-family: var(--primary-font-family);
-  font-size: 1.5rem;
   gap: 15px;
   align-items: center;
   margin-bottom: 1rem;
@@ -10,17 +9,21 @@
 
 .title_transactions {
   margin-left: 0.75rem;
+  font-size: 1.5rem;
 }
 
 .last_transactions {
   background: var(--dark-grey);
-  border-radius: 25px;
-  padding: 5px 10px;
   color: white;
 }
 
 .future_transactions {
   background: var(--light-grey);
+}
+
+.future_transactions,
+.last_transactions {
+  font-size: 1.25rem;
   border-radius: 25px;
   padding: 5px 10px;
 }
@@ -58,19 +61,3 @@
   font-size: 1.5rem;
   padding-bottom: 3px;
 }
-
-/* .transaction_button_container {
-  display: flex;
-  justify-content: center;
-  margin-top: 5rem;
-}
-
-.transaction_add_button {
-  font-family: var(--button-font-family);
-  font-size: 22px;
-  font-weight: 400;
-  background: var(--dark-grey);
-  color: white;
-  padding: 17px 3rem;
-  border-radius: 8px;
-} */
