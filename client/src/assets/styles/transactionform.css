@@ -65,3 +65,9 @@
   border-color: black;
   color: black;
 }
+
+.error_message {
+  color: red;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
