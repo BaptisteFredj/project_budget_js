@@ -24,3 +24,37 @@
   border-radius: 25px;
   padding: 5px 10px;
 }
+
+.transaction_block {
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.transaction_name {
+  font-family: var(--primary-font-family);
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  font-weight: 600;
+}
+
+.transaction_category_type {
+  font-family: var(--primary-font-family);
+  font-size: 1.25rem;
+  color: var(--text-light-grey);
+  font-weight: 600;
+}
+
+.transaction_right_block {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.transaction_amount {
+  font-family: var(--number-font-family);
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding-bottom: 3px;
+}
