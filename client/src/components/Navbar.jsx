@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import "../assets/styles/navbar.css";
+
 export default function Navbar({ authTools }) {
   return (
-    <nav>
-      <ul>
+    <nav className="navbar">
+      <ul className="navbar_buttons">
         <li>
           <Link to="/">Accueil</Link>
         </li>

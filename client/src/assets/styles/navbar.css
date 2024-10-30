@@ -1,0 +1,17 @@
+.navbar {
+  background-color: var(--dark-grey);
+  min-height: 10svh;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar_buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.navbar li {
+  color: white;
+}
