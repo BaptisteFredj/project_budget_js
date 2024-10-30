@@ -1,6 +1,6 @@
 .transaction_label_form {
   font-family: var(--primary-font-family);
-  color: var(--text-light-grey);
+  color: var(--dark-grey);
   font-size: 1rem;
   display: flex;
   flex-direction: column;
@@ -36,4 +36,26 @@
 .transaction_form_button {
   margin-top: 3rem;
   padding-left: 3.75rem;
+}
+
+.type_selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.type_option {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--white);
+  color: var(--text-light-grey);
+  transition: border-color 0.2s;
+}
+
+.type_option.active {
+  border-color: black;
+  color: black;
 }

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Form, useLoaderData, useActionData } from "react-router-dom";
 
 import "../assets/styles/transactionform.css";
@@ -5,6 +6,12 @@ import "../assets/styles/transactionform.css";
 function TransactionForm() {
   const { categories } = useLoaderData();
   const errors = useActionData();
+
+  const [selectedType, setSelectedType] = useState("");
+
+  const handleTypeClick = (type) => {
+    setSelectedType(type);
+  };
 
   return (
     <Form method="post" className="transaction_label_form">
@@ -39,11 +46,30 @@ function TransactionForm() {
       />
 
       <label htmlFor="type">Type</label>
-      <select id="type" name="type">
-        <option value="income">Revenu</option>
-        <option value="expense">Dépense</option>
-        <option value="transfer">Transfert</option>
-      </select>
+      <div className="type_selector">
+        <button
+          type="button"
+          className={`type_option ${selectedType === "income" ? "active" : ""}`}
+          onClick={() => handleTypeClick("income")}
+        >
+          Revenu
+        </button>
+        <button
+          type="button"
+          className={`type_option ${selectedType === "expense" ? "active" : ""}`}
+          onClick={() => handleTypeClick("expense")}
+        >
+          Dépense
+        </button>
+        <button
+          type="button"
+          className={`type_option ${selectedType === "transfer" ? "active" : ""}`}
+          onClick={() => handleTypeClick("transfer")}
+        >
+          Transfert
+        </button>
+      </div>
+      <input type="hidden" name="type" value={selectedType} />
 
       <label htmlFor="category">Catégorie</label>
       <select id="category" name="category">
