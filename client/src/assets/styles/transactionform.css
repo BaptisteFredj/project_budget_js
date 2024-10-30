@@ -8,11 +8,17 @@
   margin-top: 1.5rem;
 }
 
-.transaction_label_form > * {
+.transaction_amount_label,
+.transaction_name_label,
+.transaction_date_label,
+.transaction_type_label,
+.transaction_category_label {
   margin-bottom: 0.5rem;
 }
 
-.transaction_label_form > *:nth-child(2n) {
+.transaction_amount_input,
+.transaction_name_input,
+.transaction_date_input {
   margin-bottom: 1.5rem;
 }
 
