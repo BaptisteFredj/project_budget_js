@@ -17,8 +17,8 @@ function Transactions() {
       {transactions.map((transaction) => (
         <TransactionThumb transaction={transaction} key={transaction.id} />
       ))}
-      <div className="transaction_button_container">
-        <button type="button" className="transaction_add_button">
+      <div className="add_button_container">
+        <button type="button" className="add_button">
           <Link to="/transactions_form">Nouvelle transaction</Link>
         </button>
       </div>
