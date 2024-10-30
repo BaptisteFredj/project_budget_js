@@ -61,6 +61,9 @@ function TransactionForm() {
       <label className="transaction_type_label" htmlFor="type">
         Type
       </label>
+      {errors?.TypeError && (
+        <span className="error_message">{errors.TypeError}</span>
+      )}
       <div className="type_selector">
         <button
           type="button"
