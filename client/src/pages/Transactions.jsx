@@ -8,12 +8,17 @@ function Transactions() {
 
   return (
     <>
-      <h1 className="transactions_title">Mes transactions</h1>
+      <ul className="transactions_title_group">
+        <li className="title_transactions">Transactions </li>
+        <li className="last_transactions">récentes </li>
+        <li className="future_transactions">prévues </li>
+      </ul>
+
       {transactions.map((transaction) => (
         <TransactionThumb transaction={transaction} key={transaction.id} />
       ))}
       <Link className="add_button" to="/transactions_form">
-        Ajouter une transaction
+        Nouvelle transaction
       </Link>
     </>
   );

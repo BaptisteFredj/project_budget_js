@@ -46,9 +46,21 @@ li {
   list-style: none;
 }
 
-button {
+button,
+a {
   all: unset;
 }
 
+main {
+  padding: 0.75rem;
+}
+
 .add_button {
+  font-family: var(--button-font-family);
+  font-size: 22px;
+  font-weight: 400;
+  /* margin-inline: 0.75rem; */
+  background: var(--dark-grey);
+  color: white;
+  padding: 17px;
 }
