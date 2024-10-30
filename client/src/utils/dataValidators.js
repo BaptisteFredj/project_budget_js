@@ -59,6 +59,10 @@ export function transactionFormValidator(formData) {
     errors.TypeError = "Veuillez sélectionner un type de transaction.";
   }
 
+  if (!formData.date) {
+    errors.DateError = "Veuillez sélectionner une date.";
+  }
+
   return errors;
 }
 

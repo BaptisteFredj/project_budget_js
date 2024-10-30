@@ -50,6 +50,9 @@ function TransactionForm() {
       <label className="transaction_date_label" htmlFor="date">
         Date
       </label>
+      {errors?.DateError && (
+        <span className="error_message">{errors.DateError}</span>
+      )}
       <input
         type="date"
         id="date"
