@@ -1,0 +1,39 @@
+.transaction_label_form {
+  font-family: var(--primary-font-family);
+  color: var(--text-light-grey);
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.transaction_label_form > * {
+  margin-bottom: 0.5rem;
+}
+
+.transaction_label_form > *:nth-child(2n) {
+  margin-bottom: 1.5rem;
+}
+
+.transaction_label_form input[type="text"]::placeholder,
+.transaction_label_form input[type="number"]::placeholder,
+.transaction_label_form input[type="date"]::placeholder,
+.transaction_label_form select::placeholder {
+  color: var(--text-light-grey);
+}
+
+.transaction_label_form input[type="text"],
+.transaction_label_form input[type="number"],
+.transaction_label_form input[type="date"],
+.transaction_label_form select {
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  padding: 0.4rem 0.5rem;
+  font-size: 1rem;
+}
+
+.transaction_form_button {
+  margin-top: 3rem;
+  padding-left: 3.75rem;
+}
