@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { PropTypes } from "prop-types";
 import { frenchType } from "../utils/functions";
+import TransactionOptions from "./TransactionOptions";
 
 import threedots from "../assets/images/threedots.svg";
 
 export default function TransactionThumb({ transaction }) {
+  const [showOptions, setShowOptions] = useState(false);
+
+  const handleOptionsClick = () => {
+    setShowOptions(true);
+  };
+
   return (
     <>
       <p>{transaction.date}</p>
@@ -18,12 +25,15 @@ export default function TransactionThumb({ transaction }) {
 
         <ul className="transaction_right_block">
           <li className="transaction_amount">{transaction.amount} €</li>
-
-          <li>
-            <Link to={`/transactions/${transaction.id}/edit`}>
-              <img className="dots_ellipsis" src={threedots} alt="Three dots" />
-            </Link>
-          </li>
+          {showOptions && <TransactionOptions transaction={transaction} />}
+          <button
+            type="button"
+            className="dots_ellipsis"
+            onClick={handleOptionsClick}
+            aria-label="Show options"
+          >
+            <img src={threedots} alt="Three dots" />
+          </button>
         </ul>
       </section>
     </>
