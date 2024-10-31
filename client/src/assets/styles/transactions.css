@@ -32,6 +32,9 @@
   display: flex;
   margin-bottom: 1rem;
   justify-content: space-between;
+  background: linear-gradient(to right, white, rgb(231, 230, 230));
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
 }
 
 .transaction_name {
@@ -65,11 +68,12 @@
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  padding-right: 0.5rem;
 }
 
 .transaction_amount {
   font-family: var(--number-font-family);
-  font-weight: 600;
-  font-size: 1.5rem;
+  font-weight: 500;
+  font-size: 1.25rem;
   padding-bottom: 3px;
 }
