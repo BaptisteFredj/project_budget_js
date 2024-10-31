@@ -9,7 +9,7 @@ export default function TransactionThumb({ transaction }) {
   const [showOptions, setShowOptions] = useState(false);
 
   const handleOptionsClick = () => {
-    setShowOptions(true);
+    setShowOptions(!showOptions);
   };
 
   return (
