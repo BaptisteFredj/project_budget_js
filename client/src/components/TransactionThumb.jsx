@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import { frenchType } from "../utils/functions";
+import TransactionOptions from "./TransactionOptions";
 
 import threedots from "../assets/images/threedots.svg";
 
@@ -24,6 +25,7 @@ export default function TransactionThumb({ transaction }) {
               <img className="dots_ellipsis" src={threedots} alt="Three dots" />
             </Link>
           </li>
+          <TransactionOptions transaction={transaction} />
         </ul>
       </section>
     </>

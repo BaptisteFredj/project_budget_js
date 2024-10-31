@@ -45,6 +45,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import BudgetForm from "./pages/BudgetForm";
 import BudgetEdit from "./pages/BudgetEdit";
+import TransactionDelete from "./components/TransactionDelete";
 
 const router = createBrowserRouter([
   {
@@ -130,6 +131,10 @@ const router = createBrowserRouter([
         loader: async () => ({
           transactions: await getTransactionsByUserId(),
         }),
+        action: async ({ params }) => {
+          await deleteTransaction(params.id);
+          return redirect("/transactions");
+        },
       },
       {
         path: "/transactions_form",
@@ -182,22 +187,18 @@ const router = createBrowserRouter([
           if (Object.keys(validatedData).length > 0) {
             return validatedData;
           }
-
-          switch (request.method.toLocaleLowerCase()) {
-            case "put": {
-              await editTransaction(formDataObject);
-              return redirect(`/transactions/`);
-            }
-            case "delete": {
-              await deleteTransaction(params.id);
-              return redirect("/transactions");
-            }
-            default:
-              throw new Response("Method Not Allowed", { status: 405 });
-          }
+          await editTransaction(formDataObject);
+          return redirect(`/transactions/`);
         },
       },
-
+      {
+        path: "/transactions/:id/delete",
+        element: <TransactionDelete />,
+        action: async ({ params }) => {
+          await deleteTransaction(params.id);
+          return redirect("/transactions");
+        },
+      },
       {
         path: "/budgets",
         element: <Budgets />,
