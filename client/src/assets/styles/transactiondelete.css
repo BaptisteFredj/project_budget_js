@@ -1,0 +1,56 @@
+.warning_h1,
+.warning_h2,
+.warning_cancel,
+.warning_confirm {
+  font-family: var(--button-font-family);
+}
+
+.warning_h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.warning_h2 {
+  font-size: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.warning_cancel,
+.warning_confirm {
+  border-radius: 6px;
+}
+
+.warning_cancel {
+  font-size: 18px;
+  padding: 10px 1.5rem;
+  border: 1px solid black;
+  font-weight: 400;
+}
+
+.warning_confirm {
+  font-size: 20px;
+  padding: 8.5px 1.5rem;
+  background-color: var(--dark-grey);
+  color: white;
+  font-weight: 300;
+}
+
+.warning_buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.warning_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section.warning_popover {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 0.5px solid black;
+  margin-top: 5rem;
+  margin-inline: 10svw;
+}
