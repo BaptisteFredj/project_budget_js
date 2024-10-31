@@ -22,7 +22,7 @@ export default function Navbar({ authTools }) {
         ) : (
           <>
             <li>
-              <Link to="/transactions">Mes transactions</Link>
+              <Link to="/transactions/past">Mes transactions</Link>
             </li>
             <li>
               <Link to="/categories">Mes catégories</Link>

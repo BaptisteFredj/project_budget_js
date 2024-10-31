@@ -10,8 +10,13 @@ function Transactions() {
     <>
       <ul className="transactions_title_group">
         <li className="title_transactions">Transactions </li>
-        <li className="last_transactions">récentes </li>
-        <li className="future_transactions">prévues </li>
+        <Link to="/transactions/past">
+          <li className="last_transactions">récentes </li>
+        </Link>
+
+        <Link to="/transactions/future">
+          <li className="future_transactions">prévues </li>
+        </Link>
       </ul>
 
       {transactions.map((transaction) => (

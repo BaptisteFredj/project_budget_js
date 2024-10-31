@@ -127,10 +127,21 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/transactions",
+        path: "/transactions/past",
         element: <Transactions />,
         loader: async () => ({
-          transactions: await getTransactionsByUserId(),
+          transactions: await getTransactionsByUserId("past"),
+        }),
+        action: async ({ params }) => {
+          await deleteTransaction(params.id);
+          return redirect("/transactions");
+        },
+      },
+      {
+        path: "/transactions/future",
+        element: <Transactions />,
+        loader: async () => ({
+          transactions: await getTransactionsByUserId("future"),
         }),
         action: async ({ params }) => {
           await deleteTransaction(params.id);
