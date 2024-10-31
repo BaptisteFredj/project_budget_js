@@ -62,8 +62,9 @@ class TransactionRepository extends AbstractRepository {
 
   async update(transaction) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET date = ?, amount = ?, type = ?, category_id = ? WHERE id = ? AND user_id = ?`,
+      `UPDATE ${this.table} SET name = ?, date = ?, amount = ?, type = ?, category_id = ? WHERE id = ? AND user_id = ?`,
       [
+        transaction.name,
         transaction.date,
         transaction.amount,
         transaction.type,
