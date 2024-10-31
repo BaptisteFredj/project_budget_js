@@ -13,30 +13,30 @@ export default function TransactionThumb({ transaction }) {
   };
 
   return (
-    <>
-      <p>{transaction.date}</p>
-      <section className="transaction_block">
-        <ul className="transaction_left_block">
+    <section className="transaction_block">
+      <ul className="transaction_left_block">
+        <div className="transaction_name_date">
           <li className="transaction_name">{transaction.name}</li>
-          <li className="transaction_category_type">
-            {transaction.category_name} - {frenchType(transaction.type)}
-          </li>
-        </ul>
+          <li className="transaction_date">{transaction.date}</li>
+        </div>
+        <li className="transaction_category_type">
+          {transaction.category_name} - {frenchType(transaction.type)}
+        </li>
+      </ul>
 
-        <ul className="transaction_right_block">
-          <li className="transaction_amount">{transaction.amount} €</li>
-          {showOptions && <TransactionOptions transaction={transaction} />}
-          <button
-            type="button"
-            className="dots_ellipsis"
-            onClick={handleOptionsClick}
-            aria-label="Show options"
-          >
-            <img src={threedots} alt="Three dots" />
-          </button>
-        </ul>
-      </section>
-    </>
+      <ul className="transaction_right_block">
+        <li className="transaction_amount">{transaction.amount} €</li>
+        {showOptions && <TransactionOptions transaction={transaction} />}
+        <button
+          type="button"
+          className="dots_ellipsis"
+          onClick={handleOptionsClick}
+          aria-label="Show options"
+        >
+          <img src={threedots} alt="Three dots" />
+        </button>
+      </ul>
+    </section>
   );
 }
 
