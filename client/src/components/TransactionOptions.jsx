@@ -4,9 +4,11 @@ import copy from "../assets/images/copy.svg";
 import pen from "../assets/images/pen.svg";
 import trash from "../assets/images/trash.svg";
 
+import "../assets/styles/transactionoptions.css";
+
 function TransactionOptions({ transaction }) {
   return (
-    <ul className="options_block">
+    <div className="options_block">
       <Link to={`/transactions/${transaction.id}/edit`}>
         <div className="options copy_block">
           <img className="copy_icon" src={copy} alt="Copy icon" />
@@ -27,7 +29,7 @@ function TransactionOptions({ transaction }) {
           <p>Supprimer</p>
         </div>
       </Link>
-    </ul>
+    </div>
   );
 }
 

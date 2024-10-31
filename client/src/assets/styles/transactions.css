@@ -61,20 +61,3 @@
   font-size: 1.5rem;
   padding-bottom: 3px;
 }
-
-.copy_icon {
-  width: 24px;
-  height: 24px;
-}
-
-.options_block {
-  padding: 0.25rem;
-  border: 1px solid black;
-  border-radius: 4px;
-}
-
-.options {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
