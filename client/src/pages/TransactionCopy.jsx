@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { Form, useLoaderData, useActionData } from "react-router-dom";
+import { toIso } from "../utils/functions";
 
 import "../assets/styles/transactionform.css";
 
-function TransactionForm() {
-  const { categories } = useLoaderData();
+function TransactionCopy() {
+  const { transaction, categories } = useLoaderData();
   const errors = useActionData();
 
-  const [selectedType, setSelectedType] = useState("");
+  const [selectedType, setSelectedType] = useState(transaction.type);
+
+  const previousCategory = categories?.find(
+    (category) => category.name === transaction.category_name
+  );
 
   const handleTypeClick = (type) => {
     setSelectedType(type);
@@ -25,8 +30,8 @@ function TransactionForm() {
         type="number"
         id="amount"
         name="amount"
-        placeholder="Exemple : 10,50 €"
         step="0.01"
+        defaultValue={transaction.amount}
         className="transaction_amount_input"
       />
 
@@ -43,7 +48,7 @@ function TransactionForm() {
         type="text"
         id="name"
         name="name"
-        placeholder="Exemple : Paire de chaussures"
+        defaultValue={transaction.name}
         className="transaction_name_input"
       />
 
@@ -57,7 +62,7 @@ function TransactionForm() {
         type="date"
         id="date"
         name="date"
-        placeholder="Date de la transaction"
+        defaultValue={toIso(transaction.date)}
         className="transaction_date_input"
       />
 
@@ -93,9 +98,13 @@ function TransactionForm() {
       <input type="hidden" name="type" value={selectedType} />
 
       <label className="transaction_category_label" htmlFor="category">
-        Catégorie
+        Catégorie de transaction
       </label>
-      <select id="category" name="category">
+      <select
+        id="category"
+        name="category"
+        defaultValue={previousCategory ? previousCategory.id : ""}
+      >
         <option value="">Sans catégorie</option>
         {categories.map((category) => (
           <option key={category.id} value={category.id}>
@@ -103,11 +112,11 @@ function TransactionForm() {
           </option>
         ))}
       </select>
-      <button className="add_button transaction_form_button" type="submit">
+      <button className="add_button transaction_copy_button" type="submit">
         Créer la transaction
       </button>
     </Form>
   );
 }
 
-export default TransactionForm;
+export default TransactionCopy;

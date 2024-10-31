@@ -9,7 +9,7 @@ import "../assets/styles/transactionoptions.css";
 function TransactionOptions({ transaction }) {
   return (
     <div className="options_block">
-      <Link to={`/transactions/${transaction.id}/edit`}>
+      <Link to={`/transactions/${transaction.id}/copy`}>
         <div className="options copy_block">
           <img className="copy_icon" src={copy} alt="Copy icon" />
           <p>Copier</p>

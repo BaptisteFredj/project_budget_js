@@ -49,6 +49,11 @@
   padding-left: 8rem;
 }
 
+.transaction_copy_button {
+  margin-top: 3rem;
+  padding-left: 5rem;
+}
+
 .type_selector {
   display: flex;
   gap: 1rem;
