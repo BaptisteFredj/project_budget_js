@@ -40,7 +40,7 @@ function CategoryForm() {
           {selectedIcon ? (
             <img
               className="icon_img"
-              src={`/assets/icons/${selectedIcon.path}.svg`}
+              src={`/assets/icons/${selectedIcon.name}.svg`}
               alt="Icône de la catégorie"
             />
           ) : (

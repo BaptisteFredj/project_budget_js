@@ -45,7 +45,7 @@ function CategoryEdit() {
           {selectedIcon ? (
             <img
               className="icon_img"
-              src={`/assets/icons/${selectedIcon.path}.svg`}
+              src={`/assets/icons/${selectedIcon.icon_name}.svg`}
               alt="Icône de la catégorie"
             />
           ) : (
