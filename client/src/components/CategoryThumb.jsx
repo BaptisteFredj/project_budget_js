@@ -3,16 +3,22 @@ import { PropTypes } from "prop-types";
 
 export default function CategoryThumb({ category }) {
   return (
-    <div>
-      <div className="icon_circle">
-        <img
-          className="icon_img"
-          src={`/assets/icons/${category.icon_name}.svg`}
-          alt={category.name}
-        />
+    <div className="category_container">
+      <ul className="category_left_container">
+        <li className="icon_circle">
+          <img
+            className="icon_img"
+            src={`/assets/icons/${category.icon_name}.svg`}
+            alt={category.name}
+          />
+        </li>
+        <li className="category_name">{category.name}</li>
+      </ul>
+      <div className="category_right_container">
+        <Link to={`/categories/${category.id}/edit`}>
+          Modifier la catégorie
+        </Link>
       </div>
-      {category.name}
-      <Link to={`/categories/${category.id}/edit`}>Modifier la catégorie</Link>
     </div>
   );
 }

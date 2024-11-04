@@ -1,6 +1,8 @@
 import { useLoaderData, Link } from "react-router-dom";
 import CategoryThumb from "../components/CategoryThumb";
 
+import "../assets/styles/categories.css";
+
 function Categories() {
   const { categories } = useLoaderData();
 
@@ -10,7 +12,11 @@ function Categories() {
       {categories.map((category) => (
         <CategoryThumb category={category} key={category.id} />
       ))}
-      <Link to="/categories_form">Créer une catégorie</Link>
+      <div className="add_button_container">
+        <button type="button" className="add_button">
+          <Link to="/categories_form">Créer une catégorie</Link>
+        </button>
+      </div>
     </>
   );
 }
