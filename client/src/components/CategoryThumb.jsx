@@ -6,7 +6,7 @@ export default function CategoryThumb({ category }) {
     <div>
       <img
         className="icon_img"
-        src={`${import.meta.env.VITE_API_URL}${category.icon_path}`}
+        src={`/assets/icons/${category.icon_path}.svg`}
         alt={category.name}
       />
       {category.name}
