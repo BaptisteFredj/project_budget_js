@@ -1,7 +1,16 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { PropTypes } from "prop-types";
+import CategoryOptions from "./CategoryOptions";
+
+import threedots from "../assets/images/threedots.svg";
 
 export default function CategoryThumb({ category }) {
+  const [showOptions, setShowOptions] = useState(false);
+
+  const handleOptionsClick = () => {
+    setShowOptions(!showOptions);
+  };
+
   return (
     <div className="category_container">
       <ul className="category_left_container">
@@ -15,9 +24,15 @@ export default function CategoryThumb({ category }) {
         <li className="category_name">{category.name}</li>
       </ul>
       <div className="category_right_container">
-        <Link to={`/categories/${category.id}/edit`}>
-          Modifier la catégorie
-        </Link>
+        {showOptions && <CategoryOptions category={category} />}
+        <button
+          type="button"
+          className="dots_ellipsis"
+          onClick={handleOptionsClick}
+          aria-label="Show options"
+        >
+          <img src={threedots} alt="Three dots" />
+        </button>
       </div>
     </div>
   );

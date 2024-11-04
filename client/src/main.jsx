@@ -47,6 +47,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import BudgetForm from "./pages/BudgetForm";
 import BudgetEdit from "./pages/BudgetEdit";
+import CategoryDelete from "./components/CategoryDelete";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
         loader: async () => ({
           categories: await getCategoriesByUserId(),
         }),
+        action: async ({ params }) => {
+          await deleteCategory(params.id);
+          return redirect("/categories");
+        },
       },
       {
         path: "/categories_form",
@@ -124,6 +129,14 @@ const router = createBrowserRouter([
             default:
               throw new Response("", { status: 405 });
           }
+        },
+      },
+      {
+        path: "/categories/:id/delete",
+        element: <CategoryDelete />,
+        action: async ({ params }) => {
+          await deleteCategory(params.id);
+          return redirect("/categories");
         },
       },
       {
