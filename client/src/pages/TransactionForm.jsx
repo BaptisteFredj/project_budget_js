@@ -100,14 +100,6 @@ function TransactionForm() {
       <label className="transaction_category_label" htmlFor="category">
         Catégorie
       </label>
-      <select id="category" name="category">
-        <option value="">Sans catégorie</option>
-        {categories.map((category) => (
-          <option key={category.id} value={category.id}>
-            {category.name}
-          </option>
-        ))}
-      </select>
       <div className="categories_list">
         <div
           className={`icon_circle category_option ${selectedCategory === "Sans catégorie" ? "active_category" : ""}`}
@@ -125,22 +117,23 @@ function TransactionForm() {
         </div>
         {categories.map((category) => (
           <div
-            className={`icon_circle category_option ${selectedCategory === category.icon_name ? "active_category" : ""}`}
+            className={`icon_circle category_option ${selectedCategory === category.id ? "active_category" : ""}`}
             key={category.id}
           >
             <button
               type="button"
-              onClick={() => handleCategoryClick(category.icon_name)}
+              onClick={() => handleCategoryClick(category.id)}
             >
               <img
                 className="icon_img"
                 src={`/assets/icons/${category.icon_name}.svg`}
-                alt={category.icon_name}
+                alt={category.id}
               />
             </button>
           </div>
         ))}
       </div>
+      <input type="hidden" name="category" value={selectedCategory} />
       <button className="add_button transaction_form_button" type="submit">
         Créer la transaction
       </button>
