@@ -21,11 +21,14 @@ class TransactionRepository extends AbstractRepository {
         t.amount,
         DATE_FORMAT(t.date, '%d/%m/%Y') as date,
         t.type,
-        c.name AS category_name
+        c.name AS category_name,
+        i.name AS icon_name
       FROM 
         ${this.table} t
       LEFT JOIN 
         category c ON t.category_id = c.id
+      LEFT JOIN
+        icon i ON c.icon_id = i.id
       WHERE t.user_id = ?${queryFilter}`,
       [userId]
     );
@@ -40,11 +43,14 @@ class TransactionRepository extends AbstractRepository {
         t.amount,
         DATE_FORMAT(t.date, '%d/%m/%Y') as date,
         t.type,
-        c.name AS category_name
+        c.name AS category_name,
+        i.name AS icon_name
       FROM 
         ${this.table} t
       LEFT JOIN 
         category c ON t.category_id = c.id
+      LEFT JOIN
+        icon i ON c.icon_id = i.id
       WHERE 
         t.id = ? AND t.user_id = ?`,
       [transactionId, userId]
