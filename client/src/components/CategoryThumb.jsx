@@ -4,11 +4,13 @@ import { PropTypes } from "prop-types";
 export default function CategoryThumb({ category }) {
   return (
     <div>
-      <img
-        className="icon_img"
-        src={`/assets/icons/${category.icon_name}.svg`}
-        alt={category.name}
-      />
+      <div className="icon_circle">
+        <img
+          className="icon_img"
+          src={`/assets/icons/${category.icon_name}.svg`}
+          alt={category.name}
+        />
+      </div>
       {category.name}
       <Link to={`/categories/${category.id}/edit`}>Modifier la catégorie</Link>
     </div>

@@ -1,7 +1,19 @@
 .icon_img {
-  width: 20px;
+  width: 30px;
+  padding: 2px;
+  filter: brightness(0) saturate(100%); /* Converts SVG to black */
 }
 
 .icons_img {
   display: flex;
+}
+
+.icon_circle {
+  width: 40px;
+  height: 40px;
+  box-shadow: inset 0 0 0 1px rgb(0, 0, 0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
