@@ -57,6 +57,6 @@ TransactionThumb.propTypes = {
     category_name: PropTypes.string,
     name: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-    icon_name: PropTypes.string.isRequired,
+    icon_name: PropTypes.string,
   }).isRequired,
 };
