@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { login } from "../services/request";
 
+import "../assets/styles/login.css";
+
 function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -27,16 +29,34 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email">email</label>{" "}
-        <input ref={emailRef} type="email" id="email" />
+    <form onSubmit={handleSubmit} className="login_label_form">
+      <div className="email_block">
+        <label className="login_email_label" htmlFor="email">
+          Email
+        </label>{" "}
+        <input
+          className="login_email_input"
+          ref={emailRef}
+          type="email"
+          id="email"
+          placeholder="adresse email"
+        />
       </div>
-      <div>
-        <label htmlFor="password">mot de passe</label>{" "}
-        <input type="password" id="password" ref={passwordRef} />
+      <div className="password_block">
+        <label className="login_password_label" htmlFor="password">
+          Mot de passe
+        </label>{" "}
+        <input
+          className="login_password_input"
+          type="password"
+          id="password"
+          ref={passwordRef}
+          placeholder="mot de passe"
+        />
       </div>
-      <button type="submit">Valider</button>
+      <button className="add_button login_form_button" type="submit">
+        Valider
+      </button>
     </form>
   );
 }

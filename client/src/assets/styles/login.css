@@ -1,0 +1,53 @@
+.login_label_form {
+  font-family: var(--primary-font-family);
+  color: var(--dark-grey);
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 1rem;
+  margin-top: 2.5rem;
+}
+
+.login_email_label,
+.login_password_label {
+  margin-bottom: 0.5rem;
+}
+
+.login_email_input,
+.login_password_input {
+  margin-bottom: 1.75rem;
+}
+
+.login_label_form input[type="email"]::placeholder,
+.login_label_form input[type="password"] {
+  color: var(--text-light-grey);
+}
+
+.login_label_form input[type="email"],
+.login_label_form input[type="password"] {
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  padding: 1rem 1rem;
+  font-size: 1.25rem;
+}
+
+.login_form_button {
+  margin-top: 3rem;
+  padding-left: 8.5rem;
+}
+
+.error_message {
+  color: red;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.email_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.password_block {
+  display: flex;
+  flex-direction: column;
+}
