@@ -32,17 +32,18 @@
 .transaction_block {
   display: flex;
   margin-bottom: 1rem;
-  justify-content: space-between;
   background: linear-gradient(to right, white, rgb(231, 230, 230));
-  padding: 0.25rem 0.5rem;
+  padding: 0.1rem 0.5rem;
   border-radius: 1rem;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .transaction_name {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .transaction_date {
@@ -55,14 +56,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
 }
 
 .transaction_category_type {
   font-family: var(--primary-font-family);
-  font-size: 1.25rem;
-  color: var(--text-light-grey);
-  font-weight: 600;
+  font-size: 1rem;
+  color: var(--dark-grey);
+  font-weight: 400;
 }
 
 .transaction_right_block {
@@ -77,4 +77,10 @@
   font-weight: 500;
   font-size: 1.25rem;
   padding-bottom: 3px;
+}
+
+.transaction_left_container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
