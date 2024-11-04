@@ -19,7 +19,7 @@
 }
 
 .login_label_form input[type="email"]::placeholder,
-.login_label_form input[type="password"] {
+.login_label_form input[type="password"]::placeholder {
   color: var(--text-light-grey);
 }
 
@@ -42,12 +42,12 @@
   font-size: 0.8rem;
 }
 
-.email_block {
+.login_email_block {
   display: flex;
   flex-direction: column;
 }
 
-.password_block {
+.login_password_block {
   display: flex;
   flex-direction: column;
 }

@@ -1,0 +1,60 @@
+.register_label_form {
+  font-family: var(--primary-font-family);
+  color: var(--dark-grey);
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 1rem;
+  margin-top: 2.5rem;
+}
+
+.register_email_label,
+.register_password_label,
+.register_confirm_password_label {
+  margin-bottom: 0.5rem;
+}
+
+.register_email_input,
+.register_password_input,
+.register_confirm_password_input {
+  margin-bottom: 1.75rem;
+}
+
+.register_label_form input[type="email"]::placeholder,
+.register_label_form input[type="password"]::placeholder {
+  color: var(--text-light-grey);
+}
+
+.register_label_form input[type="email"],
+.register_label_form input[type="password"] {
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  padding: 1rem 1rem;
+  font-size: 1.25rem;
+}
+
+.register_form_button {
+  margin-top: 3rem;
+  padding-left: 5rem;
+}
+
+.error_message {
+  color: red;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.register_email_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.register_password_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.register_confirm_password_block {
+  display: flex;
+  flex-direction: column;
+}

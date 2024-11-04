@@ -30,7 +30,7 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit} className="login_label_form">
-      <div className="email_block">
+      <div className="login_email_block">
         <label className="login_email_label" htmlFor="email">
           Email
         </label>{" "}
@@ -42,7 +42,7 @@ function Login() {
           placeholder="adresse email"
         />
       </div>
-      <div className="password_block">
+      <div className="login_password_block">
         <label className="login_password_label" htmlFor="password">
           Mot de passe
         </label>{" "}

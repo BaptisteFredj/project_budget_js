@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../services/request";
 
+import "../assets/styles/register.css";
+
 function Register() {
   const emailRef = useRef();
 
@@ -32,32 +34,51 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email">email</label>
-        <input ref={emailRef} type="email" id="email" />
-      </div>
-      <div>
-        <label htmlFor="password">mot de passe</label>
+    <form onSubmit={handleSubmit} className="register_label_form">
+      <div className="register_email_block">
+        <label className="register_email_label" htmlFor="email">
+          Email
+        </label>
         <input
+          ref={emailRef}
+          type="email"
+          id="email"
+          placeholder="adresse email"
+          className="register_email_input"
+        />
+      </div>
+      <div className="register_password_block">
+        <label className="register_password_label" htmlFor="password">
+          Mot de passe
+        </label>
+        <input
+          className="register_password_input"
           type="password"
           id="password"
           value={password}
           onChange={handlePasswordChange}
+          placeholder="mot de passe"
         />
-        {password.length >= 8 ? "✅" : "❌"} {`length: ${password.length} >= 8`}
       </div>
-      <div>
-        <label htmlFor="confirm-password">confirmer le mot de passe</label>
+      <div className="register_confirm_password_block">
+        <label
+          className="register_confirm_password_label"
+          htmlFor="confirm_password"
+        >
+          Confirmer le mot de passe
+        </label>
         <input
+          className="register_confirm_password_input"
           type="password"
-          id="confirm-password"
+          id="confirm_password"
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
+          placeholder="mot de passe"
         />
-        {password === confirmPassword ? "✅" : "❌"}
       </div>
-      <button type="submit">valider</button>
+      <button className="add_button register_form_button" type="submit">
+        Valider l'inscription
+      </button>
     </form>
   );
 }
