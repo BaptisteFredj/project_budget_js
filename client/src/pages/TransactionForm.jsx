@@ -8,9 +8,14 @@ function TransactionForm() {
   const errors = useActionData();
 
   const [selectedType, setSelectedType] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Sans catégorie");
 
   const handleTypeClick = (type) => {
     setSelectedType(type);
+  };
+
+  const handleCategoryClick = (categoryName) => {
+    setSelectedCategory(categoryName);
   };
 
   return (
@@ -103,6 +108,39 @@ function TransactionForm() {
           </option>
         ))}
       </select>
+      <div className="categories_list">
+        <div
+          className={`icon_circle category_option ${selectedCategory === "Sans catégorie" ? "active_category" : ""}`}
+        >
+          <button
+            type="button"
+            onClick={() => handleCategoryClick("Sans catégorie")}
+          >
+            <img
+              className="icon_img"
+              src="/assets/icons/questionmark.svg"
+              alt="Icône de la catégorie"
+            />
+          </button>
+        </div>
+        {categories.map((category) => (
+          <div
+            className={`icon_circle category_option ${selectedCategory === category.icon_name ? "active_category" : ""}`}
+            key={category.id}
+          >
+            <button
+              type="button"
+              onClick={() => handleCategoryClick(category.icon_name)}
+            >
+              <img
+                className="icon_img"
+                src={`/assets/icons/${category.icon_name}.svg`}
+                alt={category.icon_name}
+              />
+            </button>
+          </div>
+        ))}
+      </div>
       <button className="add_button transaction_form_button" type="submit">
         Créer la transaction
       </button>
