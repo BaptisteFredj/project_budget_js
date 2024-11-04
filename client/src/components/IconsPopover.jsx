@@ -21,7 +21,7 @@ export default function IconsPopover({ onClose, icons, onIconSelect }) {
             <button type="button" onClick={() => handleIconClick(icon)}>
               <img
                 className="icon_img"
-                src={`${import.meta.env.VITE_API_URL}${icon.path}`}
+                src={`/assets/icons/${icon.path}.svg`}
                 alt={icon.id}
               />
             </button>
