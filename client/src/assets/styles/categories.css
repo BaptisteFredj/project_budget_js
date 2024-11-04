@@ -31,3 +31,8 @@
 .category_right_container {
   padding-right: 1rem;
 }
+
+.category_edit_option {
+  padding-top: 4px;
+  right: 3rem;
+}

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
-import copy from "../assets/images/copy.svg";
 import pen from "../assets/images/pen.svg";
 import trash from "../assets/images/trash.svg";
 
@@ -8,14 +7,7 @@ import "../assets/styles/transactionoptions.css";
 
 function CategoryOptions({ category }) {
   return (
-    <div className="options_block">
-      <Link to={`/categories/${category.id}/copy`}>
-        <div className="options copy_block">
-          <img className="copy_icon" src={copy} alt="Copy icon" />
-          <p>Copier</p>
-        </div>
-      </Link>
-
+    <div className="options_block category_edit_option">
       <Link to={`/categories/${category.id}/edit`}>
         <div className="options edit_block">
           <img className="copy_icon" src={pen} alt="Pen icon" />
