@@ -8,7 +8,7 @@ class CategoryRepository extends AbstractRepository {
   async readCategoriesByUser(userId) {
     const [rows] = await this.database.query(
       `
-      SELECT c.id AS id, c.name AS name, c.icon_id, i.path AS icon_path
+      SELECT c.id AS id, c.name AS name, c.icon_id, i.path AS path
       FROM ${this.table} AS c
       INNER JOIN icon AS i ON c.icon_id = i.id
       WHERE user_id = ?`,
@@ -20,7 +20,7 @@ class CategoryRepository extends AbstractRepository {
   async readCategoryById(categoryId, userId) {
     const [rows] = await this.database.query(
       `
-    SELECT c.id AS id, c.name AS name, c.icon_id, i.path AS icon_path
+    SELECT c.id AS id, c.name AS name, c.icon_id, i.path AS path
     FROM ${this.table} AS c
     INNER JOIN icon AS i ON c.icon_id = i.id
     WHERE c.id = ? AND c.user_id = ?`,
