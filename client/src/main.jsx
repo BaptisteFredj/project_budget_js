@@ -127,10 +127,10 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/transactions/past",
+        path: "/transactions/:dateFilter",
         element: <Transactions />,
-        loader: async () => ({
-          transactions: await getTransactionsByUserId("past"),
+        loader: async ({ params }) => ({
+          transactions: await getTransactionsByUserId(params.dateFilter),
         }),
         action: async ({ params }) => {
           await deleteTransaction(params.id);
@@ -138,10 +138,10 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/transactions/future",
+        path: "/transactions/:dateFilter",
         element: <Transactions />,
-        loader: async () => ({
-          transactions: await getTransactionsByUserId("future"),
+        loader: async ({ params }) => ({
+          transactions: await getTransactionsByUserId(params.dateFilter),
         }),
         action: async ({ params }) => {
           await deleteTransaction(params.id);
@@ -200,7 +200,7 @@ const router = createBrowserRouter([
             return validatedData;
           }
           await editTransaction(formDataObject);
-          return redirect(`/transactions/`);
+          return redirect(`/transactions/past`);
         },
       },
       {
@@ -228,7 +228,7 @@ const router = createBrowserRouter([
             return validatedData;
           }
           await addTransaction(formDataObject);
-          return redirect(`/transactions/`);
+          return redirect(`/transactions/past`);
         },
       },
       {
@@ -236,7 +236,7 @@ const router = createBrowserRouter([
         element: <TransactionDelete />,
         action: async ({ params }) => {
           await deleteTransaction(params.id);
-          return redirect("/transactions");
+          return redirect("/transactions/past");
         },
       },
       {

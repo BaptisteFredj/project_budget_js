@@ -12,13 +12,14 @@
   font-size: 1.5rem;
 }
 
+.future_transactions,
 .last_transactions {
-  background: var(--dark-grey);
-  color: white;
+  background: var(--light-grey);
 }
 
-.future_transactions {
-  background: var(--light-grey);
+.active {
+  background: var(--dark-grey);
+  color: white;
 }
 
 .future_transactions,

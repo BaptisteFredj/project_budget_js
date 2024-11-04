@@ -1,21 +1,29 @@
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, useParams } from "react-router-dom";
 import TransactionThumb from "../components/TransactionThumb";
 
 import "../assets/styles/transactions.css";
 
 function Transactions() {
   const { transactions } = useLoaderData();
+  const { dateFilter } = useParams();
 
   return (
     <>
       <ul className="transactions_title_group">
         <li className="title_transactions">Transactions </li>
         <Link to="/transactions/past">
-          <li className="last_transactions">récentes </li>
+          <li
+            className={`last_transactions ${dateFilter === "past" ? "active" : ""}`}
+          >
+            récentes{" "}
+          </li>
         </Link>
-
         <Link to="/transactions/future">
-          <li className="future_transactions">prévues </li>
+          <li
+            className={`future_transactions ${dateFilter === "future" ? "active" : ""}`}
+          >
+            prévues{" "}
+          </li>
         </Link>
       </ul>
 
