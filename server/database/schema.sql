@@ -7,7 +7,7 @@
 
   create table icon (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    path VARCHAR(255)
+    name VARCHAR(255)
   );
    
   create table category (
@@ -43,7 +43,7 @@
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL
   );
 
-INSERT INTO icon (path) VALUES 
+INSERT INTO icon (name) VALUES 
     ('question'),
     ('arrows1'),
     ('arrows2'),
