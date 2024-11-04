@@ -21,7 +21,7 @@ export default function IconsPopover({ onClose, icons, onIconSelect }) {
             <button type="button" onClick={() => handleIconClick(icon)}>
               <img
                 className="icon_img"
-                src={`${import.meta.env.VITE_API_URL}${icon.path}`}
+                src={`/assets/icons/${icon.name}.svg`}
                 alt={icon.id}
               />
             </button>
@@ -46,7 +46,7 @@ IconsPopover.propTypes = {
   icons: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      path: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     })
   ).isRequired,
   onClose: PropTypes.func.isRequired,

@@ -7,7 +7,7 @@
 
   create table icon (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    path VARCHAR(255)
+    name VARCHAR(255)
   );
    
   create table category (
@@ -43,32 +43,31 @@
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL
   );
 
-INSERT INTO icon (path) VALUES 
-    ('/assets/icons/question.svg'),
-    ('/assets/icons/arrows1.svg'),
-    ('/assets/icons/arrows2.svg'),
-    ('/assets/icons/baby.svg'),
-    ('/assets/icons/bar1.svg'),
-    ('/assets/icons/bar2.svg'),
-    ('/assets/icons/bitcoin.svg'),
-    ('/assets/icons/cloth1.svg'),
-    ('/assets/icons/cloth2.svg'),
-    ('/assets/icons/controller.svg'),
-    ('/assets/icons/dollar.svg'),
-    ('/assets/icons/euro.svg'),
-    ('/assets/icons/filelist.txt'),
-    ('/assets/icons/food1.svg'),
-    ('/assets/icons/food2.svg'),
-    ('/assets/icons/gift.svg'),
-    ('/assets/icons/grocery1.svg'),
-    ('/assets/icons/grocery2.svg'),
-    ('/assets/icons/health1.svg'),
-    ('/assets/icons/health2.svg'),
-    ('/assets/icons/heart1.svg'),
-    ('/assets/icons/home.svg'),
-    ('/assets/icons/money1.svg'),
-    ('/assets/icons/school.svg'),
-    ('/assets/icons/sport1.svg'),
-    ('/assets/icons/sport2.svg'),
-    ('/assets/icons/transport.svg'),
-    ('/assets/icons/yen.svg');
+INSERT INTO icon (name) VALUES 
+    ('question'),
+    ('arrows1'),
+    ('arrows2'),
+    ('baby'),
+    ('bar1'),
+    ('bar2'),
+    ('bitcoin'),
+    ('cloth1'),
+    ('cloth2'),
+    ('controller'),
+    ('dollar'),
+    ('euro'),
+    ('food1'),
+    ('food2'),
+    ('gift'),
+    ('grocery1'),
+    ('grocery2'),
+    ('health1'),
+    ('health2'),
+    ('heart1'),
+    ('home'),
+    ('money1'),
+    ('school'),
+    ('sport1'),
+    ('sport2'),
+    ('transport'),
+    ('yen');
