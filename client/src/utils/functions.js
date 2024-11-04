@@ -1,13 +1,13 @@
 // Showing type in french
 export function frenchType(type) {
   if (type === "expense") {
-    return "dépense";
+    return "Dépense";
   }
 
   if (type === "income") {
-    return "revenu";
+    return "Revenu";
   }
-  return "transfert";
+  return "Transfert";
 }
 
 export function toIso(europeanDate) {

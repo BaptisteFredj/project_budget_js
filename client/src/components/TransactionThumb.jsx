@@ -22,19 +22,19 @@ export default function TransactionThumb({ transaction }) {
             alt={transaction.icon_name}
           />
         </div>
-        <ul>
-          <div className="transaction_name_date">
-            <li className="transaction_name">{transaction.name}</li>
-            <li className="transaction_date">{transaction.date}</li>
-          </div>
-          <li className="transaction_category_type">
-            {transaction.category_name} - {frenchType(transaction.type)}
-          </li>
+        <ul className="transaction_left_texts">
+          <li className="transaction_name">{transaction.name}</li>
+          <li className="transaction_category">{transaction.category_name}</li>
+          <li className="transaction_date">{transaction.date}</li>
         </ul>
       </div>
 
       <ul className="transaction_right_block">
-        <li className="transaction_amount">{transaction.amount} €</li>
+        <div className="transaction_right_texts">
+          <li className="transaction_amount">{transaction.amount} €</li>
+          <li className="transaction_type">{frenchType(transaction.type)}</li>
+        </div>
+
         {showOptions && <TransactionOptions transaction={transaction} />}
         <button
           type="button"
