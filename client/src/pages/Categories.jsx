@@ -6,7 +6,7 @@ function Categories() {
 
   return (
     <>
-      <h1>Mes catégories</h1>
+      <h1 className="categories_title">Catégories</h1>
       {categories.map((category) => (
         <CategoryThumb category={category} key={category.id} />
       ))}

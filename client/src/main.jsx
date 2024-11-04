@@ -134,7 +134,7 @@ const router = createBrowserRouter([
         }),
         action: async ({ params }) => {
           await deleteTransaction(params.id);
-          return redirect("/transactions");
+          return redirect("/transactions/past");
         },
       },
       {
@@ -145,7 +145,7 @@ const router = createBrowserRouter([
         }),
         action: async ({ params }) => {
           await deleteTransaction(params.id);
-          return redirect("/transactions");
+          return redirect("/transactions/past");
         },
       },
       {
@@ -172,7 +172,7 @@ const router = createBrowserRouter([
           }
 
           await addTransaction(formDataObject);
-          return redirect(`/transactions`);
+          return redirect(`/transactions/past`);
         },
       },
       {

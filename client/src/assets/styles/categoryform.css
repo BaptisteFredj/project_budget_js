@@ -1,7 +1,7 @@
-.icon_img {
+/* .icon_img {
   width: 30px;
   padding: 2px;
-  filter: brightness(0) saturate(100%); /* Converts SVG to black */
+  filter: brightness(0) saturate(100%);
 }
 
 .icons_img {
@@ -16,4 +16,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */

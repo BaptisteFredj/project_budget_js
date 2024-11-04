@@ -16,6 +16,13 @@ export default function TransactionThumb({ transaction }) {
     <section className="transaction_block">
       <ul className="transaction_left_block">
         <div className="transaction_name_date">
+          <div className="icon_circle">
+            <img
+              className="icon_img"
+              src={`/assets/icons/${transaction.icon_name}.svg`}
+              alt={transaction.icon_name}
+            />
+          </div>
           <li className="transaction_name">{transaction.name}</li>
           <li className="transaction_date">{transaction.date}</li>
         </div>
@@ -48,5 +55,6 @@ TransactionThumb.propTypes = {
     category_name: PropTypes.string,
     name: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    icon_name: PropTypes.string.isRequired,
   }).isRequired,
 };
