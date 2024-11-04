@@ -56,7 +56,6 @@ INSERT INTO icon (path) VALUES
     ('controller'),
     ('dollar'),
     ('euro'),
-    ('filelist.txt'),
     ('food1'),
     ('food2'),
     ('gift'),
