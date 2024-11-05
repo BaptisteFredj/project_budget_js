@@ -107,7 +107,8 @@
   font-size: 0.8rem;
 }
 
-.categories_list {
+.category_list {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }

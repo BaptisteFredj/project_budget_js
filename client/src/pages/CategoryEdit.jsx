@@ -1,26 +1,21 @@
 import { Form, useLoaderData, useActionData } from "react-router-dom";
 import { useState, useEffect } from "react";
-import IconsPopover from "../components/IconsPopover";
 
 import "../assets/styles/categoryform.css";
 
 function CategoryEdit() {
   const errors = useActionData();
   const { category, icons } = useLoaderData();
-  const [showPopover, setShowPopover] = useState(false);
-  const [selectedIcon, setSelectedIcon] = useState(null);
+  const [selectedIcon, setSelectedIcon] = useState("");
+  const [name, setName] = useState();
 
   useEffect(() => {
     const defaultIcon = icons.find((icon) => icon.id === category.icon_id);
     setSelectedIcon(defaultIcon);
   }, [category.icon_id, icons]);
 
-  const handleIconListClick = () => {
-    setShowPopover(true);
-  };
-
-  const handleIconSelect = (icon) => {
-    setSelectedIcon(icon);
+  const handleIconClick = (iconId) => {
+    setSelectedIcon(iconId);
   };
 
   return (
@@ -32,44 +27,31 @@ function CategoryEdit() {
           type="text"
           id="name"
           name="name"
-          defaultValue={category.name}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           required
         />
         {errors?.NameError}
         {errors?.CharacterError}
-        {selectedIcon && (
-          <input type="hidden" name="iconId" value={selectedIcon.id} />
-        )}
-        <p>
-          Icône :
-          {selectedIcon ? (
-            <img
-              className="icon_img"
-              src={`/assets/icons/${selectedIcon.icon_name}.svg`}
-              alt="Icône de la catégorie"
-            />
-          ) : (
-            "Aucune icône sélectionnée"
-          )}
-        </p>
-        <p>
-          Nos icônes :
-          <button type="button" onClick={handleIconListClick}>
-            🔄
-          </button>
-        </p>
-        {showPopover && (
-          <IconsPopover
-            icons={icons}
-            onClose={() => setShowPopover(false)}
-            onIconSelect={handleIconSelect}
-          />
-        )}
+        <h2>Icône</h2>
+        <div className="icon_list">
+          {icons.map((icon) => (
+            <div
+              key={icon.id}
+              className={`icon_circle icon_option ${selectedIcon === icon.id ? "active_icon" : ""}`}
+            >
+              <button type="button" onClick={() => handleIconClick(icon.id)}>
+                <img
+                  className="icon_img"
+                  src={`/assets/icons/${icon.name}.svg`}
+                  alt={icon.id}
+                />
+              </button>
+            </div>
+          ))}
+        </div>
+        <input type="hidden" name="iconId" value={selectedIcon} />
         <button type="submit">Valider les modifications</button>
-      </Form>
-
-      <Form method="delete">
-        <button type="submit">Supprimer cette catégorie</button>
       </Form>
     </>
   );
