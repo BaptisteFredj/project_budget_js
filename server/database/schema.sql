@@ -44,7 +44,7 @@
   );
 
 INSERT INTO icon (name) VALUES 
-    ('question'),
+    ('questionmark'),
     ('arrows1'),
     ('arrows2'),
     ('baby'),
