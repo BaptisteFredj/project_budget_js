@@ -23,12 +23,12 @@ export default function Navbar() {
         </li>
         <li className="navbar_item">
           <a href="/register" className="navbar_link">
-            Page d'inscription
+            Inscription
           </a>
         </li>
         <li className="navbar_item">
           <a href="/login" className="navbar_link">
-            Page de connexion
+            Connexion
           </a>
         </li>
         <li className="navbar_item">
