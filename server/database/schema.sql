@@ -4,12 +4,18 @@
     hashed_password VARCHAR(255) NOT NULL,
     created_at DATE
   );
+
+  create table icon (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255)
+  );
    
   create table category (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100),
-    icon VARCHAR(255),
+    icon_id INT NOT NULL,
     user_id INT NOT NULL,
+    FOREIGN KEY(icon_id) REFERENCES icon(id),
     FOREIGN KEY(user_id) REFERENCES user(id)
   );
   
@@ -36,3 +42,32 @@
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL
   );
+
+INSERT INTO icon (name) VALUES 
+    ('question'),
+    ('arrows1'),
+    ('arrows2'),
+    ('baby'),
+    ('bar1'),
+    ('bar2'),
+    ('bitcoin'),
+    ('cloth1'),
+    ('cloth2'),
+    ('controller'),
+    ('dollar'),
+    ('euro'),
+    ('food1'),
+    ('food2'),
+    ('gift'),
+    ('grocery1'),
+    ('grocery2'),
+    ('health1'),
+    ('health2'),
+    ('heart1'),
+    ('home'),
+    ('money1'),
+    ('school'),
+    ('sport1'),
+    ('sport2'),
+    ('transport'),
+    ('yen');
