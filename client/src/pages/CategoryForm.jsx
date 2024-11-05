@@ -13,7 +13,7 @@ function CategoryForm() {
   };
 
   return (
-    <Form method="post" className="transaction_label_form">
+    <Form method="post" className="category_label_form">
       <label className="category_name_label" htmlFor="name">
         Nom
       </label>

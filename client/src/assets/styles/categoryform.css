@@ -1,17 +1,11 @@
-.icon_list {
+.category_label_form {
+  font-family: var(--primary-font-family);
+  color: var(--dark-grey);
+  font-size: 1rem;
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.icon_option {
-  cursor: pointer;
-}
-
-.icon_option.active_icon {
-  border-radius: 50%;
-  animation: brightness-animation 3s ease-in-out infinite;
-  position: relative;
+  flex-direction: column;
+  margin-inline: 0.75rem;
+  margin-top: 1.5rem;
 }
 
 .category_name_label,
@@ -36,4 +30,25 @@
 .category_form_button {
   margin-top: 3rem;
   padding-left: 5.25rem;
+}
+
+.category_edit_button {
+  margin-top: 3rem;
+  padding-left: 4rem;
+}
+
+.icon_list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.icon_option {
+  cursor: pointer;
+}
+
+.icon_option.active_icon {
+  border-radius: 50%;
+  animation: brightness-animation 3s ease-in-out infinite;
+  position: relative;
 }
