@@ -19,7 +19,13 @@ const auth = require("./controllers/authActions");
 
 router.post("/login", auth.login);
 
-// Transaction operations routes
+// Account operations routes
+const account = require("./controllers/accountActions");
+
+router.get("/accounts", authenticateUser, account.readAccountsByUser);
+router.post("/accounts", authenticateUser, account.add);
+
+// Icons operations routes
 const icon = require("./controllers/iconActions");
 
 router.get("/icons", icon.browse);

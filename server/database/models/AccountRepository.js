@@ -17,9 +17,9 @@ class AccountRepository extends AbstractRepository {
 
   async create(account) {
     const [result] = await this.database.query(
-      ` INSERT INTO ${this.table} (name, amount)
-          VALUES (?, ?)`,
-      [account.name, account.amount]
+      ` INSERT INTO ${this.table} (name, amount, user_id)
+          VALUES (?, ?, ?)`,
+      [account.name, account.amount, account.user_id]
     );
 
     return result;
