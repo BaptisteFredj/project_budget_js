@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../services/request";
 
 import "../assets/styles/login.css";
@@ -8,20 +8,14 @@ function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const { setAuth } = useOutletContext();
-
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const auth = await login(
-        emailRef.current.value,
-        passwordRef.current.value
-      );
+      await login(emailRef.current.value, passwordRef.current.value);
 
-      setAuth(auth);
       navigate(`/categories`);
     } catch (err) {
       alert("Identifiants incorrects");
