@@ -5,6 +5,14 @@
     created_at DATE
   );
 
+  create table account (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    amount DECIMAL(10, 2) NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES user(id)
+  );
+
   create table icon (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255)
