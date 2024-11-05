@@ -49,6 +49,6 @@
 
 .icon_option.active_icon {
   border-radius: 50%;
-  animation: brightness-animation 3s ease-in-out infinite;
+  animation: brightness-animation 1.5s ease-in-out infinite;
   position: relative;
 }
