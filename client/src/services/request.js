@@ -16,6 +16,84 @@ export function getIcons() {
     });
 }
 
+// Get all user's accounts
+export function getAccountsByUserId() {
+  return axios
+    .get(`${url}/api/accounts`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
+// Get an account by its ID
+export function getAccount(id) {
+  return axios
+    .get(`${url}/api/accounts/${id}`, {
+      withCredentials: true,
+    })
+    .then((reponse) => reponse.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
+// Create an account
+export function addAccount({ name, amount }) {
+  return axios
+    .post(
+      `${url}/api/accounts`,
+      { name, amount },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
+// Edit an account
+export function editAccount({ name, amount, id }) {
+  return axios
+    .put(
+      `${url}/api/accounts/${id}`,
+      { name, amount },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
+// Delete an account
+export function deleteAccount(id) {
+  return axios
+    .delete(`${url}/api/accounts/${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
 // Get all user's categories
 export function getCategoriesByUserId() {
   return axios
