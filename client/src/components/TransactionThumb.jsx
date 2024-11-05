@@ -18,7 +18,11 @@ export default function TransactionThumb({ transaction }) {
         <div className="icon_circle transaction_icon">
           <img
             className="icon_img"
-            src={`/assets/icons/${transaction.icon_name}.svg`}
+            src={
+              transaction.icon_name === null
+                ? `/assets/icons/questionmark.svg`
+                : `/assets/icons/${transaction.icon_name}.svg`
+            }
             alt={transaction.icon_name}
           />
         </div>
