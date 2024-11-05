@@ -1,69 +1,57 @@
 import { Form, useLoaderData, useActionData } from "react-router-dom";
 import { useState } from "react";
-import IconsPopover from "../components/IconsPopover";
 
 import "../assets/styles/categoryform.css";
 
 function CategoryForm() {
   const errors = useActionData();
   const { icons } = useLoaderData();
-  const [showPopover, setShowPopover] = useState(false);
-  const [selectedIcon, setSelectedIcon] = useState(null);
+  const [selectedIcon, setSelectedIcon] = useState("");
 
-  const handleIconListClick = () => {
-    setShowPopover(true);
-  };
-
-  const handleIconSelect = (icon) => {
-    setSelectedIcon(icon);
+  const handleIconClick = (iconId) => {
+    setSelectedIcon(iconId);
   };
 
   return (
-    <>
-      <h1>Créer une catégorie</h1>
-      <Form method="post">
-        <label htmlFor="name">Nom</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Nom de la catégorie"
-          required
-        />
-        {errors?.NameError}
-        {errors?.CharacterError}
-        {selectedIcon && (
-          <input type="hidden" name="iconId" value={selectedIcon.id} />
-        )}
-        <p>
-          Icône :
-          {selectedIcon ? (
-            <img
-              className="icon_img"
-              src={`/assets/icons/${selectedIcon.name}.svg`}
-              alt="Icône de la catégorie"
-            />
-          ) : (
-            "Aucune icône sélectionnée"
-          )}
-        </p>
-        <p>
-          Nos icônes :
-          <button type="button" onClick={handleIconListClick}>
-            {selectedIcon ? "🔄" : "➕"}
-          </button>
-        </p>
+    <Form method="post" className="category_label_form">
+      <label className="category_name_label" htmlFor="name">
+        Nom
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Nom de la catégorie"
+        required
+        className="category_name_input"
+      />
+      {errors?.NameError}
+      {errors?.CharacterError}
 
-        {showPopover && (
-          <IconsPopover
-            icons={icons}
-            onClose={() => setShowPopover(false)}
-            onIconSelect={handleIconSelect}
-          />
-        )}
-        <button type="submit">Confirmer la création</button>
-      </Form>
-    </>
+      <label className="category_icon_label" htmlFor="icon">
+        Icône
+      </label>
+      <div className="icon_list">
+        {icons.map((icon) => (
+          <div
+            key={icon.id}
+            className={`icon_circle icon_option ${selectedIcon === icon.id ? "active_icon" : ""}`}
+          >
+            <button type="button" onClick={() => handleIconClick(icon.id)}>
+              <img
+                className="icon_img"
+                src={`/assets/icons/${icon.name}.svg`}
+                alt={icon.id}
+              />
+            </button>
+          </div>
+        ))}
+      </div>
+      <input type="hidden" name="iconId" value={selectedIcon} />
+      <button className="add_button category_form_button" type="submit">
+        Créer la catégorie
+      </button>
+    </Form>
   );
 }
 

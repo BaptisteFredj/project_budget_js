@@ -1,0 +1,114 @@
+.transaction_label_form {
+  font-family: var(--primary-font-family);
+  color: var(--dark-grey);
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.transaction_amount_label,
+.transaction_name_label,
+.transaction_date_label,
+.transaction_type_label,
+.transaction_category_label {
+  margin-bottom: 0.5rem;
+}
+
+.transaction_amount_input,
+.transaction_name_input,
+.transaction_date_input {
+  margin-bottom: 1.5rem;
+}
+
+.transaction_label_form input[type="text"]::placeholder,
+.transaction_label_form input[type="number"]::placeholder,
+.transaction_label_form input[type="date"]::placeholder,
+.transaction_label_form select::placeholder {
+  color: var(--text-light-grey);
+}
+
+.transaction_label_form input[type="text"],
+.transaction_label_form input[type="number"],
+.transaction_label_form input[type="date"],
+.transaction_label_form select {
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  padding: 0.4rem 0.5rem;
+  font-size: 1rem;
+}
+
+.transaction_form_button {
+  margin-top: 3rem;
+  padding-left: 3.75rem;
+}
+
+.transaction_edit_button {
+  margin-top: 3rem;
+  padding-left: 8rem;
+}
+
+.transaction_copy_button {
+  margin-top: 3rem;
+  padding-left: 5rem;
+}
+
+.type_selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.type_option {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--white);
+  color: var(--text-light-grey);
+  transition: border-color 0.2s;
+}
+
+.type_option.active {
+  border-color: black;
+  color: black;
+}
+
+.categories_option {
+  cursor: pointer;
+}
+
+@keyframes brightness-animation {
+  0% {
+    filter: brightness(0.5);
+    box-shadow: 0 0 0 0 rgba(50, 50, 50, 0.5);
+  }
+  50% {
+    filter: brightness(1.5);
+    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.7);
+  }
+  100% {
+    filter: brightness(0.5);
+    box-shadow: 0 0 0 0 rgba(50, 50, 50, 0.5);
+  }
+}
+
+.category_option.active_category {
+  border-radius: 50%;
+  animation: brightness-animation 1.5s ease-in-out infinite;
+  position: relative;
+}
+
+.error_message {
+  color: red;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.category_list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}

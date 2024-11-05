@@ -5,7 +5,15 @@ class TransactionRepository extends AbstractRepository {
     super({ table: "transaction" });
   }
 
-  async readTransactionsByUser(userId) {
+  async readTransactionsByUser(userId, dateFilter) {
+    let queryFilter = "";
+    if (dateFilter === "past") {
+      queryFilter = ` AND t.date <= CURDATE() ORDER BY t.date DESC`;
+    }
+    if (dateFilter === "future") {
+      queryFilter = ` AND t.date > CURDATE() ORDER BY t.date ASC`;
+    }
+
     const [rows] = await this.database.query(
       `SELECT 
         t.id,
@@ -13,13 +21,15 @@ class TransactionRepository extends AbstractRepository {
         t.amount,
         DATE_FORMAT(t.date, '%d/%m/%Y') as date,
         t.type,
-        c.name AS category_name
+        c.name AS category_name,
+        i.name AS icon_name
       FROM 
         ${this.table} t
       LEFT JOIN 
         category c ON t.category_id = c.id
-      WHERE 
-        t.user_id = ?`,
+      LEFT JOIN
+        icon i ON c.icon_id = i.id
+      WHERE t.user_id = ?${queryFilter}`,
       [userId]
     );
     return rows;
@@ -33,11 +43,14 @@ class TransactionRepository extends AbstractRepository {
         t.amount,
         DATE_FORMAT(t.date, '%d/%m/%Y') as date,
         t.type,
-        c.name AS category_name
+        c.name AS category_name,
+        i.name AS icon_name
       FROM 
         ${this.table} t
       LEFT JOIN 
         category c ON t.category_id = c.id
+      LEFT JOIN
+        icon i ON c.icon_id = i.id
       WHERE 
         t.id = ? AND t.user_id = ?`,
       [transactionId, userId]
@@ -62,8 +75,9 @@ class TransactionRepository extends AbstractRepository {
 
   async update(transaction) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET date = ?, amount = ?, type = ?, category_id = ? WHERE id = ? AND user_id = ?`,
+      `UPDATE ${this.table} SET name = ?, date = ?, amount = ?, type = ?, category_id = ? WHERE id = ? AND user_id = ?`,
       [
+        transaction.name,
         transaction.date,
         transaction.amount,
         transaction.type,

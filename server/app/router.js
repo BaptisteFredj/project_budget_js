@@ -47,7 +47,7 @@ router.delete("/categories/:id", authenticateUser, category.destroy);
 const transaction = require("./controllers/transactionActions");
 
 router.get(
-  "/transactions",
+  "/transactions/status/:dateFilter",
   authenticateUser,
   transaction.readTransactionsByUser
 );

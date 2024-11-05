@@ -1,77 +1,63 @@
 import { Form, useLoaderData, useActionData } from "react-router-dom";
 import { useState, useEffect } from "react";
-import IconsPopover from "../components/IconsPopover";
 
 import "../assets/styles/categoryform.css";
 
 function CategoryEdit() {
   const errors = useActionData();
   const { category, icons } = useLoaderData();
-  const [showPopover, setShowPopover] = useState(false);
-  const [selectedIcon, setSelectedIcon] = useState(null);
+  const [selectedIcon, setSelectedIcon] = useState("");
+  const [name, setName] = useState(category.name || "");
 
   useEffect(() => {
     const defaultIcon = icons.find((icon) => icon.id === category.icon_id);
-    setSelectedIcon(defaultIcon);
+    setSelectedIcon(defaultIcon.id);
   }, [category.icon_id, icons]);
 
-  const handleIconListClick = () => {
-    setShowPopover(true);
-  };
-
-  const handleIconSelect = (icon) => {
-    setSelectedIcon(icon);
+  const handleIconClick = (iconId) => {
+    setSelectedIcon(iconId);
   };
 
   return (
-    <>
-      <h1>Modifier ma catégorie</h1>
-      <Form method="put">
-        <label htmlFor="name">Nom</label>{" "}
-        <input
-          type="text"
-          id="name"
-          name="name"
-          defaultValue={category.name}
-          required
-        />
-        {errors?.NameError}
-        {errors?.CharacterError}
-        {selectedIcon && (
-          <input type="hidden" name="iconId" value={selectedIcon.id} />
-        )}
-        <p>
-          Icône :
-          {selectedIcon ? (
-            <img
-              className="icon_img"
-              src={`/assets/icons/${selectedIcon.icon_name}.svg`}
-              alt="Icône de la catégorie"
-            />
-          ) : (
-            "Aucune icône sélectionnée"
-          )}
-        </p>
-        <p>
-          Nos icônes :
-          <button type="button" onClick={handleIconListClick}>
-            🔄
-          </button>
-        </p>
-        {showPopover && (
-          <IconsPopover
-            icons={icons}
-            onClose={() => setShowPopover(false)}
-            onIconSelect={handleIconSelect}
-          />
-        )}
-        <button type="submit">Valider les modifications</button>
-      </Form>
-
-      <Form method="delete">
-        <button type="submit">Supprimer cette catégorie</button>
-      </Form>
-    </>
+    <Form method="put" className="category_label_form">
+      <label className="category_name_label" htmlFor="name">
+        Nom
+      </label>{" "}
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="category_name_input"
+        required
+      />
+      {errors?.NameError}
+      {errors?.CharacterError}
+      <label className="category_icon_label" htmlFor="icon">
+        Icône
+      </label>
+      <div className="icon_list">
+        {icons.map((icon) => (
+          <div
+            key={icon.id}
+            className={`icon_circle icon_option ${selectedIcon === icon.id ? "active_icon" : ""}`}
+          >
+            <button type="button" onClick={() => handleIconClick(icon.id)}>
+              <img
+                className="icon_img"
+                src={`/assets/icons/${icon.name}.svg`}
+                alt={icon.id}
+              />
+            </button>
+          </div>
+        ))}
+      </div>
+      <input type="hidden" name="iconId" value={selectedIcon} />
+      <button className="add_button category_edit_button" type="submit">
+        Valider les modifications
+      </button>
+    </Form>
   );
 }
 

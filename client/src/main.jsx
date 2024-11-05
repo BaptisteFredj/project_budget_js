@@ -39,12 +39,15 @@ import CategoryEdit from "./pages/CategoryEdit";
 import Transactions from "./pages/Transactions";
 import TransactionForm from "./pages/TransactionForm";
 import TransactionEdit from "./pages/TransactionEdit";
+import TransactionDelete from "./components/TransactionDelete";
+import TransactionCopy from "./pages/TransactionCopy";
 import Budgets from "./pages/Budgets";
 import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import BudgetForm from "./pages/BudgetForm";
 import BudgetEdit from "./pages/BudgetEdit";
+import CategoryDelete from "./components/CategoryDelete";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +67,10 @@ const router = createBrowserRouter([
         loader: async () => ({
           categories: await getCategoriesByUserId(),
         }),
+        action: async ({ params }) => {
+          await deleteCategory(params.id);
+          return redirect("/categories");
+        },
       },
       {
         path: "/categories_form",
@@ -125,11 +132,34 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/transactions",
+        path: "/categories/:id/delete",
+        element: <CategoryDelete />,
+        action: async ({ params }) => {
+          await deleteCategory(params.id);
+          return redirect("/categories");
+        },
+      },
+      {
+        path: "/transactions/:dateFilter",
         element: <Transactions />,
-        loader: async () => ({
-          transactions: await getTransactionsByUserId(),
+        loader: async ({ params }) => ({
+          transactions: await getTransactionsByUserId(params.dateFilter),
         }),
+        action: async ({ params }) => {
+          await deleteTransaction(params.id);
+          return redirect("/transactions/past");
+        },
+      },
+      {
+        path: "/transactions/:dateFilter",
+        element: <Transactions />,
+        loader: async ({ params }) => ({
+          transactions: await getTransactionsByUserId(params.dateFilter),
+        }),
+        action: async ({ params }) => {
+          await deleteTransaction(params.id);
+          return redirect("/transactions/past");
+        },
       },
       {
         path: "/transactions_form",
@@ -155,7 +185,7 @@ const router = createBrowserRouter([
           }
 
           await addTransaction(formDataObject);
-          return redirect(`/transactions`);
+          return redirect(`/transactions/past`);
         },
       },
       {
@@ -182,22 +212,46 @@ const router = createBrowserRouter([
           if (Object.keys(validatedData).length > 0) {
             return validatedData;
           }
-
-          switch (request.method.toLocaleLowerCase()) {
-            case "put": {
-              await editTransaction(formDataObject);
-              return redirect(`/transactions/`);
-            }
-            case "delete": {
-              await deleteTransaction(params.id);
-              return redirect("/transactions");
-            }
-            default:
-              throw new Response("Method Not Allowed", { status: 405 });
-          }
+          await editTransaction(formDataObject);
+          return redirect(`/transactions/past`);
         },
       },
+      {
+        path: "/transactions/:id/copy",
+        element: <TransactionCopy />,
+        loader: async ({ params }) => ({
+          transaction: await getTransaction(params.id),
+          categories: await getCategoriesByUserId(),
+        }),
+        action: async ({ request, params }) => {
+          const formData = await request.formData();
+          const formDataObject = {
+            name: formData.get("name"),
+            date: formData.get("date"),
+            amount: parseFloat(formData.get("amount")),
+            type: formData.get("type"),
+            categoryId: parseInt(formData.get("category"), 10),
+            id: params.id,
+          };
 
+          formDataObject.name = formDataObject.name.trim();
+          const validatedData = transactionFormValidator(formDataObject);
+
+          if (Object.keys(validatedData).length > 0) {
+            return validatedData;
+          }
+          await addTransaction(formDataObject);
+          return redirect(`/transactions/past`);
+        },
+      },
+      {
+        path: "/transactions/:id/delete",
+        element: <TransactionDelete />,
+        action: async ({ params }) => {
+          await deleteTransaction(params.id);
+          return redirect("/transactions/past");
+        },
+      },
       {
         path: "/budgets",
         element: <Budgets />,

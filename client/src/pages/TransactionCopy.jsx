@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, useLoaderData, useActionData } from "react-router-dom";
+import { toIso } from "../utils/functions";
 
 import "../assets/styles/transactionform.css";
 
-function TransactionForm() {
-  const { categories } = useLoaderData();
+function TransactionCopy() {
+  const { transaction, categories } = useLoaderData();
   const errors = useActionData();
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedType, setSelectedType] = useState(transaction.type || "");
+  const [amount, setAmount] = useState(transaction.amount || "");
+  const [date, setDate] = useState(toIso(transaction.date) || "");
+  const [name, setName] = useState(transaction.name || "");
 
-  const [selectedType, setSelectedType] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Sans catégorie");
+  const previousCategory = categories?.find(
+    (category) => category.icon_name === transaction.icon_name
+  );
+
+  useEffect(() => {
+    setSelectedCategory(previousCategory?.id);
+  }, [previousCategory]);
 
   const handleTypeClick = (type) => {
     setSelectedType(type);
@@ -30,8 +41,9 @@ function TransactionForm() {
         type="number"
         id="amount"
         name="amount"
-        placeholder="Exemple : 10,50 €"
         step="0.01"
+        value={amount}
+        onChange={(event) => setAmount(event.target.value)}
         className="transaction_amount_input"
       />
 
@@ -48,7 +60,8 @@ function TransactionForm() {
         type="text"
         id="name"
         name="name"
-        placeholder="Exemple : Paire de chaussures"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
         className="transaction_name_input"
       />
 
@@ -62,7 +75,8 @@ function TransactionForm() {
         type="date"
         id="date"
         name="date"
-        placeholder="Date de la transaction"
+        value={date}
+        onChange={(event) => setDate(event.target.value)}
         className="transaction_date_input"
       />
 
@@ -100,14 +114,11 @@ function TransactionForm() {
       <label className="transaction_category_label" htmlFor="category">
         Catégorie
       </label>
-      <div className="category_list">
+      <div className="categories_list">
         <div
-          className={`icon_circle category_option ${selectedCategory === "Sans catégorie" ? "active_category" : ""}`}
+          className={`icon_circle category_option ${!selectedCategory ? "active_category" : ""}`}
         >
-          <button
-            type="button"
-            onClick={() => handleCategoryClick("Sans catégorie")}
-          >
+          <button type="button" onClick={() => handleCategoryClick(null)}>
             <img
               className="icon_img"
               src="/assets/icons/questionmark.svg"
@@ -134,11 +145,11 @@ function TransactionForm() {
         ))}
       </div>
       <input type="hidden" name="category" value={selectedCategory} />
-      <button className="add_button transaction_form_button" type="submit">
+      <button className="add_button transaction_copy_button" type="submit">
         Créer la transaction
       </button>
     </Form>
   );
 }
 
-export default TransactionForm;
+export default TransactionCopy;

@@ -3,7 +3,8 @@ const tables = require("../../database/tables");
 const readTransactionsByUser = async (req, res, next) => {
   try {
     const transactions = await tables.transaction.readTransactionsByUser(
-      req.body.user_id
+      req.body.user_id,
+      req.params.dateFilter
     );
     res.json(transactions);
   } catch (error) {
