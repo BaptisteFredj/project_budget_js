@@ -36,7 +36,7 @@
 .transaction_block {
   display: flex;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, white, rgb(231, 230, 230));
+  background: linear-gradient(to right, white, rgb(231, 230, 230) 50%, white);
   padding: 0.1rem 0.5rem;
   border-radius: 2rem;
   align-items: center;
