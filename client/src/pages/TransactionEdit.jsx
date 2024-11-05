@@ -8,7 +8,7 @@ function TransactionEdit() {
   const { transaction, categories } = useLoaderData();
   const errors = useActionData();
   const [selectedCategory, setSelectedCategory] = useState();
-  const [selectedType, setSelectedType] = useState(transaction.type);
+  const [selectedType, setSelectedType] = useState(transaction.type || "");
   const [amount, setAmount] = useState(transaction.amount || "");
   const [date, setDate] = useState(toIso(transaction.date) || "");
   const [name, setName] = useState(transaction.name || "");
