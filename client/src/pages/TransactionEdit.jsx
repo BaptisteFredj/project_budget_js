@@ -9,6 +9,9 @@ function TransactionEdit() {
   const errors = useActionData();
   const [selectedCategory, setSelectedCategory] = useState();
   const [selectedType, setSelectedType] = useState(transaction.type);
+  const [amount, setAmount] = useState(transaction.amount || "");
+  const [date, setDate] = useState(toIso(transaction.date) || "");
+  const [name, setName] = useState(transaction.name || "");
 
   const previousCategory = categories?.find(
     (category) => category.icon_name === transaction.icon_name
@@ -39,7 +42,8 @@ function TransactionEdit() {
         id="amount"
         name="amount"
         step="0.01"
-        defaultValue={transaction.amount}
+        value={amount}
+        onChange={(event) => setAmount(event.target.value)}
         className="transaction_amount_input"
       />
 
@@ -56,7 +60,8 @@ function TransactionEdit() {
         type="text"
         id="name"
         name="name"
-        defaultValue={transaction.name}
+        value={name}
+        onChange={(event) => setName(event.target.value)}
         className="transaction_name_input"
       />
 
@@ -70,7 +75,8 @@ function TransactionEdit() {
         type="date"
         id="date"
         name="date"
-        defaultValue={toIso(transaction.date)}
+        value={date}
+        onChange={(event) => setDate(event.target.value)}
         className="transaction_date_input"
       />
 
