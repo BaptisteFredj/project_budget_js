@@ -52,8 +52,8 @@ a {
 }
 
 main {
-  padding: 0 0.75rem;
-  min-height: 79svh;
+  padding: 10svh 0.75rem;
+  min-height: 200svh;
 }
 
 .add_button_container {
