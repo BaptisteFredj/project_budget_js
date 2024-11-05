@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, useLoaderData, useActionData } from "react-router-dom";
 import { toIso } from "../utils/functions";
 
@@ -7,15 +7,23 @@ import "../assets/styles/transactionform.css";
 function TransactionCopy() {
   const { transaction, categories } = useLoaderData();
   const errors = useActionData();
-
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedType, setSelectedType] = useState(transaction.type);
 
   const previousCategory = categories?.find(
-    (category) => category.name === transaction.category_name
+    (category) => category.icon_name === transaction.icon_name
   );
+
+  useEffect(() => {
+    setSelectedCategory(previousCategory?.id);
+  }, [previousCategory]);
 
   const handleTypeClick = (type) => {
     setSelectedType(type);
+  };
+
+  const handleCategoryClick = (categoryName) => {
+    setSelectedCategory(categoryName);
   };
 
   return (
@@ -98,20 +106,42 @@ function TransactionCopy() {
       <input type="hidden" name="type" value={selectedType} />
 
       <label className="transaction_category_label" htmlFor="category">
-        Catégorie de transaction
+        Catégorie
       </label>
-      <select
-        id="category"
-        name="category"
-        defaultValue={previousCategory ? previousCategory.id : ""}
-      >
-        <option value="">Sans catégorie</option>
+      <div className="categories_list">
+        <div
+          className={`icon_circle category_option ${!selectedCategory ? "active_category" : ""}`}
+        >
+          <button
+            type="button"
+            onClick={() => handleCategoryClick("Sans catégorie")}
+          >
+            <img
+              className="icon_img"
+              src="/assets/icons/questionmark.svg"
+              alt="Icône de la catégorie"
+            />
+          </button>
+        </div>
         {categories.map((category) => (
-          <option key={category.id} value={category.id}>
-            {category.name}
-          </option>
+          <div
+            className={`icon_circle category_option ${selectedCategory === category.id ? "active_category" : ""}`}
+            key={category.id}
+          >
+            <button
+              type="button"
+              onClick={() => handleCategoryClick(category.id)}
+            >
+              <img
+                className="icon_img"
+                src={`/assets/icons/${category.icon_name}.svg`}
+                alt={category.id}
+              />
+            </button>
+          </div>
         ))}
-      </select>
+      </div>
+      <input type="hidden" name="category" value={selectedCategory} />
       <button className="add_button transaction_copy_button" type="submit">
         Créer la transaction
       </button>
