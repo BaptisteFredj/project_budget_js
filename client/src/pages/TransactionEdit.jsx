@@ -7,7 +7,7 @@ import "../assets/styles/transactionform.css";
 function TransactionEdit() {
   const { transaction, categories } = useLoaderData();
   const errors = useActionData();
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState();
   const [selectedType, setSelectedType] = useState(transaction.type);
 
   const previousCategory = categories?.find(
@@ -112,10 +112,7 @@ function TransactionEdit() {
         <div
           className={`icon_circle category_option ${!selectedCategory ? "active_category" : ""}`}
         >
-          <button
-            type="button"
-            onClick={() => handleCategoryClick("Sans catégorie")}
-          >
+          <button type="button" onClick={() => handleCategoryClick(null)}>
             <img
               className="icon_img"
               src="/assets/icons/questionmark.svg"
