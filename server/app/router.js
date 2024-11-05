@@ -23,7 +23,10 @@ router.post("/login", auth.login);
 const account = require("./controllers/accountActions");
 
 router.get("/accounts", authenticateUser, account.readAccountsByUser);
+router.get("/accounts/:id", authenticateUser, account.readAccountById);
 router.post("/accounts", authenticateUser, account.add);
+router.put("/accounts/:id", authenticateUser, account.edit);
+router.delete("/accounts/:id", authenticateUser, account.destroy);
 
 // Icons operations routes
 const icon = require("./controllers/iconActions");

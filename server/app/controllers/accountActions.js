@@ -9,6 +9,22 @@ const readAccountsByUser = async (req, res, next) => {
   }
 };
 
+const readAccountById = async (req, res, next) => {
+  try {
+    const account = await tables.account.readAccountById(
+      req.params.id,
+      req.body.user_id
+    );
+    if (account == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(account);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 const add = async (req, res, next) => {
   try {
     const result = await tables.account.create(req.body);
@@ -18,4 +34,23 @@ const add = async (req, res, next) => {
   }
 };
 
-module.exports = { readAccountsByUser, add };
+const edit = async (req, res, next) => {
+  req.body.id = req.params.id;
+  try {
+    await tables.account.update(req.body);
+    res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const destroy = async (req, res, next) => {
+  try {
+    await tables.account.delete(req.params.id, req.body.user_id);
+    res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { readAccountById, readAccountsByUser, add, edit, destroy };
