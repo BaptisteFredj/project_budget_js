@@ -46,9 +46,11 @@ function TransactionEdit() {
         className="transaction_account_select"
         name="account"
         id="account"
+        value={selectedAccount}
+        onChange={(event) => setSelectedAccount(event.target.value)}
       >
         {accounts.map((account) => (
-          <option key={account.id} value={selectedAccount}>
+          <option key={account.id} value={account.id}>
             {account.name}
           </option>
         ))}
@@ -137,7 +139,7 @@ function TransactionEdit() {
       <label className="transaction_category_label" htmlFor="category">
         Catégorie
       </label>
-      <div className="categories_list">
+      <div className="category_list">
         <div
           className={`icon_circle category_option ${!selectedCategory ? "active_category" : ""}`}
         >

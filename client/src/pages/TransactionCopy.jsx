@@ -5,21 +5,29 @@ import { toIso } from "../utils/functions";
 import "../assets/styles/transactionform.css";
 
 function TransactionCopy() {
-  const { transaction, categories } = useLoaderData();
+  const { transaction, categories, accounts } = useLoaderData();
   const errors = useActionData();
   const [selectedCategory, setSelectedCategory] = useState();
   const [selectedType, setSelectedType] = useState(transaction.type || "");
   const [amount, setAmount] = useState(transaction.amount || "");
   const [date, setDate] = useState(toIso(transaction.date) || "");
   const [name, setName] = useState(transaction.name || "");
+  const [selectedAccount, setSelectedAccount] = useState(
+    transaction.account_name || ""
+  );
 
-  const previousCategory = categories?.find(
+  const actualCategory = categories?.find(
     (category) => category.icon_name === transaction.icon_name
   );
 
+  const actualAccount = accounts?.find(
+    (account) => account.name === transaction.account_name
+  );
+
   useEffect(() => {
-    setSelectedCategory(previousCategory?.id);
-  }, [previousCategory]);
+    setSelectedCategory(actualCategory?.id);
+    setSelectedAccount(actualAccount?.id);
+  }, [actualCategory, actualAccount]);
 
   const handleTypeClick = (type) => {
     setSelectedType(type);
@@ -31,6 +39,23 @@ function TransactionCopy() {
 
   return (
     <Form method="post" className="transaction_label_form">
+      <label className="transaction_account_label" htmlFor="account">
+        Compte
+      </label>
+      <select
+        className="transaction_account_select"
+        name="account"
+        id="account"
+        value={selectedAccount}
+        onChange={(event) => setSelectedAccount(event.target.value)}
+      >
+        {accounts.map((account) => (
+          <option key={account.id} value={account.id}>
+            {account.name}
+          </option>
+        ))}
+      </select>
+
       <label className="transaction_amount_label" htmlFor="amount">
         Montant
       </label>
@@ -114,7 +139,7 @@ function TransactionCopy() {
       <label className="transaction_category_label" htmlFor="category">
         Catégorie
       </label>
-      <div className="categories_list">
+      <div className="category_list">
         <div
           className={`icon_circle category_option ${!selectedCategory ? "active_category" : ""}`}
         >
