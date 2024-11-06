@@ -234,7 +234,7 @@ const router = createBrowserRouter([
             date: formData.get("date"),
             amount: parseFloat(formData.get("amount")),
             type: formData.get("type"),
-            account: parseInt(formData.get("account"), 10),
+            accountId: parseInt(formData.get("account"), 10),
             categoryId: parseInt(formData.get("category"), 10),
           };
 

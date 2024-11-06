@@ -201,7 +201,14 @@ export function getTransaction(id) {
 }
 
 // Create a transaction
-export function addTransaction({ name, date, amount, type, categoryId }) {
+export function addTransaction({
+  name,
+  date,
+  amount,
+  type,
+  accountId,
+  categoryId,
+}) {
   return axios
     .post(
       `${url}/api/transactions`,
@@ -211,6 +218,7 @@ export function addTransaction({ name, date, amount, type, categoryId }) {
         amount,
         type,
         category_id: categoryId,
+        account_id: accountId,
       },
       {
         withCredentials: true,
