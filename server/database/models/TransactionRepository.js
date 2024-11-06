@@ -21,6 +21,7 @@ class TransactionRepository extends AbstractRepository {
         t.amount,
         DATE_FORMAT(t.date, '%d/%m/%Y') as date,
         t.type,
+        a.name AS account_name,
         c.name AS category_name,
         i.name AS icon_name
       FROM 
@@ -29,6 +30,8 @@ class TransactionRepository extends AbstractRepository {
         category c ON t.category_id = c.id
       LEFT JOIN
         icon i ON c.icon_id = i.id
+      INNER JOIN
+        account a ON t.account_id = a.id
       WHERE t.user_id = ?${queryFilter}`,
       [userId]
     );
@@ -43,6 +46,7 @@ class TransactionRepository extends AbstractRepository {
         t.amount,
         DATE_FORMAT(t.date, '%d/%m/%Y') as date,
         t.type,
+        a.name AS account_name,
         c.name AS category_name,
         i.name AS icon_name
       FROM 
@@ -51,6 +55,8 @@ class TransactionRepository extends AbstractRepository {
         category c ON t.category_id = c.id
       LEFT JOIN
         icon i ON c.icon_id = i.id
+      INNER JOIN
+        account a ON t.account_id = a.id
       WHERE 
         t.id = ? AND t.user_id = ?`,
       [transactionId, userId]
@@ -60,13 +66,14 @@ class TransactionRepository extends AbstractRepository {
 
   async create(transaction) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (name, date, amount, type, category_id, user_id) VALUES(?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (name, date, amount, type, category_id, account_id, user_id) VALUES(?, ?, ?, ?, ?, ?, ?)`,
       [
         transaction.name,
         transaction.date,
         transaction.amount,
         transaction.type,
         transaction.category_id,
+        transaction.account_id,
         transaction.user_id,
       ]
     );
@@ -75,13 +82,14 @@ class TransactionRepository extends AbstractRepository {
 
   async update(transaction) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET name = ?, date = ?, amount = ?, type = ?, category_id = ? WHERE id = ? AND user_id = ?`,
+      `UPDATE ${this.table} SET name = ?, date = ?, amount = ?, type = ?, category_id = ?, account_id = ? WHERE id = ? AND user_id = ?`,
       [
         transaction.name,
         transaction.date,
         transaction.amount,
         transaction.type,
         transaction.category_id,
+        transaction.account_id,
         transaction.id,
         transaction.user_id,
       ]
