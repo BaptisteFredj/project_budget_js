@@ -37,7 +37,7 @@
     category_id INT,
     account_id INT,
     FOREIGN KEY(user_id) REFERENCES user(id),
-    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL
+    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL,
     FOREIGN KEY (account_id) REFERENCES account(id) ON DELETE SET NULL
   );
   
