@@ -24,6 +24,11 @@ import {
   editBudget,
   deleteBudget,
   getIcons,
+  addAccount,
+  getAccountsByUserId,
+  deleteAccount,
+  getAccount,
+  editAccount,
 } from "./services/request";
 
 import {
@@ -48,6 +53,10 @@ import Login from "./pages/Login";
 import BudgetForm from "./pages/BudgetForm";
 import BudgetEdit from "./pages/BudgetEdit";
 import CategoryDelete from "./components/CategoryDelete";
+import AccountForm from "./pages/AccountForm";
+import Accounts from "./pages/Accounts";
+import AccountEdit from "./pages/AccountEdit";
+import AccountDelete from "./components/AccountDelete";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +69,56 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/accounts",
+        element: <Accounts />,
+        loader: async () => ({
+          accounts: await getAccountsByUserId(),
+        }),
+        action: async ({ params }) => {
+          await deleteAccount(params.id);
+          return redirect("/accounts");
+        },
+      },
+      {
+        path: "/accounts_form",
+        element: <AccountForm />,
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          const formDataObject = {
+            name: formData.get("name"),
+            amount: parseFloat(formData.get("amount")),
+          };
+          await addAccount(formDataObject);
+          return redirect(`/accounts`);
+        },
+      },
+      {
+        path: "/accounts/:id/edit",
+        element: <AccountEdit />,
+        loader: async ({ params }) => ({
+          account: await getAccount(params.id),
+        }),
+        action: async ({ request, params }) => {
+          const formData = await request.formData();
+          const formDataObject = {
+            name: formData.get("name"),
+            amount: parseFloat(formData.get("amount")),
+            id: params.id,
+          };
+
+          await editAccount(formDataObject);
+          return redirect(`/accounts`);
+        },
+      },
+      {
+        path: "/accounts/:id/delete",
+        element: <AccountDelete />,
+        action: async ({ params }) => {
+          await deleteAccount(params.id);
+          return redirect("/accounts");
+        },
       },
       {
         path: "/categories",
