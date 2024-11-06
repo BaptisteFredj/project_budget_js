@@ -225,6 +225,7 @@ const router = createBrowserRouter([
         element: <TransactionForm />,
         loader: async () => ({
           categories: await getCategoriesByUserId(),
+          accounts: await getAccountsByUserId(),
         }),
         action: async ({ request }) => {
           const formData = await request.formData();
@@ -233,6 +234,7 @@ const router = createBrowserRouter([
             date: formData.get("date"),
             amount: parseFloat(formData.get("amount")),
             type: formData.get("type"),
+            account: parseInt(formData.get("account"), 10),
             categoryId: parseInt(formData.get("category"), 10),
           };
 

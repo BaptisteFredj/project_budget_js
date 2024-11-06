@@ -4,7 +4,7 @@ import { Form, useLoaderData, useActionData } from "react-router-dom";
 import "../assets/styles/transactionform.css";
 
 function TransactionForm() {
-  const { categories } = useLoaderData();
+  const { categories, accounts } = useLoaderData();
   const errors = useActionData();
 
   const [selectedType, setSelectedType] = useState("");
@@ -20,6 +20,21 @@ function TransactionForm() {
 
   return (
     <Form method="post" className="transaction_label_form">
+      <label className="transaction_account_label" htmlFor="account">
+        Compte
+      </label>
+      <select
+        className="transaction_account_select"
+        name="account"
+        id="account"
+      >
+        {accounts.map((account) => (
+          <option key={account.id} value={account.name}>
+            {account.name}
+          </option>
+        ))}
+      </select>
+
       <label className="transaction_amount_label" htmlFor="amount">
         Montant
       </label>

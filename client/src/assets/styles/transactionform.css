@@ -12,13 +12,17 @@
 .transaction_name_label,
 .transaction_date_label,
 .transaction_type_label,
-.transaction_category_label {
+.transaction_category_label,
+.transaction_account_label {
   margin-bottom: 0.5rem;
 }
 
 .transaction_amount_input,
 .transaction_name_input,
 .transaction_date_input {
+  margin-bottom: 1.5rem;
+}
+.transaction_account_select {
   margin-bottom: 1.5rem;
 }
 
