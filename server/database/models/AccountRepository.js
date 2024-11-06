@@ -35,6 +35,16 @@ class AccountRepository extends AbstractRepository {
     return result;
   }
 
+  async update(account) {
+    const [result] = await this.database.query(
+      ` UPDATE ${this.table} SET name = ?, amount = ?
+      WHERE id = ? AND user_id = ?`,
+      [account.name, account.amount, account.id, account.user_id]
+    );
+
+    return result;
+  }
+
   async delete(accountId, userId) {
     const [result] = await this.database.query(
       `DELETE FROM ${this.table} WHERE id = ? AND user_id = ?`,
