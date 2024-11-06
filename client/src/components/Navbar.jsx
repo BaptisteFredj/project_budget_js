@@ -1,17 +1,10 @@
-import { useState } from "react";
-
 import "../assets/styles/navbar.css";
+import { PropTypes } from "prop-types";
 import wallet from "../../public/assets/icons/wallet.svg";
 
-export default function Navbar() {
-  const [showLinks, setShowLinks] = useState(false);
-
-  const handleShowLinks = () => {
-    setShowLinks(!showLinks);
-  };
-
+export default function Navbar({ handleShowLinks }) {
   return (
-    <nav className={`navbar ${showLinks ? "show_nav" : ""}`}>
+    <nav className="navbar">
       <div className="navbar_logo">
         <img src={wallet} alt="wallet" />
       </div>
@@ -63,3 +56,7 @@ export default function Navbar() {
     </nav>
   );
 }
+
+Navbar.propTypes = {
+  handleShowLinks: PropTypes.func.isRequired,
+};
