@@ -5,21 +5,29 @@ import { toIso } from "../utils/functions";
 import "../assets/styles/transactionform.css";
 
 function TransactionEdit() {
-  const { transaction, categories } = useLoaderData();
+  const { transaction, categories, accounts } = useLoaderData();
   const errors = useActionData();
   const [selectedCategory, setSelectedCategory] = useState();
   const [selectedType, setSelectedType] = useState(transaction.type || "");
   const [amount, setAmount] = useState(transaction.amount || "");
   const [date, setDate] = useState(toIso(transaction.date) || "");
   const [name, setName] = useState(transaction.name || "");
+  const [selectedAccount, setSelectedAccount] = useState(
+    transaction.account_name || ""
+  );
 
-  const previousCategory = categories?.find(
+  const actualCategory = categories?.find(
     (category) => category.icon_name === transaction.icon_name
   );
 
+  const actualAccount = accounts?.find(
+    (account) => account.name === transaction.account_name
+  );
+
   useEffect(() => {
-    setSelectedCategory(previousCategory?.id);
-  }, [previousCategory]);
+    setSelectedCategory(actualCategory?.id);
+    setSelectedAccount(actualAccount?.id);
+  }, [actualCategory, actualAccount]);
 
   const handleTypeClick = (type) => {
     setSelectedType(type);
@@ -31,6 +39,21 @@ function TransactionEdit() {
 
   return (
     <Form method="put" className="transaction_label_form">
+      <label className="transaction_account_label" htmlFor="account">
+        Compte
+      </label>
+      <select
+        className="transaction_account_select"
+        name="account"
+        id="account"
+      >
+        {accounts.map((account) => (
+          <option key={account.id} value={selectedAccount}>
+            {account.name}
+          </option>
+        ))}
+      </select>
+
       <label className="transaction_amount_label" htmlFor="amount">
         Montant
       </label>

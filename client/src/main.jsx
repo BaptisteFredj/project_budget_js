@@ -255,6 +255,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           transaction: await getTransaction(params.id),
           categories: await getCategoriesByUserId(),
+          accounts: await getCategoriesByUserId(),
         }),
         action: async ({ request, params }) => {
           const formData = await request.formData();
@@ -262,6 +263,7 @@ const router = createBrowserRouter([
             name: formData.get("name"),
             date: formData.get("date"),
             amount: parseFloat(formData.get("amount")),
+            accountId: parseInt(formData.get("account"), 10),
             type: formData.get("type"),
             categoryId: parseInt(formData.get("category"), 10),
             id: params.id,

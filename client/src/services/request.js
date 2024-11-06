@@ -233,7 +233,15 @@ export function addTransaction({
 }
 
 // Edit a transaction
-export function editTransaction({ name, date, amount, type, categoryId, id }) {
+export function editTransaction({
+  name,
+  date,
+  amount,
+  accountId,
+  type,
+  categoryId,
+  id,
+}) {
   return axios
     .put(
       `${url}/api/transactions/${id}`,
@@ -243,6 +251,7 @@ export function editTransaction({ name, date, amount, type, categoryId, id }) {
         amount,
         type,
         category_id: categoryId,
+        account_id: accountId,
       },
       {
         withCredentials: true,
