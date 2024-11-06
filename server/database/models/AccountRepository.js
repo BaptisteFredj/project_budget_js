@@ -45,11 +45,13 @@ class AccountRepository extends AbstractRepository {
     return result;
   }
 
-  async transaction(account) {
+  async updateBalance(transaction) {
+    const sign = transaction.type === "expense" ? -1 : 1;
+
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET amount = amount ?
+      `UPDATE ${this.table} SET amount = amount + ?
       WHERE id = ? AND user_id = ?`,
-      [account.transaction, account.id, account.user_id]
+      [transaction.amount * sign, transaction.account_id, transaction.user_id]
     );
     return result;
   }

@@ -31,6 +31,7 @@ const readTransactionById = async (req, res, next) => {
 const add = async (req, res, next) => {
   try {
     const result = await tables.transaction.create(req.body);
+    await tables.account.updateBalance(req.body);
     res
       .status(201)
       .send(`Transaction ajoutée avec succès. ID : ${result.insertId}`);
