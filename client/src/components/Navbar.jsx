@@ -2,6 +2,7 @@ import "../assets/styles/navbar.css";
 import PropTypes from "prop-types";
 import { useAccount } from "../contexts/AccountContext";
 import wallet from "../../public/assets/icons/wallet.svg";
+import { formattedNumber } from "../utils/functions";
 
 export default function Navbar({ handleShowLinks }) {
   const { accounts, selectedAccount, setSelectedAccount } = useAccount();
@@ -11,17 +12,15 @@ export default function Navbar({ handleShowLinks }) {
 
   const randomId = "1qzsdq62sqd514";
 
-  if (accounts.length > 0) {
-    if (selectedAccount !== randomId) {
-      selectedAccountData = accounts?.find(
-        (acc) => acc.id === parseInt(selectedAccount, 10)
-      );
-    } else {
-      totalAmount = accounts?.reduce(
-        (accum, account) => accum + parseFloat(account.amount) || 0,
-        0
-      );
-    }
+  if (selectedAccount !== randomId) {
+    selectedAccountData = accounts?.find(
+      (acc) => acc.id === parseInt(selectedAccount, 10)
+    );
+  } else {
+    totalAmount = accounts?.reduce(
+      (accum, account) => accum + parseFloat(account.amount) || 0,
+      0
+    );
   }
 
   return (
@@ -46,8 +45,11 @@ export default function Navbar({ handleShowLinks }) {
         </div>
         <div className="selected_amount">
           {selectedAccount === randomId
-            ? totalAmount
-            : parseFloat(selectedAccountData?.amount || 0)}
+            ? formattedNumber(totalAmount)
+            : formattedNumber(
+                parseFloat(selectedAccountData?.amount || 0)
+              )}{" "}
+          €
         </div>
       </section>
       <ul className="navbar_links">

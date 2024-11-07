@@ -119,3 +119,7 @@
     transform: rotate(-45deg);
   }
 }
+
+.selected_amount {
+  font-family: var(--number-font-family);
+}
