@@ -1,13 +1,55 @@
 import "../assets/styles/navbar.css";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
+import { useAccount } from "../contexts/AccountContext";
 import wallet from "../../public/assets/icons/wallet.svg";
 
 export default function Navbar({ handleShowLinks }) {
+  const { accounts, selectedAccount, setSelectedAccount } = useAccount();
+
+  let selectedAccountData;
+  let totalAmount = 0;
+
+  const randomId = "1qzsdq62sqd514";
+
+  if (accounts.length > 0) {
+    if (selectedAccount !== randomId) {
+      selectedAccountData = accounts?.find(
+        (acc) => acc.id === parseInt(selectedAccount, 10)
+      );
+    } else {
+      totalAmount = accounts?.reduce(
+        (accum, account) => accum + parseFloat(account.amount) || 0,
+        0
+      );
+    }
+  }
+
   return (
     <nav className="navbar">
-      <div className="navbar_logo">
-        <img src={wallet} alt="wallet" />
-      </div>
+      <section className="navbar_accounts_container">
+        <div>
+          <img src={wallet} alt="wallet" />
+          <select
+            className="navbar_account_select"
+            name="account"
+            id="account"
+            value={selectedAccount}
+            onChange={(event) => setSelectedAccount(event.target.value)}
+          >
+            <option value={randomId}>Total</option>
+            {accounts.map((account) => (
+              <option key={account.id} value={account?.id}>
+                {account.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="selected_amount">
+          {selectedAccount === randomId
+            ? totalAmount
+            : parseFloat(selectedAccountData?.amount || 0)}
+        </div>
+      </section>
       <ul className="navbar_links">
         <li className="navbar_item">
           <a href="/" className="navbar_link">
