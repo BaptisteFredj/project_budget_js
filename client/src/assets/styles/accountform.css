@@ -1,0 +1,40 @@
+.account_label_form {
+  font-family: var(--primary-font-family);
+  color: var(--dark-grey);
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.account_name_label,
+.account_amount_label {
+  margin-bottom: 0.5rem;
+}
+
+.account_name_input {
+  margin-bottom: 1.5rem;
+}
+
+.account_label_form input[type="text"]::placeholder,
+.account_label_form input[type="number"]::placeholder {
+  color: var(--text-light-grey);
+}
+.account_label_form input[type="text"],
+.account_label_form input[type="number"] {
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  padding: 0.4rem 0.5rem;
+  font-size: 1rem;
+}
+
+.account_form_button {
+  margin-top: 3rem;
+  padding-left: 5.25rem;
+}
+
+.account_edit_button {
+  margin-top: 3rem;
+  padding-left: 4rem;
+}

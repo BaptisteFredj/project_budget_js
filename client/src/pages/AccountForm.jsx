@@ -1,5 +1,7 @@
 import { Form } from "react-router-dom";
 
+import "../assets/styles/accountform.css";
+
 export default function AccountForm() {
   return (
     <Form method="post" className="account_label_form">

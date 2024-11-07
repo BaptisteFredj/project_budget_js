@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Form, useLoaderData } from "react-router-dom";
 
+import "../assets/styles/accountform.css";
+
 export default function AccountEdit() {
   const { account } = useLoaderData();
   const [amount, setAmount] = useState(account.amount || "");
