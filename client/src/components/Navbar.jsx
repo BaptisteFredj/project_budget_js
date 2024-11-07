@@ -26,30 +26,31 @@ export default function Navbar({ handleShowLinks }) {
   return (
     <nav className="navbar">
       <section className="navbar_accounts_container">
-        <div>
-          <img src={wallet} alt="wallet" />
-          <select
-            className="navbar_account_select"
-            name="account"
-            id="account"
-            value={selectedAccount}
-            onChange={(event) => setSelectedAccount(event.target.value)}
-          >
-            <option value={randomId}>Total</option>
-            {accounts.map((account) => (
-              <option key={account.id} value={account?.id}>
-                {account.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="selected_amount">
-          {selectedAccount === randomId
-            ? formattedNumber(totalAmount)
-            : formattedNumber(
-                parseFloat(selectedAccountData?.amount || 0)
-              )}{" "}
-          €
+        <select
+          className="navbar_account_select"
+          name="account"
+          id="account"
+          value={selectedAccount}
+          onChange={(event) => setSelectedAccount(event.target.value)}
+        >
+          <option value={randomId}>Total</option>
+          {accounts.map((account) => (
+            <option key={account.id} value={account?.id}>
+              {account.name}
+            </option>
+          ))}
+        </select>
+
+        <div className="wallet_amount_container">
+          <img className="wallet_icon" src={wallet} alt="wallet" />
+          <div className="selected_amount">
+            {selectedAccount === randomId
+              ? formattedNumber(totalAmount)
+              : formattedNumber(
+                  parseFloat(selectedAccountData?.amount || 0)
+                )}{" "}
+            €
+          </div>
         </div>
       </section>
       <ul className="navbar_links">
