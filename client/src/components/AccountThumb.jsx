@@ -2,6 +2,9 @@ import { useState } from "react";
 import { PropTypes } from "prop-types";
 import AccountOptions from "./AccountOptions";
 
+import { formattedNumber } from "../utils/functions";
+
+import "../assets/styles/accounts.css";
 import threedots from "../assets/images/threedots.svg";
 
 export default function AccountThumb({ account }) {
@@ -12,20 +15,22 @@ export default function AccountThumb({ account }) {
   };
 
   return (
-    <>
-      <p>Nom du compte: {account.name}</p>
-      <p>Montant sur le compte : {account.amount}</p>
+    <div className="account_container">
+      <p className="account_name">{account.name}</p>
 
-      {showOptions && <AccountOptions account={account} />}
-      <button
-        type="button"
-        className="dots_ellipsis"
-        onClick={handleOptionsClick}
-        aria-label="Show options"
-      >
-        <img src={threedots} alt="Three dots" />
-      </button>
-    </>
+      <div className="account_right_container">
+        <p className="account_amount">{formattedNumber(account.amount)} €</p>
+        {showOptions && <AccountOptions account={account} />}
+        <button
+          type="button"
+          className="dots_ellipsis"
+          onClick={handleOptionsClick}
+          aria-label="Show options"
+        >
+          <img src={threedots} alt="Three dots" />
+        </button>
+      </div>
+    </div>
   );
 }
 

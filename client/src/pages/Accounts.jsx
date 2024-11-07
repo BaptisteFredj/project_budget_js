@@ -6,6 +6,7 @@ export default function Accounts() {
 
   return (
     <>
+      <h1 className="accounts_title">Mes comptes</h1>
       {accounts.map((account) => (
         <AccountThumb account={account} key={account.id} />
       ))}
