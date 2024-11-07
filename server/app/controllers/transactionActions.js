@@ -53,6 +53,7 @@ const edit = async (req, res, next) => {
 const destroy = async (req, res, next) => {
   try {
     await tables.transaction.delete(req.params.id, req.body.user_id);
+    await tables.account.cancelTransaction(req.body);
     res.sendStatus(204);
   } catch (error) {
     next(error);

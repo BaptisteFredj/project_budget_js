@@ -1,8 +1,20 @@
-import { Form, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Form, Link, useLoaderData } from "react-router-dom";
 
 import "../assets/styles/transactiondelete.css";
 
 function TransactionDelete() {
+  const { transaction, accounts } = useLoaderData();
+  const [accountId, setAccountId] = useState("");
+
+  const accountDetails = accounts?.find(
+    (account) => account.name === transaction.account_name
+  );
+
+  useEffect(() => {
+    setAccountId(accountDetails?.id);
+  }, [accountDetails]);
+
   return (
     <section className="warning_popover">
       <div className="warning_text">
@@ -16,6 +28,9 @@ function TransactionDelete() {
           </button>
         </Link>
         <Form method="delete">
+          <input type="hidden" name="amount" value={transaction.amount} />
+          <input type="hidden" name="account" value={accountId} />
+          <input type="hidden" name="type" value={transaction.type} />
           <button className="warning_confirm" type="submit">
             Supprimer
           </button>

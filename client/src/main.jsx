@@ -312,8 +312,20 @@ const router = createBrowserRouter([
       {
         path: "/transactions/:id/delete",
         element: <TransactionDelete />,
-        action: async ({ params }) => {
-          await deleteTransaction(params.id);
+        loader: async ({ params }) => ({
+          transaction: await getTransaction(params.id),
+          accounts: await getAccountsByUserId(),
+        }),
+        action: async ({ request, params }) => {
+          const formData = await request.formData();
+          const formDataObject = {
+            amount: parseFloat(formData.get("amount")),
+            accountId: parseInt(formData.get("account"), 10),
+            type: formData.get("type"),
+            id: params.id,
+          };
+
+          await deleteTransaction(formDataObject);
           return redirect("/transactions/past");
         },
       },

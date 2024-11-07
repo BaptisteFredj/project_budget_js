@@ -266,9 +266,15 @@ export function editTransaction({
 }
 
 // Delete a transaction
-export function deleteTransaction(id) {
+export function deleteTransaction({ amount, type, accountId, id }) {
   return axios
     .delete(`${url}/api/transactions/${id}`, {
+      data: {
+        amount,
+        type,
+        account_id: accountId,
+      },
+
       withCredentials: true,
     })
     .then((response) => response.data)
