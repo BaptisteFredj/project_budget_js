@@ -29,9 +29,11 @@ const readTransactionById = async (req, res, next) => {
 };
 
 const expensesAmount = async (req, res, next) => {
-  console.info("Reached expensesAmount route");
   try {
-    const amount = await tables.transaction.expensesAmount(req.body.user_id);
+    const amount = await tables.transaction.expensesAmount(
+      req.body.user_id,
+      req.params.periodFilter
+    );
     res.json(amount);
   } catch (error) {
     next(error);

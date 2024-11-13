@@ -56,7 +56,11 @@ router.get(
   authenticateUser,
   transaction.readTransactionById
 );
-router.get("/transactionsamount", authenticateUser, transaction.expensesAmount);
+router.get(
+  "/transactionsamount/:periodFilter",
+  authenticateUser,
+  transaction.expensesAmount
+);
 router.post(
   "/transactions",
   authenticateUser,

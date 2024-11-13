@@ -56,11 +56,27 @@ class TransactionRepository extends AbstractRepository {
     return rows[0];
   }
 
-  async expensesAmount(userId) {
+  async expensesAmount(userId, periodFilter) {
+    let queryFilter = "";
+    if (periodFilter === "day") {
+      queryFilter = `AND DATE(t.date) = CURDATE()`;
+    }
+    if (periodFilter === "week") {
+      queryFilter = `AND WEEK(t.date, 1) = WEEK(CURDATE(), 1)
+AND YEAR(t.date) = YEAR(CURDATE())`;
+    }
+    if (periodFilter === "month") {
+      queryFilter = `AND MONTH(t.date) = MONTH(CURDATE())
+AND YEAR(t.date) = YEAR(CURDATE())`;
+    }
+    if (periodFilter === "year") {
+      queryFilter = `AND YEAR(t.date) = YEAR(CURDATE())`;
+    }
+
     const [rows] = await this.database.query(
       `SELECT SUM(amount) expenses_amount
        FROM ${this.table} t
-       WHERE t.user_id = ?`,
+       WHERE t.user_id = ? ${queryFilter}`,
       [userId]
     );
     return rows[0].expenses_amount;
