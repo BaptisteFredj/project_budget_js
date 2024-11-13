@@ -16,7 +16,7 @@ function Login() {
     try {
       await login(emailRef.current.value, passwordRef.current.value);
 
-      navigate(`/categories`);
+      navigate(`/dashboard/week`);
     } catch (err) {
       alert("Identifiants incorrects");
     }
