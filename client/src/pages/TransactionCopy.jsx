@@ -114,7 +114,7 @@ function TransactionCopy() {
       <label className="transaction_category_label" htmlFor="category">
         Catégorie
       </label>
-      <div className="categories_list">
+      <div className="category_list">
         <div
           className={`icon_circle category_option ${!selectedCategory ? "active_category" : ""}`}
         >
