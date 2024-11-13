@@ -8,10 +8,10 @@ class TransactionRepository extends AbstractRepository {
   async readTransactionsByUser(userId, dateFilter) {
     let queryFilter = "";
     if (dateFilter === "past") {
-      queryFilter = ` AND t.date <= CURDATE() ORDER BY t.date DESC`;
+      queryFilter = `AND t.date <= CURDATE() ORDER BY t.date DESC`;
     }
     if (dateFilter === "future") {
-      queryFilter = ` AND t.date > CURDATE() ORDER BY t.date ASC`;
+      queryFilter = `AND t.date > CURDATE() ORDER BY t.date ASC`;
     }
 
     const [rows] = await this.database.query(
@@ -28,7 +28,7 @@ class TransactionRepository extends AbstractRepository {
         category c ON t.category_id = c.id
       LEFT JOIN
         icon i ON c.icon_id = i.id
-      WHERE t.user_id = ?${queryFilter}`,
+      WHERE t.user_id = ? ${queryFilter}`,
       [userId]
     );
     return rows;
@@ -63,11 +63,11 @@ class TransactionRepository extends AbstractRepository {
     }
     if (periodFilter === "week") {
       queryFilter = `AND WEEK(t.date, 1) = WEEK(CURDATE(), 1)
-AND YEAR(t.date) = YEAR(CURDATE())`;
+      AND YEAR(t.date) = YEAR(CURDATE())`;
     }
     if (periodFilter === "month") {
       queryFilter = `AND MONTH(t.date) = MONTH(CURDATE())
-AND YEAR(t.date) = YEAR(CURDATE())`;
+      AND YEAR(t.date) = YEAR(CURDATE())`;
     }
     if (periodFilter === "year") {
       queryFilter = `AND YEAR(t.date) = YEAR(CURDATE())`;
