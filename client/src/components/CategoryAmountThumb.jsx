@@ -16,5 +16,5 @@ CategoryAmountThumb.propTypes = {
     name: PropTypes.string,
     category_amount: PropTypes.string,
   }).isRequired,
-  categoryPercentage: PropTypes.number.isRequired,
+  categoryPercentage: PropTypes.string.isRequired,
 };
