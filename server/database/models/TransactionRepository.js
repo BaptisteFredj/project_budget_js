@@ -20,7 +20,6 @@ class TransactionRepository extends AbstractRepository {
         t.name,
         t.amount,
         DATE_FORMAT(t.date, '%d/%m/%Y') as date,
-        t.type,
         c.name AS category_name,
         i.name AS icon_name
       FROM 
@@ -42,7 +41,6 @@ class TransactionRepository extends AbstractRepository {
         t.name,
         t.amount,
         DATE_FORMAT(t.date, '%d/%m/%Y') as date,
-        t.type,
         c.name AS category_name,
         i.name AS icon_name
       FROM 
@@ -60,12 +58,11 @@ class TransactionRepository extends AbstractRepository {
 
   async create(transaction) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (name, date, amount, type, category_id, user_id) VALUES(?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (name, date, amount, category_id, user_id) VALUES(?, ?, ?, ?, ?)`,
       [
         transaction.name,
         transaction.date,
         transaction.amount,
-        transaction.type,
         transaction.category_id,
         transaction.user_id,
       ]
@@ -75,12 +72,11 @@ class TransactionRepository extends AbstractRepository {
 
   async update(transaction) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET name = ?, date = ?, amount = ?, type = ?, category_id = ? WHERE id = ? AND user_id = ?`,
+      `UPDATE ${this.table} SET name = ?, date = ?, amount = ?, category_id = ? WHERE id = ? AND user_id = ?`,
       [
         transaction.name,
         transaction.date,
         transaction.amount,
-        transaction.type,
         transaction.category_id,
         transaction.id,
         transaction.user_id,

@@ -162,7 +162,6 @@ const router = createBrowserRouter([
             name: formData.get("name"),
             date: formData.get("date"),
             amount: parseFloat(formData.get("amount")),
-            type: formData.get("type"),
             categoryId: parseInt(formData.get("category"), 10),
           };
 
