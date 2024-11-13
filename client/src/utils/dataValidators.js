@@ -51,14 +51,6 @@ export function transactionFormValidator(formData) {
       "Seul les nombres positifs sont acceptés, jusqu'à 2 décimales.";
   }
 
-  if (
-    formData.type !== "expense" &&
-    formData.type !== "income" &&
-    formData.type !== "transfer"
-  ) {
-    errors.TypeError = "Veuillez sélectionner un type de transaction.";
-  }
-
   if (!formData.date) {
     errors.DateError = "Veuillez sélectionner une date.";
   }

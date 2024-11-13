@@ -7,12 +7,7 @@ function TransactionForm() {
   const { categories } = useLoaderData();
   const errors = useActionData();
 
-  const [selectedType, setSelectedType] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Sans catégorie");
-
-  const handleTypeClick = (type) => {
-    setSelectedType(type);
-  };
 
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
@@ -65,37 +60,6 @@ function TransactionForm() {
         placeholder="Date de la transaction"
         className="transaction_date_input"
       />
-
-      <label className="transaction_type_label" htmlFor="type">
-        Type
-      </label>
-      {errors?.TypeError && (
-        <span className="error_message">{errors.TypeError}</span>
-      )}
-      <div className="type_selector">
-        <button
-          type="button"
-          className={`type_option ${selectedType === "income" ? "active" : ""}`}
-          onClick={() => handleTypeClick("income")}
-        >
-          Revenu
-        </button>
-        <button
-          type="button"
-          className={`type_option ${selectedType === "expense" ? "active" : ""}`}
-          onClick={() => handleTypeClick("expense")}
-        >
-          Dépense
-        </button>
-        <button
-          type="button"
-          className={`type_option ${selectedType === "transfer" ? "active" : ""}`}
-          onClick={() => handleTypeClick("transfer")}
-        >
-          Transfert
-        </button>
-      </div>
-      <input type="hidden" name="type" value={selectedType} />
 
       <label className="transaction_category_label" htmlFor="category">
         Catégorie

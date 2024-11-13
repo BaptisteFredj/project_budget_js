@@ -24,7 +24,6 @@
     name VARCHAR(255) NOT NULL,
     date DATE NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
-    type VARCHAR(255) NOT NULL,
     user_id INT NOT NULL,
     category_id INT,
     FOREIGN KEY(user_id) REFERENCES user(id),
