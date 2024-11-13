@@ -10,7 +10,7 @@ export default function Navbar({ handleShowLinks }) {
       </div>
       <ul className="navbar_links">
         <li className="navbar_item">
-          <a href="/" className="navbar_link">
+          <a href="/dashboard" className="navbar_link">
             Accueil
           </a>
         </li>

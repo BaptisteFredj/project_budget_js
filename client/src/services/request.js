@@ -108,6 +108,20 @@ export function getTransactionsByUserId(dateFilter) {
     });
 }
 
+// Get user's transactions amount
+export function getTransactionsAmount() {
+  return axios
+    .get(`${url}/api/transactionsamount`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
 // Get a transaction by its ID
 export function getTransaction(id) {
   return axios

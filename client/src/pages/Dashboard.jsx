@@ -1,8 +1,13 @@
+import { useLoaderData } from "react-router-dom";
+
 export default function Dashboard() {
+  const { expensesAmount } = useLoaderData();
+  console.info(expensesAmount);
+
   return (
     <>
       <h2>Dépenses par catégorie</h2>
-      <p>Dépenses sur la période : XXX €</p>
+      <p>Dépenses sur la période : {expensesAmount} €</p>
 
       <h2>Budgets en cours</h2>
       <ul>

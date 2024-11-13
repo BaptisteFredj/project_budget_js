@@ -24,6 +24,7 @@ import {
   editBudget,
   deleteBudget,
   getIcons,
+  getTransactionsAmount,
 } from "./services/request";
 
 import {
@@ -48,6 +49,7 @@ import Login from "./pages/Login";
 import BudgetForm from "./pages/BudgetForm";
 import BudgetEdit from "./pages/BudgetEdit";
 import CategoryDelete from "./components/CategoryDelete";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,13 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+        loader: async () => ({
+          expensesAmount: await getTransactionsAmount(),
+        }),
       },
       {
         path: "/categories",
