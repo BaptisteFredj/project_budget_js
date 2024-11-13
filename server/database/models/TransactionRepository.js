@@ -56,6 +56,16 @@ class TransactionRepository extends AbstractRepository {
     return rows[0];
   }
 
+  async expensesAmount(userId) {
+    const [rows] = await this.database.query(
+      `SELECT SUM(amount) expenses_amount
+       FROM ${this.table} t
+       WHERE t.user_id = ?`,
+      [userId]
+    );
+    return rows[0].expenses_amount;
+  }
+
   async create(transaction) {
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (name, date, amount, category_id, user_id) VALUES(?, ?, ?, ?, ?)`,

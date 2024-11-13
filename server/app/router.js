@@ -56,6 +56,7 @@ router.get(
   authenticateUser,
   transaction.readTransactionById
 );
+router.get("/transactionsamount", authenticateUser, transaction.expensesAmount);
 router.post(
   "/transactions",
   authenticateUser,

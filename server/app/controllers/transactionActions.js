@@ -28,6 +28,16 @@ const readTransactionById = async (req, res, next) => {
   }
 };
 
+const expensesAmount = async (req, res, next) => {
+  console.info("Reached expensesAmount route");
+  try {
+    const amount = await tables.transaction.expensesAmount(req.body.user_id);
+    res.json(amount);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const add = async (req, res, next) => {
   try {
     const result = await tables.transaction.create(req.body);
@@ -61,6 +71,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   readTransactionById,
   readTransactionsByUser,
+  expensesAmount,
   add,
   edit,
   destroy,
