@@ -2,10 +2,10 @@ const tables = require("../../database/tables");
 
 const readCategoriesByUser = async (req, res, next) => {
   try {
-    const category = await tables.category.readCategoriesByUser(
+    const categories = await tables.category.readCategoriesByUser(
       req.body.user_id
     );
-    res.json(category);
+    res.json(categories);
   } catch (error) {
     next(error);
   }
