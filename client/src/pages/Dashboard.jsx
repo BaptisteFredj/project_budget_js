@@ -1,7 +1,7 @@
 import { useLoaderData, useParams, Link } from "react-router-dom";
 import CategoryAmountThumb from "../components/CategoryAmountThumb";
 
-import { formattedNumber } from "../utils/functions";
+import { formattedNumber, categoryPercentage } from "../utils/functions";
 
 export default function Dashboard() {
   const { expensesAmount, categories } = useLoaderData();
@@ -32,7 +32,14 @@ export default function Dashboard() {
         </li>
       </Link>
       {categories.map((category) => (
-        <CategoryAmountThumb category={category} key={category.id} />
+        <CategoryAmountThumb
+          categoryPercentage={categoryPercentage(
+            category.category_amount,
+            expensesAmount
+          )}
+          category={category}
+          key={category.id}
+        />
       ))}
       <p>Total des dépenses : {formattedNumber(expensesAmount)} €</p>
 
