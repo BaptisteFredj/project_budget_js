@@ -1,10 +1,11 @@
 import { useLoaderData, useParams, Link } from "react-router-dom";
 import CategoryAmountThumb from "../components/CategoryAmountThumb";
+import TransactionThumb from "../components/TransactionThumb";
 
 import { formattedNumber, categoryPercentage } from "../utils/functions";
 
 export default function Dashboard() {
-  const { expensesAmount, categories } = useLoaderData();
+  const { expensesAmount, categories, transactions } = useLoaderData();
   const { periodFilter } = useParams();
 
   return (
@@ -51,13 +52,9 @@ export default function Dashboard() {
       </ul>
 
       <h2>Dernières dépenses</h2>
-      <ul>
-        <li>Dépense 1</li>
-        <li>Dépense 2</li>
-        <li>Dépense 3</li>
-        <li>Dépense 4</li>
-        <li>Dépense 5</li>
-      </ul>
+      {transactions.slice(0, 10).map((transaction) => (
+        <TransactionThumb transaction={transaction} key={transaction.id} />
+      ))}
     </>
   );
 }

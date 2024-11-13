@@ -70,6 +70,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           expensesAmount: await getTransactionsAmount(params.periodFilter),
           categories: await getCategoriesAmount(params.periodFilter),
+          transactions: await getTransactionsByUserId("past"),
         }),
       },
       {
