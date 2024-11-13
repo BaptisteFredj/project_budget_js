@@ -1,5 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 
+import { formattedNumber } from "../utils/functions";
+
 export default function Dashboard() {
   const { expensesAmount } = useLoaderData();
   console.info(expensesAmount);
@@ -7,7 +9,7 @@ export default function Dashboard() {
   return (
     <>
       <h2>Dépenses par catégorie</h2>
-      <p>Dépenses sur la période : {expensesAmount} €</p>
+      <p>Dépenses sur la période : {formattedNumber(expensesAmount)} €</p>
 
       <h2>Budgets en cours</h2>
       <ul>
