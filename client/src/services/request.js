@@ -122,6 +122,20 @@ export function getTransactionsAmount(periodFilter) {
     });
 }
 
+// Get user's transaction category amount
+export function getCategoriesAmount(periodFilter) {
+  return axios
+    .get(`${url}/api//transactionscategoryamount/${periodFilter}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
 // Get a transaction by its ID
 export function getTransaction(id) {
   return axios

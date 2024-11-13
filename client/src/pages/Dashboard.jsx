@@ -1,14 +1,16 @@
 import { useLoaderData, useParams, Link } from "react-router-dom";
+import CategoryAmountThumb from "../components/CategoryAmountThumb";
 
 import { formattedNumber } from "../utils/functions";
 
 export default function Dashboard() {
-  const { expensesAmount } = useLoaderData();
+  const { expensesAmount, categories } = useLoaderData();
   const { periodFilter } = useParams();
 
   return (
     <>
       <h2>Dépenses par catégorie</h2>
+      <h3>Liste des boutons (temporaires)</h3>
       <Link to="/dashboard/day">
         <li className={`expenses ${periodFilter === "day" ? "active" : ""}`}>
           du jour
@@ -29,7 +31,10 @@ export default function Dashboard() {
           de l'année
         </li>
       </Link>
-      <p>Dépenses sur la période : {formattedNumber(expensesAmount)} €</p>
+      {categories.map((category) => (
+        <CategoryAmountThumb category={category} key={category.id} />
+      ))}
+      <p>Total des dépenses : {formattedNumber(expensesAmount)} €</p>
 
       <h2>Budgets en cours</h2>
       <ul>

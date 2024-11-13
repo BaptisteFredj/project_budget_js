@@ -25,6 +25,7 @@ import {
   deleteBudget,
   getIcons,
   getTransactionsAmount,
+  getCategoriesAmount,
 } from "./services/request";
 
 import {
@@ -68,6 +69,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         loader: async ({ params }) => ({
           expensesAmount: await getTransactionsAmount(params.periodFilter),
+          categories: await getCategoriesAmount(params.periodFilter),
         }),
       },
       {
