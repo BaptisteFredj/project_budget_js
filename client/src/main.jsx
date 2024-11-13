@@ -64,10 +64,10 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/dashboard",
+        path: "/dashboard/:periodFilter",
         element: <Dashboard />,
-        loader: async () => ({
-          expensesAmount: await getTransactionsAmount(),
+        loader: async ({ params }) => ({
+          expensesAmount: await getTransactionsAmount(params.periodFilter),
         }),
       },
       {

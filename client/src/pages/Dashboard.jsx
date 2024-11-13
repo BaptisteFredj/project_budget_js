@@ -1,14 +1,34 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams, Link } from "react-router-dom";
 
 import { formattedNumber } from "../utils/functions";
 
 export default function Dashboard() {
   const { expensesAmount } = useLoaderData();
-  console.info(expensesAmount);
+  const { periodFilter } = useParams();
 
   return (
     <>
       <h2>Dépenses par catégorie</h2>
+      <Link to="/dashboard/day">
+        <li className={`expenses ${periodFilter === "day" ? "active" : ""}`}>
+          du jour
+        </li>
+      </Link>
+      <Link to="/dashboard/week">
+        <li className={`expenses ${periodFilter === "week" ? "active" : ""}`}>
+          de la semaine
+        </li>
+      </Link>
+      <Link to="/dashboard/month">
+        <li className={`expenses ${periodFilter === "month" ? "active" : ""}`}>
+          du mois
+        </li>
+      </Link>
+      <Link to="/dashboard/year">
+        <li className={`expenses ${periodFilter === "year" ? "active" : ""}`}>
+          de l'année
+        </li>
+      </Link>
       <p>Dépenses sur la période : {formattedNumber(expensesAmount)} €</p>
 
       <h2>Budgets en cours</h2>

@@ -109,9 +109,9 @@ export function getTransactionsByUserId(dateFilter) {
 }
 
 // Get user's transactions amount
-export function getTransactionsAmount() {
+export function getTransactionsAmount(periodFilter) {
   return axios
-    .get(`${url}/api/transactionsamount`, {
+    .get(`${url}/api/transactionsamount/${periodFilter}`, {
       withCredentials: true,
     })
     .then((response) => response.data)
