@@ -52,8 +52,8 @@ a {
 }
 
 main {
-  padding: 0 0.75rem;
-  min-height: 79svh;
+  padding: 10svh 0.75rem;
+  min-height: 200svh;
 }
 
 .add_button_container {
@@ -92,4 +92,14 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.app_container.show_nav .icon_img {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease;
 }
