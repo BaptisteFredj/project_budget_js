@@ -292,7 +292,7 @@ export function register(email, password) {
       `${url}/api/users`,
       { email, password },
       {
-        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
       }
     )
     .then((response) => response)
