@@ -40,6 +40,18 @@ const expensesAmount = async (req, res, next) => {
   }
 };
 
+const categoryExpensesAmount = async (req, res, next) => {
+  try {
+    const amount = await tables.transaction.categoryExpensesAmount(
+      req.body.user_id,
+      req.params.periodFilter
+    );
+    res.json(amount);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const add = async (req, res, next) => {
   try {
     const result = await tables.transaction.create(req.body);
@@ -74,6 +86,7 @@ module.exports = {
   readTransactionById,
   readTransactionsByUser,
   expensesAmount,
+  categoryExpensesAmount,
   add,
   edit,
   destroy,

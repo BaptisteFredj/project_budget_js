@@ -82,6 +82,35 @@ class TransactionRepository extends AbstractRepository {
     return rows[0].expenses_amount;
   }
 
+  async categoryExpensesAmount(userId, periodFilter) {
+    let queryFilter = "";
+    if (periodFilter === "day") {
+      queryFilter = `AND DATE(t.date) = CURDATE()`;
+    }
+    if (periodFilter === "week") {
+      queryFilter = `AND WEEK(t.date, 1) = WEEK(CURDATE(), 1)
+      AND YEAR(t.date) = YEAR(CURDATE())`;
+    }
+    if (periodFilter === "month") {
+      queryFilter = `AND MONTH(t.date) = MONTH(CURDATE())
+      AND YEAR(t.date) = YEAR(CURDATE())`;
+    }
+    if (periodFilter === "year") {
+      queryFilter = `AND YEAR(t.date) = YEAR(CURDATE())`;
+    }
+
+    const [rows] = await this.database.query(
+      `SELECT c.name, SUM(t.amount) category_amount, c.id
+       FROM ${this.table} t
+       LEFT JOIN
+       category c ON t.category_id = c.id
+       WHERE t.user_id = ? ${queryFilter}
+       GROUP BY c.name, c.id`,
+      [userId]
+    );
+    return rows;
+  }
+
   async create(transaction) {
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (name, date, amount, category_id, user_id) VALUES(?, ?, ?, ?, ?)`,

@@ -61,6 +61,11 @@ router.get(
   authenticateUser,
   transaction.expensesAmount
 );
+router.get(
+  "/transactionscategoryamount/:periodFilter",
+  authenticateUser,
+  transaction.categoryExpensesAmount
+);
 router.post(
   "/transactions",
   authenticateUser,
