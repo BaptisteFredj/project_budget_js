@@ -15,20 +15,27 @@ export default function TransactionThumb({ transaction }) {
   return (
     <section className="transaction_block">
       <div className="transaction_left_container">
-        <div className="icon_circle transaction_icon">
-          <img
-            className="icon_img"
-            src={
-              transaction.icon_name === null
-                ? `/assets/icons/questionmark.svg`
-                : `/assets/icons/${transaction.icon_name}.svg`
-            }
-            alt={transaction.icon_name}
-          />
+        <div className="transaction_category_container">
+          <div className="icon_circle transaction_icon">
+            <img
+              className="icon_img"
+              src={
+                transaction.icon_name === null
+                  ? `/assets/icons/questionmark.svg`
+                  : `/assets/icons/${transaction.icon_name}.svg`
+              }
+              alt={transaction.icon_name}
+            />
+          </div>
+          <p className="transaction_category">
+            {transaction.category_name
+              ? transaction.category_name
+              : "Sans catégorie"}
+          </p>
         </div>
         <ul className="transaction_left_texts">
           <li className="transaction_name">{transaction.name}</li>
-          <li className="transaction_category">{transaction.category_name}</li>
+
           <li className="transaction_date">{transaction.date}</li>
         </ul>
       </div>
