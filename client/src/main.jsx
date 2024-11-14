@@ -151,17 +151,6 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/transactions/:dateFilter",
-        element: <Transactions />,
-        loader: async ({ params }) => ({
-          transactions: await getTransactionsByUserId(params.dateFilter),
-        }),
-        action: async ({ params }) => {
-          await deleteTransaction(params.id);
-          return redirect("/transactions/past");
-        },
-      },
-      {
         path: "/transactions_form",
         element: <TransactionForm />,
         loader: async () => ({
@@ -173,7 +162,6 @@ const router = createBrowserRouter([
             name: formData.get("name"),
             date: formData.get("date"),
             amount: parseFloat(formData.get("amount")),
-            type: formData.get("type"),
             categoryId: parseInt(formData.get("category"), 10),
           };
 

@@ -123,7 +123,7 @@ export function getTransaction(id) {
 }
 
 // Create a transaction
-export function addTransaction({ name, date, amount, type, categoryId }) {
+export function addTransaction({ name, date, amount, categoryId }) {
   return axios
     .post(
       `${url}/api/transactions`,
@@ -131,7 +131,6 @@ export function addTransaction({ name, date, amount, type, categoryId }) {
         name,
         date,
         amount,
-        type,
         category_id: categoryId,
       },
       {
@@ -147,7 +146,7 @@ export function addTransaction({ name, date, amount, type, categoryId }) {
 }
 
 // Edit a transaction
-export function editTransaction({ name, date, amount, type, categoryId, id }) {
+export function editTransaction({ name, date, amount, categoryId, id }) {
   return axios
     .put(
       `${url}/api/transactions/${id}`,
@@ -155,7 +154,6 @@ export function editTransaction({ name, date, amount, type, categoryId, id }) {
         name,
         date,
         amount,
-        type,
         category_id: categoryId,
       },
       {
@@ -292,7 +290,7 @@ export function register(email, password) {
       `${url}/api/users`,
       { email, password },
       {
-        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
       }
     )
     .then((response) => response)

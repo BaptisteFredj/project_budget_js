@@ -63,7 +63,7 @@ const budgetFormValidator = async (req, res, next) => {
 };
 
 const transactionFormValidator = async (req, res, next) => {
-  const { name, amount, type, date } = req.body;
+  const { name, amount, date } = req.body;
 
   // Regex to allow positive numbers, forbid 0, allow up to 2 decimal places - more info below exports for clarity
   const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
@@ -76,12 +76,6 @@ const transactionFormValidator = async (req, res, next) => {
         "Seul les nombres positifs sont acceptés, jusqu'à 2 décimales."
       );
       error.name = "AmountError";
-      throw error;
-    }
-
-    if (type !== "expense" && type !== "income" && type !== "transfer") {
-      const error = new Error("Veuillez sélectionner un type de transaction.");
-      error.name = "TypeError";
       throw error;
     }
 

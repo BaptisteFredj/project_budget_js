@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PropTypes } from "prop-types";
-import { frenchType } from "../utils/functions";
+import { formattedNumber } from "../utils/functions";
 import TransactionOptions from "./TransactionOptions";
 
 import threedots from "../assets/images/threedots.svg";
@@ -35,8 +35,9 @@ export default function TransactionThumb({ transaction }) {
 
       <ul className="transaction_right_block">
         <div className="transaction_right_texts">
-          <li className="transaction_amount">{transaction.amount} €</li>
-          <li className="transaction_type">{frenchType(transaction.type)}</li>
+          <li className="transaction_amount">
+            {formattedNumber(transaction.amount)} €
+          </li>
         </div>
 
         {showOptions && <TransactionOptions transaction={transaction} />}
@@ -57,7 +58,6 @@ TransactionThumb.propTypes = {
   transaction: PropTypes.shape({
     amount: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
     category_name: PropTypes.string,
     name: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,

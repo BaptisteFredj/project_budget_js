@@ -1,55 +1,57 @@
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-
 import "../assets/styles/navbar.css";
+import { PropTypes } from "prop-types";
+import wallet from "../../public/assets/icons/wallet.svg";
 
-export default function Navbar({ authTools }) {
+export default function Navbar({ handleShowLinks }) {
   return (
     <nav className="navbar">
-      <ul className="navbar_buttons">
-        <li>
-          <Link to="/">Accueil</Link>
+      <div className="navbar_logo">
+        <img src={wallet} alt="wallet" />
+      </div>
+      <ul className="navbar_links">
+        <li className="navbar_item">
+          <a href="/" className="navbar_link">
+            Accueil
+          </a>
         </li>
-        {authTools.auth == null ? (
-          <>
-            <li>
-              <Link to="/login">Se connecter</Link>
-            </li>
-            <li>
-              <Link to="/register">S'inscrire</Link>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <Link to="/transactions/past">Mes transactions</Link>
-            </li>
-            <li>
-              <Link to="/categories">Mes catégories</Link>
-            </li>
-            <li>
-              <Link to="/budgets">Mes budgets</Link>
-            </li>
-            <li>
-              <button
-                type="button"
-                onClick={() => {
-                  authTools.setAuth(null);
-                }}
-              >
-                Se déconnecter
-              </button>
-            </li>
-          </>
-        )}
+        <li className="navbar_item">
+          <a href="/register" className="navbar_link">
+            Inscription
+          </a>
+        </li>
+        <li className="navbar_item">
+          <a href="/login" className="navbar_link">
+            Connexion
+          </a>
+        </li>
+        <li className="navbar_item">
+          <a href="/categories" className="navbar_link">
+            Mes catégories
+          </a>
+        </li>
+        <li className="navbar_item">
+          <a href="/transactions/past" className="navbar_link">
+            Mes transactions
+          </a>
+        </li>
+        <li className="navbar_item">
+          <a href="/budgets" className="navbar_link">
+            Mes budgets
+          </a>
+        </li>
       </ul>
+      <button
+        label="text"
+        type="button"
+        className="navbar_burger"
+        onClick={handleShowLinks}
+      >
+        <span className="burger_bar" />
+      </button>
     </nav>
   );
 }
 
 Navbar.propTypes = {
-  authTools: PropTypes.shape({
-    auth: PropTypes.shape({}),
-    setAuth: PropTypes.func.isRequired,
-  }).isRequired,
+  handleShowLinks: PropTypes.func.isRequired,
 };
