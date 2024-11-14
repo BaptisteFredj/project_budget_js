@@ -99,26 +99,36 @@ export default function Dashboard() {
       </ul>
 
       {showPeriodOptions ? (
-        <>
-          <label htmlFor="start_date">Date de début du budget</label>
-          <input
-            type="date"
-            id="start_date"
-            name="start_date"
-            value={selectedStartDate}
-            onChange={(event) => handleStartDateChange(event.target.value)}
-            required
-          />
-          <label htmlFor="end_date">Date de fin du budget</label>
-          <input
-            type="date"
-            id="end_date"
-            name="end_date"
-            value={selectedEndDate}
-            onChange={(event) => handleEndDateChange(event.target.value)}
-            required
-          />{" "}
-        </>
+        <section className="custom_period_container">
+          <div className="period_start_container">
+            <label className="period_start_label" htmlFor="start_date">
+              Début de période
+            </label>
+            <input
+              className="period_start_input"
+              type="date"
+              id="start_date"
+              name="start_date"
+              value={selectedStartDate}
+              onChange={(event) => handleStartDateChange(event.target.value)}
+              required
+            />
+          </div>
+          <div className="period_end_container">
+            <label className="period_end_label" htmlFor="end_date">
+              Fin de période
+            </label>
+            <input
+              className="period_end_input"
+              type="date"
+              id="end_date"
+              name="end_date"
+              value={selectedEndDate}
+              onChange={(event) => handleEndDateChange(event.target.value)}
+              required
+            />{" "}
+          </div>
+        </section>
       ) : (
         ""
       )}
