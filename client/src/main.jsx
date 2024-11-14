@@ -24,8 +24,8 @@ import {
   editBudget,
   deleteBudget,
   getIcons,
-  getTransactionsAmount,
-  getCategoriesAmount,
+  getTransactionsTotalSum,
+  getCategoriesTransactionsTotalSum,
 } from "./services/request";
 
 import {
@@ -65,13 +65,20 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/dashboard/:periodFilter",
+        path: "/dashboard",
         element: <Dashboard />,
-        loader: async ({ params }) => ({
-          expensesAmount: await getTransactionsAmount(params.periodFilter),
-          categories: await getCategoriesAmount(params.periodFilter),
-          transactions: await getTransactionsByUserId("past"),
-        }),
+        loader: async ({ request }) => {
+          const url = new URL(request.url);
+          const date = "past";
+          const limit = url.searchParams.get("limit");
+          const period = url.searchParams.get("period");
+
+          return {
+            transactionsTotalSum: await getTransactionsTotalSum(period),
+            categories: await getCategoriesTransactionsTotalSum(period),
+            transactions: await getTransactionsByUserId(date, limit),
+          };
+        },
       },
       {
         path: "/categories",
@@ -156,14 +163,15 @@ const router = createBrowserRouter([
         element: <Transactions />,
         loader: async ({ request }) => {
           const url = new URL(request.url);
-          const dateFilter = url.searchParams.get("dateFilter");
+          const date = url.searchParams.get("date");
+          const limit = "none";
           return {
-            transactions: await getTransactionsByUserId(dateFilter),
+            transactions: await getTransactionsByUserId(date, limit),
           };
         },
         action: async ({ params }) => {
           await deleteTransaction(params.id);
-          return redirect("/transactions?dateFilter=past");
+          return redirect("/transactions?date=past");
         },
       },
       {
@@ -189,7 +197,7 @@ const router = createBrowserRouter([
           }
 
           await addTransaction(formDataObject);
-          return redirect(`/transactions?dateFilter=past`);
+          return redirect(`/transactions?date=past`);
         },
       },
       {
@@ -217,7 +225,7 @@ const router = createBrowserRouter([
             return validatedData;
           }
           await editTransaction(formDataObject);
-          return redirect(`/transactions?dateFilter=past`);
+          return redirect(`/transactions?date=past`);
         },
       },
       {
@@ -245,7 +253,7 @@ const router = createBrowserRouter([
             return validatedData;
           }
           await addTransaction(formDataObject);
-          return redirect(`/transactions?dateFilter=past`);
+          return redirect(`/transactions?date=past`);
         },
       },
       {
@@ -253,7 +261,7 @@ const router = createBrowserRouter([
         element: <TransactionDelete />,
         action: async ({ params }) => {
           await deleteTransaction(params.id);
-          return redirect("/transactions?dateFilter=past");
+          return redirect("/transactions?date=past");
         },
       },
       {

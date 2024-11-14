@@ -95,9 +95,9 @@ export function deleteCategory(id) {
 }
 
 // Get all user's transactions
-export function getTransactionsByUserId(dateFilter) {
+export function getTransactionsByUserId(date, limit) {
   return axios
-    .get(`${url}/api/transactions?dateFilter=${dateFilter}`, {
+    .get(`${url}/api/transactions?date=${date}&limit=${limit}`, {
       withCredentials: true,
     })
     .then((response) => response.data)
@@ -109,9 +109,9 @@ export function getTransactionsByUserId(dateFilter) {
 }
 
 // Get user's transactions amount
-export function getTransactionsAmount(periodFilter) {
+export function getTransactionsTotalSum(period) {
   return axios
-    .get(`${url}/api/transactionsamount/${periodFilter}`, {
+    .get(`${url}/api/transactionstotalsum?period=${period}`, {
       withCredentials: true,
     })
     .then((response) => response.data)
@@ -123,9 +123,9 @@ export function getTransactionsAmount(periodFilter) {
 }
 
 // Get user's transaction category amount
-export function getCategoriesAmount(periodFilter) {
+export function getCategoriesTransactionsTotalSum(period) {
   return axios
-    .get(`${url}/api//transactionscategoryamount/${periodFilter}`, {
+    .get(`${url}/api/categoriestransactionstotalsum?period=${period}`, {
       withCredentials: true,
     })
     .then((response) => response.data)

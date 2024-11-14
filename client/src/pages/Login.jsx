@@ -16,7 +16,7 @@ function Login() {
     try {
       await login(emailRef.current.value, passwordRef.current.value);
 
-      navigate(`/dashboard/week`);
+      navigate(`/dashboard?period=week&limit=10`);
     } catch (err) {
       alert("Identifiants incorrects");
     }

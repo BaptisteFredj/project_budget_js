@@ -1,34 +1,35 @@
-import { useLoaderData, useParams, Link } from "react-router-dom";
+import { useLoaderData, useSearchParams, Link } from "react-router-dom";
 import CategoryAmountThumb from "../components/CategoryAmountThumb";
 import TransactionThumb from "../components/TransactionThumb";
 
 import { formattedNumber, computePercentage } from "../utils/functions";
 
 export default function Dashboard() {
-  const { expensesAmount, categories, transactions } = useLoaderData();
-  const { periodFilter } = useParams();
+  const [searchParams] = useSearchParams();
+  const period = searchParams.get("period");
+  const { transactionsTotalSum, categories, transactions } = useLoaderData();
 
   return (
     <>
       <h2>Dépenses par catégorie</h2>
       <h3>Liste des boutons (temporaires)</h3>
-      <Link to="/dashboard/day">
-        <li className={`expenses ${periodFilter === "day" ? "active" : ""}`}>
+      <Link to="/dashboard?period=day&limit=10">
+        <li className={`expenses ${period === "day" ? "active" : ""}`}>
           du jour
         </li>
       </Link>
-      <Link to="/dashboard/week">
-        <li className={`expenses ${periodFilter === "week" ? "active" : ""}`}>
+      <Link to="/dashboard?period=week&limit=10">
+        <li className={`expenses ${period === "week" ? "active" : ""}`}>
           de la semaine
         </li>
       </Link>
-      <Link to="/dashboard/month">
-        <li className={`expenses ${periodFilter === "month" ? "active" : ""}`}>
+      <Link to="/dashboard?period=month&limit=10">
+        <li className={`expenses ${period === "month" ? "active" : ""}`}>
           du mois
         </li>
       </Link>
-      <Link to="/dashboard/year">
-        <li className={`expenses ${periodFilter === "year" ? "active" : ""}`}>
+      <Link to="/dashboard?period=year&limit=10">
+        <li className={`expenses ${period === "year" ? "active" : ""}`}>
           de l'année
         </li>
       </Link>
@@ -36,13 +37,13 @@ export default function Dashboard() {
         <CategoryAmountThumb
           categoryPercentage={computePercentage(
             category.category_amount,
-            expensesAmount
+            transactionsTotalSum
           )}
           category={category}
           key={category.id}
         />
       ))}
-      <p>Total des dépenses : {formattedNumber(expensesAmount)} €</p>
+      <p>Total des dépenses : {formattedNumber(transactionsTotalSum)} €</p>
 
       <h2>Budgets en cours</h2>
       <ul>

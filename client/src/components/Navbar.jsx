@@ -10,7 +10,7 @@ export default function Navbar({ handleShowLinks }) {
       </div>
       <ul className="navbar_links">
         <li className="navbar_item">
-          <a href="/dashboard/week" className="navbar_link">
+          <a href="/dashboard?period=week" className="navbar_link">
             Accueil
           </a>
         </li>
@@ -30,7 +30,7 @@ export default function Navbar({ handleShowLinks }) {
           </a>
         </li>
         <li className="navbar_item">
-          <a href="/transactions?dateFilter=past" className="navbar_link">
+          <a href="/transactions?date=past" className="navbar_link">
             Mes transactions
           </a>
         </li>
