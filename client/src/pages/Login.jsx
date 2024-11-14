@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { login } from "../services/request";
 
 import "../assets/styles/login.css";
@@ -50,6 +50,11 @@ function Login() {
             placeholder="mot de passe"
           />
         </div>
+        <Link to="/register">
+          <p className="register_link">
+            Vous n'êtes pas inscrit ? Cliquez ici pour vous s'inscrire
+          </p>
+        </Link>
         <button className="add_button login_form_button" type="submit">
           Valider
         </button>
