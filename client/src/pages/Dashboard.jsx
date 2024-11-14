@@ -52,7 +52,7 @@ export default function Dashboard() {
         <li>Budget 3</li>
       </ul>
 
-      <h2>Dernières dépenses</h2>
+      <h2>Mes 10 dernières dépenses</h2>
       {transactions.slice(0, 10).map((transaction) => (
         <TransactionThumb transaction={transaction} key={transaction.id} />
       ))}
