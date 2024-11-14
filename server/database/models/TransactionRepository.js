@@ -69,7 +69,7 @@ class TransactionRepository extends AbstractRepository {
   async transactionsTotalSum(userId, period, startDate, endDate) {
     let periodFilter = "";
 
-    if (startDate && endDate) {
+    if (startDate && endDate && startDate !== "none" && endDate !== "none") {
       periodFilter = `AND t.date BETWEEN '${startDate}' AND '${endDate}'`;
     } else {
       if (period === "day") {
@@ -100,7 +100,7 @@ class TransactionRepository extends AbstractRepository {
   async categoriesTransactionsTotalSum(userId, period, startDate, endDate) {
     let periodFilter = "";
 
-    if (startDate && endDate) {
+    if (startDate && endDate && startDate !== "none" && endDate !== "none") {
       periodFilter = `AND t.date BETWEEN '${startDate}' AND '${endDate}'`;
     } else {
       if (period === "day") {
