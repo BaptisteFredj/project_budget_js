@@ -152,14 +152,19 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/transactions/:dateFilter",
+        path: "/transactions",
         element: <Transactions />,
-        loader: async ({ params }) => ({
-          transactions: await getTransactionsByUserId(params.dateFilter),
-        }),
+        loader: async ({ request }) => {
+          const url = new URL(request.url);
+          const filter = url.searchParams.get("filter");
+          const value = url.searchParams.get("value");
+          return {
+            transactions: await getTransactionsByUserId(filter, value),
+          };
+        },
         action: async ({ params }) => {
           await deleteTransaction(params.id);
-          return redirect("/transactions/past");
+          return redirect("/transactions?filter=date&value=past");
         },
       },
       {
@@ -185,7 +190,7 @@ const router = createBrowserRouter([
           }
 
           await addTransaction(formDataObject);
-          return redirect(`/transactions/past`);
+          return redirect(`/transactions?filter=date&value=past`);
         },
       },
       {
@@ -213,7 +218,7 @@ const router = createBrowserRouter([
             return validatedData;
           }
           await editTransaction(formDataObject);
-          return redirect(`/transactions/past`);
+          return redirect(`/transactions?filter=date&value=past`);
         },
       },
       {
@@ -241,7 +246,7 @@ const router = createBrowserRouter([
             return validatedData;
           }
           await addTransaction(formDataObject);
-          return redirect(`/transactions/past`);
+          return redirect(`/transactions?filter=date&value=past`);
         },
       },
       {
@@ -249,7 +254,7 @@ const router = createBrowserRouter([
         element: <TransactionDelete />,
         action: async ({ params }) => {
           await deleteTransaction(params.id);
-          return redirect("/transactions/past");
+          return redirect("/transactions?filter=date&value=past");
         },
       },
       {
