@@ -94,7 +94,7 @@ export default function Dashboard() {
           type="button"
           onClick={() => setShowPeriodOptions(!showPeriodOptions)}
         >
-          au choix
+          période
         </button>
       </ul>
 
@@ -164,7 +164,7 @@ export default function Dashboard() {
         <li>Budget 3</li>
       </ul>
 
-      <h2 className="dashboard_title">Mes 10 dernières dépenses</h2>
+      <h2 className="dashboard_title">Dix dernières dépenses</h2>
       {transactions.slice(0, 10).map((transaction) => (
         <TransactionThumb transaction={transaction} key={transaction.id} />
       ))}
