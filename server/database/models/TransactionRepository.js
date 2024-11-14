@@ -66,21 +66,26 @@ class TransactionRepository extends AbstractRepository {
     return rows[0];
   }
 
-  async transactionsTotalSum(userId, period) {
+  async transactionsTotalSum(userId, period, startDate, endDate) {
     let periodFilter = "";
-    if (period === "day") {
-      periodFilter = `AND DATE(t.date) = CURDATE()`;
-    }
-    if (period === "week") {
-      periodFilter = `AND WEEK(t.date, 1) = WEEK(CURDATE(), 1)
-      AND YEAR(t.date) = YEAR(CURDATE())`;
-    }
-    if (period === "month") {
-      periodFilter = `AND MONTH(t.date) = MONTH(CURDATE())
-      AND YEAR(t.date) = YEAR(CURDATE())`;
-    }
-    if (period === "year") {
-      periodFilter = `AND YEAR(t.date) = YEAR(CURDATE())`;
+
+    if (startDate && endDate) {
+      periodFilter = `AND t.date BETWEEN '${startDate}' AND '${endDate}'`;
+    } else {
+      if (period === "day") {
+        periodFilter = `AND DATE(t.date) = CURDATE()`;
+      }
+      if (period === "week") {
+        periodFilter = `AND WEEK(t.date, 1) = WEEK(CURDATE(), 1)
+        AND YEAR(t.date) = YEAR(CURDATE())`;
+      }
+      if (period === "month") {
+        periodFilter = `AND MONTH(t.date) = MONTH(CURDATE())
+        AND YEAR(t.date) = YEAR(CURDATE())`;
+      }
+      if (period === "year") {
+        periodFilter = `AND YEAR(t.date) = YEAR(CURDATE())`;
+      }
     }
 
     const [rows] = await this.database.query(
