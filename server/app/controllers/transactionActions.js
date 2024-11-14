@@ -47,11 +47,13 @@ const transactionsTotalSum = async (req, res, next) => {
 };
 
 const categoriesTransactionsTotalSum = async (req, res, next) => {
-  const { period } = req.query;
+  const { period, startDate, endDate } = req.query;
   try {
     const amount = await tables.transaction.categoriesTransactionsTotalSum(
       req.body.user_id,
-      period
+      period,
+      startDate,
+      endDate
     );
     res.json(amount);
   } catch (error) {
