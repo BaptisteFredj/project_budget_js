@@ -57,14 +57,14 @@ router.get(
   transaction.readTransactionById
 );
 router.get(
-  "/transactionsamount/:periodFilter",
+  "/transactionstotalsum",
   authenticateUser,
-  transaction.expensesAmount
+  transaction.transactionsTotalSum
 );
 router.get(
-  "/transactionscategoryamount/:periodFilter",
+  "/categoriestransactionstotalsum",
   authenticateUser,
-  transaction.categoryExpensesAmount
+  transaction.categoriesTransactionsTotalSum
 );
 router.post(
   "/transactions",

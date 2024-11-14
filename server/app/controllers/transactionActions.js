@@ -1,11 +1,12 @@
 const tables = require("../../database/tables");
 
 const readTransactionsByUser = async (req, res, next) => {
-  const { dateFilter } = req.query;
+  const { date, limit } = req.query;
   try {
     const transactions = await tables.transaction.readTransactionsByUser(
       req.body.user_id,
-      dateFilter
+      date,
+      limit
     );
     res.json(transactions);
   } catch (error) {
@@ -29,11 +30,12 @@ const readTransactionById = async (req, res, next) => {
   }
 };
 
-const expensesAmount = async (req, res, next) => {
+const transactionsTotalSum = async (req, res, next) => {
+  const { period } = req.query;
   try {
-    const amount = await tables.transaction.expensesAmount(
+    const amount = await tables.transaction.transactionsTotalSum(
       req.body.user_id,
-      req.params.periodFilter
+      period
     );
     res.json(amount);
   } catch (error) {
@@ -41,11 +43,12 @@ const expensesAmount = async (req, res, next) => {
   }
 };
 
-const categoryExpensesAmount = async (req, res, next) => {
+const categoriesTransactionsTotalSum = async (req, res, next) => {
+  const { period } = req.query;
   try {
-    const amount = await tables.transaction.categoryExpensesAmount(
+    const amount = await tables.transaction.categoriesTransactionsTotalSum(
       req.body.user_id,
-      req.params.periodFilter
+      period
     );
     res.json(amount);
   } catch (error) {
@@ -86,8 +89,8 @@ const destroy = async (req, res, next) => {
 module.exports = {
   readTransactionById,
   readTransactionsByUser,
-  expensesAmount,
-  categoryExpensesAmount,
+  transactionsTotalSum,
+  categoriesTransactionsTotalSum,
   add,
   edit,
   destroy,
