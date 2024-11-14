@@ -5,23 +5,23 @@ import "../assets/styles/transactions.css";
 
 function Transactions() {
   const [searchParams] = useSearchParams();
-  const value = searchParams.get("value");
+  const dateFilter = searchParams.get("dateFilter");
   const { transactions } = useLoaderData();
 
   return (
     <>
       <ul className="transactions_title_group">
         <li className="title_transactions">Transactions </li>
-        <Link to="/transactions?filter=date&value=past">
+        <Link to="/transactions?dateFilter=past">
           <li
-            className={`last_transactions ${value === "past" ? "active" : ""}`}
+            className={`last_transactions ${dateFilter === "past" ? "active" : ""}`}
           >
             récentes{" "}
           </li>
         </Link>
-        <Link to="/transactions?filter=date&value=future">
+        <Link to="/transactions?dateFilter=future">
           <li
-            className={`future_transactions ${value === "future" ? "active" : ""}`}
+            className={`future_transactions ${dateFilter === "future" ? "active" : ""}`}
           >
             prévues{" "}
           </li>

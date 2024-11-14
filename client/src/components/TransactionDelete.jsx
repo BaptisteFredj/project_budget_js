@@ -10,7 +10,7 @@ function TransactionDelete() {
         <h2 className="warning_h2">Cette action ne peut être annulée.</h2>
       </div>
       <div className="warning_buttons">
-        <Link to="/transactions?filter=date&value=past">
+        <Link to="/transactions?dateFilter=past">
           <button className="warning_cancel" type="button">
             Annuler
           </button>

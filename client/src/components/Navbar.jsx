@@ -30,10 +30,7 @@ export default function Navbar({ handleShowLinks }) {
           </a>
         </li>
         <li className="navbar_item">
-          <a
-            href="/transactions?filter=date&value=past"
-            className="navbar_link"
-          >
+          <a href="/transactions?dateFilter=past" className="navbar_link">
             Mes transactions
           </a>
         </li>

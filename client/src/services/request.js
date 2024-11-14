@@ -95,9 +95,9 @@ export function deleteCategory(id) {
 }
 
 // Get all user's transactions
-export function getTransactionsByUserId(filter, value) {
+export function getTransactionsByUserId(dateFilter) {
   return axios
-    .get(`${url}/api/transactions?filter=${filter}&value=${value}`, {
+    .get(`${url}/api/transactions?dateFilter=${dateFilter}`, {
       withCredentials: true,
     })
     .then((response) => response.data)
