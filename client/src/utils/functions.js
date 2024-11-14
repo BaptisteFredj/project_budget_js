@@ -12,5 +12,5 @@ export function computePercentage(amount, totalAmount) {
     return 0;
   }
 
-  return ((amount / totalAmount) * 100).toFixed(1);
+  return ((amount / totalAmount) * 100).toFixed(0);
 }
