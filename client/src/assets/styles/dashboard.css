@@ -1,14 +1,15 @@
 .period_button_container {
   display: flex;
   font-family: var(--primary-font-family);
-  gap: 15px;
+  gap: 10px;
   align-items: center;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .period_button {
   background: var(--light-grey);
-  font-size: 15px;
+  font-size: 1.25rem;
   border-radius: 25px;
   padding: 5px 10px;
 }
