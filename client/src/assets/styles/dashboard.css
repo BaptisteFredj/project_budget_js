@@ -1,0 +1,83 @@
+.period_button_container {
+  display: flex;
+  font-family: var(--primary-font-family);
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.period_button {
+  background: var(--light-grey);
+  font-size: 15px;
+  border-radius: 25px;
+  padding: 5px 10px;
+}
+
+.active {
+  background: var(--dark-grey);
+  color: white;
+}
+
+.category_thumb_name,
+.dashboard_total_text {
+  font-family: var(--primary-font-family);
+  font-size: 1.25rem;
+}
+
+.dashboard_total_text {
+  font-size: 18px;
+}
+
+.category_thumb_name {
+  min-width: 10rem;
+}
+
+.category_sum,
+.category_percentage,
+.dashboard_total_amount {
+  font-family: var(--number-font-family);
+  font-weight: 500;
+}
+.category_sum,
+.dashboard_total_amount,
+.category_percentage {
+  font-size: 1.25rem;
+}
+
+.dashboard_total_amount {
+  padding-left: 0.5rem;
+}
+
+.dashboard_total {
+  margin-bottom: 2.5rem;
+}
+
+.category_amount_thumb_container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.categories_thumbs_container {
+  display: flex;
+  margin-bottom: 0.75rem;
+  gap: 0.25rem;
+  flex-direction: column;
+}
+
+.left_thumb_container {
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+}
+
+.dashboard_title {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  margin-left: 1rem;
+  font-family: var(--primary-font-family);
+  font-weight: 600;
+  font-size: 1.75rem;
+}

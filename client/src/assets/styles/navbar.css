@@ -12,6 +12,11 @@
   display: flex;
 }
 
+.navbar_logo img {
+  width: 2.25rem;
+  margin-left: 0.75rem;
+}
+
 .navbar_links {
   display: flex;
 }

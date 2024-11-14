@@ -3,11 +3,17 @@ import { formattedNumber } from "../utils/functions";
 
 export default function CategoryAmountThumb({ category, categoryPercentage }) {
   return (
-    <p>
-      {category.name ? category.name : "Sans catégorie"}
-      {` ${formattedNumber(category.category_amount)}`} € soit{" "}
-      {categoryPercentage}%
-    </p>
+    <li className="category_amount_thumb_container">
+      <div className="left_thumb_container">
+        <span className="category_thumb_name">
+          {category.name ? category.name : "Sans catégorie"}
+        </span>
+        <span className="category_sum">
+          {formattedNumber(category.category_amount)} €
+        </span>
+      </div>
+      <span className="category_percentage">{categoryPercentage}%</span>
+    </li>
   );
 }
 

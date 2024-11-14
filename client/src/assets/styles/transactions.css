@@ -17,18 +17,14 @@
 .future_transactions,
 .last_transactions {
   background: var(--light-grey);
+  font-size: 1.25rem;
+  border-radius: 25px;
+  padding: 5px 10px;
 }
 
 .active {
   background: var(--dark-grey);
   color: white;
-}
-
-.future_transactions,
-.last_transactions {
-  font-size: 1.25rem;
-  border-radius: 25px;
-  padding: 5px 10px;
 }
 
 /* #endregion */
