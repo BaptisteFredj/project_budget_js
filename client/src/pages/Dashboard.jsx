@@ -9,7 +9,7 @@ import "../assets/styles/dashboard.css";
 
 export default function Dashboard() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const period = searchParams.get("period");
+
   const { transactionsTotalSum, categories, transactions } = useLoaderData();
 
   const [selectedStartDate, setSelectedStartDate] = useState(
@@ -18,6 +18,9 @@ export default function Dashboard() {
   const [selectedEndDate, setSelectedEndDate] = useState(
     searchParams.get("end_date") || ""
   );
+  const [showPeriodOptions, setShowPeriodOptions] = useState();
+
+  const period = searchParams.get("period");
 
   useEffect(() => {
     if (selectedStartDate || selectedEndDate) {
@@ -38,50 +41,87 @@ export default function Dashboard() {
     setSelectedEndDate(date);
   };
 
+  const closePeriodOptions = () => {
+    if (showPeriodOptions) {
+      setShowPeriodOptions(false);
+      setSelectedStartDate("");
+      setSelectedEndDate("");
+    }
+  };
+
   return (
     <>
       <h2 className="dashboard_title">Dépenses par catégorie</h2>
       <ul className="period_button_container">
         <Link to="/dashboard?period=day&limit=10">
-          <li className={`period_button ${period === "day" ? "active" : ""}`}>
+          <button
+            type="button"
+            onClick={() => closePeriodOptions()}
+            className={`period_button ${period === "day" && !showPeriodOptions ? "active" : ""}`}
+          >
             du jour
-          </li>
+          </button>
         </Link>
         <Link to="/dashboard?period=week&limit=10">
-          <li className={`period_button ${period === "week" ? "active" : ""}`}>
+          <button
+            type="button"
+            onClick={() => closePeriodOptions()}
+            className={`period_button ${period === "week" && !showPeriodOptions ? "active" : ""}`}
+          >
             de la semaine
-          </li>
+          </button>
         </Link>
         <Link to="/dashboard?period=month&limit=10">
-          <li className={`period_button ${period === "month" ? "active" : ""}`}>
+          <button
+            type="button"
+            onClick={() => closePeriodOptions()}
+            className={`period_button ${period === "month" && !showPeriodOptions ? "active" : ""}`}
+          >
             du mois
-          </li>
+          </button>
         </Link>
         <Link to="/dashboard?period=year&limit=10">
-          <li className={`period_button ${period === "year" ? "active" : ""}`}>
+          <button
+            type="button"
+            onClick={() => closePeriodOptions()}
+            className={`period_button ${period === "year" && !showPeriodOptions ? "active" : ""}`}
+          >
             de l'année
-          </li>
+          </button>
         </Link>
+        <button
+          className={`period_button ${showPeriodOptions ? "active" : ""}`}
+          type="button"
+          onClick={() => setShowPeriodOptions(!showPeriodOptions)}
+        >
+          au choix
+        </button>
       </ul>
 
-      <label htmlFor="start_date">Date de début du budget</label>
-      <input
-        type="date"
-        id="start_date"
-        name="start_date"
-        value={selectedStartDate}
-        onChange={(event) => handleStartDateChange(event.target.value)}
-        required
-      />
-      <label htmlFor="end_date">Date de fin du budget</label>
-      <input
-        type="date"
-        id="end_date"
-        name="end_date"
-        value={selectedEndDate}
-        onChange={(event) => handleEndDateChange(event.target.value)}
-        required
-      />
+      {showPeriodOptions ? (
+        <>
+          <label htmlFor="start_date">Date de début du budget</label>
+          <input
+            type="date"
+            id="start_date"
+            name="start_date"
+            value={selectedStartDate}
+            onChange={(event) => handleStartDateChange(event.target.value)}
+            required
+          />
+          <label htmlFor="end_date">Date de fin du budget</label>
+          <input
+            type="date"
+            id="end_date"
+            name="end_date"
+            value={selectedEndDate}
+            onChange={(event) => handleEndDateChange(event.target.value)}
+            required
+          />{" "}
+        </>
+      ) : (
+        ""
+      )}
 
       <ul className="categories_thumbs_container">
         {categories.map((category) => (
