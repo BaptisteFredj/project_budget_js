@@ -109,11 +109,14 @@ export function getTransactionsByUserId(date, limit) {
 }
 
 // Get user's transactions amount
-export function getTransactionsTotalSum(period) {
+export function getTransactionsTotalSum(period, startDate, endDate) {
   return axios
-    .get(`${url}/api/transactionstotalsum?period=${period}`, {
-      withCredentials: true,
-    })
+    .get(
+      `${url}/api/transactionstotalsum?period=${period}&startDate=${startDate}&endDate=${endDate}`,
+      {
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME

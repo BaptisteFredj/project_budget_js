@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useLoaderData, useSearchParams, Link } from "react-router-dom";
 import CategoryAmountThumb from "../components/CategoryAmountThumb";
 import TransactionThumb from "../components/TransactionThumb";
@@ -7,9 +8,35 @@ import { formattedNumber, computePercentage } from "../utils/functions";
 import "../assets/styles/dashboard.css";
 
 export default function Dashboard() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const period = searchParams.get("period");
   const { transactionsTotalSum, categories, transactions } = useLoaderData();
+
+  const [selectedStartDate, setSelectedStartDate] = useState(
+    searchParams.get("startDate") || ""
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState(
+    searchParams.get("end_date") || ""
+  );
+
+  useEffect(() => {
+    if (selectedStartDate || selectedEndDate) {
+      const params = {
+        period,
+        startDate: selectedStartDate,
+        endDate: selectedEndDate,
+      };
+      setSearchParams(params);
+    }
+  }, [selectedStartDate, selectedEndDate, period, setSearchParams]);
+
+  const handleStartDateChange = (date) => {
+    setSelectedStartDate(date);
+  };
+
+  const handleEndDateChange = (date) => {
+    setSelectedEndDate(date);
+  };
 
   return (
     <>
@@ -36,6 +63,26 @@ export default function Dashboard() {
           </li>
         </Link>
       </ul>
+
+      <label htmlFor="start_date">Date de début du budget</label>
+      <input
+        type="date"
+        id="start_date"
+        name="start_date"
+        value={selectedStartDate}
+        onChange={(event) => handleStartDateChange(event.target.value)}
+        required
+      />
+      <label htmlFor="end_date">Date de fin du budget</label>
+      <input
+        type="date"
+        id="end_date"
+        name="end_date"
+        value={selectedEndDate}
+        onChange={(event) => handleEndDateChange(event.target.value)}
+        required
+      />
+
       <ul className="categories_thumbs_container">
         {categories.map((category) => (
           <CategoryAmountThumb

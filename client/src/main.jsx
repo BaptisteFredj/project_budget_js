@@ -72,9 +72,15 @@ const router = createBrowserRouter([
           const date = "past";
           const limit = url.searchParams.get("limit");
           const period = url.searchParams.get("period");
+          const startDate = url.searchParams.get("startDate");
+          const endDate = url.searchParams.get("endDate");
 
           return {
-            transactionsTotalSum: await getTransactionsTotalSum(period),
+            transactionsTotalSum: await getTransactionsTotalSum(
+              period,
+              startDate,
+              endDate
+            ),
             categories: await getCategoriesTransactionsTotalSum(period),
             transactions: await getTransactionsByUserId(date, limit),
           };
