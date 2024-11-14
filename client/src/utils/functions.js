@@ -7,10 +7,10 @@ export function formattedNumber(number) {
   return new Intl.NumberFormat("fr-FR").format(number);
 }
 
-export function categoryPercentage(categoryAmount, totalAmount) {
-  if (categoryAmount === 0 || totalAmount === 0) {
+export function computePercentage(amount, totalAmount) {
+  if (amount === 0 || totalAmount === 0) {
     return 0;
   }
 
-  return ((categoryAmount / totalAmount) * 100).toFixed(1);
+  return ((amount / totalAmount) * 100).toFixed(1);
 }
