@@ -81,7 +81,11 @@ const router = createBrowserRouter([
               startDate,
               endDate
             ),
-            categories: await getCategoriesTransactionsTotalSum(period),
+            categories: await getCategoriesTransactionsTotalSum(
+              period,
+              startDate,
+              endDate
+            ),
             transactions: await getTransactionsByUserId(date, limit),
           };
         },

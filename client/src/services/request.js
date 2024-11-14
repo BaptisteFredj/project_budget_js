@@ -108,7 +108,7 @@ export function getTransactionsByUserId(date, limit) {
     });
 }
 
-// Get user's transactions amount
+// Get user's transactions total sum
 export function getTransactionsTotalSum(period, startDate, endDate) {
   return axios
     .get(
@@ -125,12 +125,15 @@ export function getTransactionsTotalSum(period, startDate, endDate) {
     });
 }
 
-// Get user's transaction category amount
-export function getCategoriesTransactionsTotalSum(period) {
+// Get user's categories transactions total sum category amount
+export function getCategoriesTransactionsTotalSum(period, startDate, endDate) {
   return axios
-    .get(`${url}/api/categoriestransactionstotalsum?period=${period}`, {
-      withCredentials: true,
-    })
+    .get(
+      `${url}/api/categoriestransactionstotalsum?period=${period}&startDate=${startDate}&endDate=${endDate}`,
+      {
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME
