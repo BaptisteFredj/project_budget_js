@@ -132,7 +132,11 @@ export default function Dashboard() {
       ) : (
         ""
       )}
-
+      <ul className="display_headlines">
+        <li>Catégorie</li>
+        <li>Somme</li>
+        <li>Part</li>
+      </ul>
       <ul className="categories_thumbs_container">
         {categories.map((category) => (
           <CategoryAmountThumb
@@ -147,9 +151,7 @@ export default function Dashboard() {
       </ul>
 
       <p className="dashboard_total">
-        <span className="dashboard_total_text">
-          Total des dépenses sur la période :
-        </span>
+        <span className="dashboard_total_text">Dépenses sur la période :</span>
         <span className="dashboard_total_amount">
           {formattedNumber(transactionsTotalSum)} €
         </span>
