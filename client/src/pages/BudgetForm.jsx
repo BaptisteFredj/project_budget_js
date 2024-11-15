@@ -8,17 +8,6 @@ function BudgetForm() {
     <>
       <h1>Créer un budget</h1>
       <Form method="post">
-        <label htmlFor="name">Nom du budget</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Nom du budget"
-          required
-        />
-        {errors?.NameError}
-        {errors?.CharacterError}
-
         <label htmlFor="amount">Montant du budget</label>
         <input
           type="number"
@@ -48,7 +37,7 @@ function BudgetForm() {
           required
         />
         <label htmlFor="category">Catégorie du budget</label>
-        <select id="category" name="category">
+        <select id="category" name="category" required>
           <option value="">Sans catégorie</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>

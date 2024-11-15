@@ -13,17 +13,6 @@ function BudgetEdit() {
     <>
       <h1>Modifier votre budget</h1>
       <Form method="put">
-        <label htmlFor="name">Nom du budget</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          defaultValue={budget.name}
-          required
-        />
-        {errors?.NameError}
-        {errors?.CharacterError}
-
         <label htmlFor="amount">Montant du budget</label>
         <input
           type="number"

@@ -26,7 +26,6 @@ function nameValidator(name) {
 
 export function budgetFormValidator(formData) {
   const errors = {};
-  Object.assign(errors, nameValidator(formData.name));
 
   if (Number(formData.amount) <= 0) {
     errors.AmountError = "Seul les nombres entiers positifs sont acceptés.";
