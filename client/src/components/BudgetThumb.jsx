@@ -3,15 +3,28 @@ import { PropTypes } from "prop-types";
 
 export default function BudgetThumb({ budget }) {
   return (
-    <ul>
-      <li>Catégorie du budget : {budget.category_name}</li>
-      <li>Montant du budget : {budget.amount}</li>
-      <li>Date de début du budget : {budget.start_date}</li>
-      <li>Date de fin du budget : {budget.end_date}</li>
-      <li>
-        <Link to={`/budgets/${budget.id}/edit`}>Modifier le budget</Link>
-      </li>
-    </ul>
+    <>
+      <div>
+        <ul>
+          <li>Nom caté {budget.category_name}</li>
+          <li>
+            Du {budget.start_date} au {budget.end_date}
+          </li>
+        </ul>
+        <ul>
+          <li>Montant dép</li>
+          <li>Options</li>
+          <li>
+            <Link to={`/budgets/${budget.id}/edit`}>Modifier le budget</Link>
+          </li>
+        </ul>
+      </div>
+
+      <ul>
+        <li>Progress bar + Calcul %</li>
+        <li>Montant max {budget.amount}</li>
+      </ul>
+    </>
   );
 }
 
