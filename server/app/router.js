@@ -47,7 +47,7 @@ router.delete("/categories/:id", authenticateUser, category.destroy);
 const transaction = require("./controllers/transactionActions");
 
 router.get(
-  "/transactions/status/:dateFilter",
+  "/transactions",
   authenticateUser,
   transaction.readTransactionsByUser
 );
@@ -55,6 +55,16 @@ router.get(
   "/transactions/:id",
   authenticateUser,
   transaction.readTransactionById
+);
+router.get(
+  "/transactionstotalsum",
+  authenticateUser,
+  transaction.transactionsTotalSum
+);
+router.get(
+  "/categoriestransactionstotalsum",
+  authenticateUser,
+  transaction.categoriesTransactionsTotalSum
 );
 router.post(
   "/transactions",

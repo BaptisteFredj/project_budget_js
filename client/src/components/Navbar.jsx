@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../assets/styles/navbar.css";
 import { PropTypes } from "prop-types";
 import wallet from "../../public/assets/icons/wallet.svg";
@@ -6,11 +7,13 @@ export default function Navbar({ handleShowLinks }) {
   return (
     <nav className="navbar">
       <div className="navbar_logo">
-        <img src={wallet} alt="wallet" />
+        <Link to="/dashboard?period=week&limit=10">
+          <img src={wallet} alt="wallet" />
+        </Link>
       </div>
       <ul className="navbar_links">
         <li className="navbar_item">
-          <a href="/" className="navbar_link">
+          <a href="/dashboard?period=week&limit=10" className="navbar_link">
             Accueil
           </a>
         </li>
@@ -30,7 +33,7 @@ export default function Navbar({ handleShowLinks }) {
           </a>
         </li>
         <li className="navbar_item">
-          <a href="/transactions/past" className="navbar_link">
+          <a href="/transactions?date=past" className="navbar_link">
             Mes transactions
           </a>
         </li>

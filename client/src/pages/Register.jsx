@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { register } from "../services/request";
 
 import "../assets/styles/register.css";
@@ -78,6 +78,11 @@ function Register() {
             placeholder="mot de passe"
           />
         </div>
+        <Link to="/login">
+          <p className="login_link">
+            Déjà inscrit ? Cliquez ici pour vous connecter
+          </p>
+        </Link>
         <button className="add_button register_form_button" type="submit">
           Valider l'inscription
         </button>

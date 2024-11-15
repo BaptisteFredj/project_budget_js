@@ -1,10 +1,12 @@
 const tables = require("../../database/tables");
 
 const readTransactionsByUser = async (req, res, next) => {
+  const { date, limit } = req.query;
   try {
     const transactions = await tables.transaction.readTransactionsByUser(
       req.body.user_id,
-      req.params.dateFilter
+      date,
+      limit
     );
     res.json(transactions);
   } catch (error) {
@@ -23,6 +25,37 @@ const readTransactionById = async (req, res, next) => {
     } else {
       res.json(transaction);
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const transactionsTotalSum = async (req, res, next) => {
+  const { period, startDate, endDate } = req.query;
+
+  try {
+    const amount = await tables.transaction.transactionsTotalSum(
+      req.body.user_id,
+      period,
+      startDate,
+      endDate
+    );
+    res.json(amount);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const categoriesTransactionsTotalSum = async (req, res, next) => {
+  const { period, startDate, endDate } = req.query;
+  try {
+    const amount = await tables.transaction.categoriesTransactionsTotalSum(
+      req.body.user_id,
+      period,
+      startDate,
+      endDate
+    );
+    res.json(amount);
   } catch (error) {
     next(error);
   }
@@ -61,6 +94,8 @@ const destroy = async (req, res, next) => {
 module.exports = {
   readTransactionById,
   readTransactionsByUser,
+  transactionsTotalSum,
+  categoriesTransactionsTotalSum,
   add,
   edit,
   destroy,

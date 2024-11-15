@@ -95,11 +95,45 @@ export function deleteCategory(id) {
 }
 
 // Get all user's transactions
-export function getTransactionsByUserId(dateFilter) {
+export function getTransactionsByUserId(date, limit) {
   return axios
-    .get(`${url}/api/transactions/status/${dateFilter}`, {
+    .get(`${url}/api/transactions?date=${date}&limit=${limit}`, {
       withCredentials: true,
     })
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
+// Get user's transactions total sum
+export function getTransactionsTotalSum(period, startDate, endDate) {
+  return axios
+    .get(
+      `${url}/api/transactionstotalsum?period=${period}&startDate=${startDate}&endDate=${endDate}`,
+      {
+        withCredentials: true,
+      }
+    )
+    .then((response) => response.data)
+    .catch((error) => {
+      // FIX ME
+      console.error(error);
+      return [];
+    });
+}
+
+// Get user's categories transactions total sum category amount
+export function getCategoriesTransactionsTotalSum(period, startDate, endDate) {
+  return axios
+    .get(
+      `${url}/api/categoriestransactionstotalsum?period=${period}&startDate=${startDate}&endDate=${endDate}`,
+      {
+        withCredentials: true,
+      }
+    )
     .then((response) => response.data)
     .catch((error) => {
       // FIX ME

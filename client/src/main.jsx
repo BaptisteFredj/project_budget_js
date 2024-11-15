@@ -24,6 +24,8 @@ import {
   editBudget,
   deleteBudget,
   getIcons,
+  getTransactionsTotalSum,
+  getCategoriesTransactionsTotalSum,
 } from "./services/request";
 
 import {
@@ -48,6 +50,7 @@ import Login from "./pages/Login";
 import BudgetForm from "./pages/BudgetForm";
 import BudgetEdit from "./pages/BudgetEdit";
 import CategoryDelete from "./components/CategoryDelete";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +63,32 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+        loader: async ({ request }) => {
+          const url = new URL(request.url);
+          const date = "past";
+          const limit = url.searchParams.get("limit");
+          const period = url.searchParams.get("period");
+          const startDate = url.searchParams.get("startDate") || "none";
+          const endDate = url.searchParams.get("endDate") || "none";
+
+          return {
+            transactionsTotalSum: await getTransactionsTotalSum(
+              period,
+              startDate,
+              endDate
+            ),
+            categories: await getCategoriesTransactionsTotalSum(
+              period,
+              startDate,
+              endDate
+            ),
+            transactions: await getTransactionsByUserId(date, limit),
+          };
+        },
       },
       {
         path: "/categories",
@@ -140,14 +169,19 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/transactions/:dateFilter",
+        path: "/transactions",
         element: <Transactions />,
-        loader: async ({ params }) => ({
-          transactions: await getTransactionsByUserId(params.dateFilter),
-        }),
+        loader: async ({ request }) => {
+          const url = new URL(request.url);
+          const date = url.searchParams.get("date");
+          const limit = "none";
+          return {
+            transactions: await getTransactionsByUserId(date, limit),
+          };
+        },
         action: async ({ params }) => {
           await deleteTransaction(params.id);
-          return redirect("/transactions/past");
+          return redirect("/transactions?date=past");
         },
       },
       {
@@ -173,7 +207,7 @@ const router = createBrowserRouter([
           }
 
           await addTransaction(formDataObject);
-          return redirect(`/transactions/past`);
+          return redirect(`/transactions?date=past`);
         },
       },
       {
@@ -201,7 +235,7 @@ const router = createBrowserRouter([
             return validatedData;
           }
           await editTransaction(formDataObject);
-          return redirect(`/transactions/past`);
+          return redirect(`/transactions?date=past`);
         },
       },
       {
@@ -229,7 +263,7 @@ const router = createBrowserRouter([
             return validatedData;
           }
           await addTransaction(formDataObject);
-          return redirect(`/transactions/past`);
+          return redirect(`/transactions?date=past`);
         },
       },
       {
@@ -237,7 +271,7 @@ const router = createBrowserRouter([
         element: <TransactionDelete />,
         action: async ({ params }) => {
           await deleteTransaction(params.id);
-          return redirect("/transactions/past");
+          return redirect("/transactions?date=past");
         },
       },
       {
