@@ -94,12 +94,7 @@ main {
   justify-content: center;
 }
 
-.app_container.show_nav .icon_img {
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.8);
-  transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease,
-    transform 0.3s ease;
+.icon_circle,
+.icon_img {
+  z-index: 90;
 }
