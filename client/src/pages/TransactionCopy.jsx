@@ -5,6 +5,10 @@ import { toIso } from "../utils/functions";
 import "../assets/styles/transactionform.css";
 
 function TransactionCopy() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { transaction, categories } = useLoaderData();
   const errors = useActionData();
   const [selectedCategory, setSelectedCategory] = useState();
