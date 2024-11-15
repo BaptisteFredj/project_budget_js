@@ -142,3 +142,76 @@
   margin-bottom: 0.25rem;
   margin-inline: 0.5rem;
 }
+
+@media screen and (min-width: 767px) {
+  .dashboard_title {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    font-size: 3.5rem;
+  }
+
+  .dashboard_title.expenses {
+    margin-top: 5rem;
+  }
+
+  .title_by_period {
+    margin-bottom: 1.5rem;
+  }
+
+  .period_button_container {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .period_button {
+    font-size: 1.75rem;
+    border-radius: 25px;
+    padding: 0.5rem 1.25rem;
+  }
+
+  .display_headlines {
+    font-size: 1.75rem;
+    margin-inline: 0.5rem;
+    max-width: 685px;
+    margin: 0 auto;
+  }
+
+  .categories_thumbs_container {
+    gap: 1rem;
+    padding: 0.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 0.75rem;
+  }
+
+  .category_thumb_name,
+  .dashboard_total_text {
+    font-family: var(--primary-font-family);
+    font-size: 1.5rem;
+  }
+
+  .category_thumb_name {
+    min-width: 20rem;
+  }
+
+  .left_thumb_container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .category_percentage,
+  .category_sum {
+    font-size: 1.5rem;
+  }
+
+  .dashboard_total {
+    margin-top: 1.5rem;
+  }
+
+  .dashboard_total_text,
+  .dashboard_total_amount {
+    font-size: 1.75rem;
+  }
+}

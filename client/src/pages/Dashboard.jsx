@@ -59,7 +59,9 @@ export default function Dashboard() {
     <>
       <div className="dashboard_titles_container">
         <Link to="/transactions?date=past">
-          <h2 className="dashboard_title">Mes dépenses par catégorie</h2>
+          <h2 className="dashboard_title title_by_period">
+            Mes dépenses par catégorie
+          </h2>
         </Link>
       </div>
       <ul className="period_button_container">
