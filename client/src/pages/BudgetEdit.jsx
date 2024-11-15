@@ -18,7 +18,9 @@ function BudgetEdit() {
 
   return (
     <Form method="put" className="budget_label_form">
-      <label htmlFor="amount">Montant du budget</label>
+      <label className="budget_amount_label" htmlFor="amount">
+        Montant du budget
+      </label>
       <input
         className="budget_amount_input"
         type="number"
@@ -27,7 +29,9 @@ function BudgetEdit() {
         defaultValue={budget.amount}
         required
       />
-      {errors?.AmountError}
+      {errors?.AmountError && (
+        <span className="error_message">{errors.AmountError}</span>
+      )}
 
       <label className="budget_start_date_label" htmlFor="start_date">
         Date de début du budget
@@ -40,7 +44,9 @@ function BudgetEdit() {
         defaultValue={toIso(budget.start_date)}
         required
       />
-      {errors?.DateError}
+      {errors?.DateError && (
+        <span className="error_message"> {errors.DateError}</span>
+      )}
 
       <label className="budget_end_date_label" htmlFor="end_date">
         Date de fin du budget
