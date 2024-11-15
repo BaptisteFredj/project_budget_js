@@ -32,10 +32,11 @@ function Transactions() {
           </li>
         </Link>
       </ul>
-
-      {transactions.map((transaction) => (
-        <TransactionThumb transaction={transaction} key={transaction.id} />
-      ))}
+      <section className="transaction_blocks_container">
+        {transactions.map((transaction) => (
+          <TransactionThumb transaction={transaction} key={transaction.id} />
+        ))}
+      </section>
       <div className="add_button_container">
         <button type="button" className="add_button">
           <Link to="/transactions_form">Nouvelle transaction</Link>

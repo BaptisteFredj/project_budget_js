@@ -70,6 +70,7 @@ main {
   background: var(--dark-grey);
   color: white;
   padding: 17px 3rem;
+  text-align: center;
   border-radius: 8px;
 }
 
@@ -104,4 +105,19 @@ main {
   color: red;
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
+}
+
+@media screen and (min-width: 767px) {
+  main {
+    margin-inline: 15svw;
+  }
+
+  .icon_img {
+    width: 40px;
+  }
+
+  .icon_circle {
+    width: 50px;
+    height: 50px;
+  }
 }

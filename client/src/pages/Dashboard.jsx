@@ -171,17 +171,21 @@ export default function Dashboard() {
           <h2 className="dashboard_title">Mes budgets</h2>
         </Link>
       </div>
-      {budgets.map((budget) => (
-        <BudgetThumb budget={budget} key={budget.id} />
-      ))}
+      <section className="budget_thumbs_container">
+        {budgets.map((budget) => (
+          <BudgetThumb budget={budget} key={budget.id} />
+        ))}
+      </section>
       <div className="dashboard_titles_container">
         <Link to="/transactions?date=past">
           <h2 className="dashboard_title expenses">Mes dernières dépenses</h2>
         </Link>
       </div>
-      {transactions.slice(0, 10).map((transaction) => (
-        <TransactionThumb transaction={transaction} key={transaction.id} />
-      ))}
+      <section className="transaction_blocks_container">
+        {transactions.slice(0, 10).map((transaction) => (
+          <TransactionThumb transaction={transaction} key={transaction.id} />
+        ))}
+      </section>
     </>
   );
 }

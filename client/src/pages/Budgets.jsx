@@ -14,9 +14,11 @@ function Users() {
   return (
     <>
       <h1 className="budgets_title">Mes budgets</h1>
-      {budgets.map((budget) => (
-        <BudgetThumb budget={budget} key={budget.id} />
-      ))}
+      <section className="budget_thumbs_container">
+        {budgets.map((budget) => (
+          <BudgetThumb budget={budget} key={budget.id} />
+        ))}
+      </section>
       <div className="add_button_container">
         <button type="button" className="add_button">
           <Link to="/budgets_form">Créer un budget</Link>
