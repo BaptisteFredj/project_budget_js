@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PropTypes } from "prop-types";
-import { formattedNumber } from "../utils/functions";
+import { formattedNumber, computePercentage } from "../utils/functions";
 import BudgetOptions from "./BudgetOptions";
 
 import "../assets/styles/budgets.css";
@@ -12,6 +12,8 @@ export default function BudgetThumb({ budget }) {
   const handleOptionsClick = () => {
     setShowOptions(!showOptions);
   };
+
+  const budgetUsageRate = computePercentage(budget.category_sum, budget.amount);
 
   return (
     <section className="budget_thumb_container">
@@ -39,7 +41,7 @@ export default function BudgetThumb({ budget }) {
       </div>
 
       <div className="budget_bottom_container">
-        <li>Progress bar + %</li>
+        <li>Progress bar avec {budgetUsageRate}% dedans</li>
         <li className="budget_amount">{formattedNumber(budget.amount)} €</li>
       </div>
     </section>
