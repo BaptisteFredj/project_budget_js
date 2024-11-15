@@ -32,11 +32,10 @@
   
   create table budget (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
     amount INT NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    category_id INT,
+    category_id INT NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(id),
     FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL
