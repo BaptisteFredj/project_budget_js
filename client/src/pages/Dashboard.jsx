@@ -55,7 +55,9 @@ export default function Dashboard() {
     <>
       <h1 className="dashboard_headtitle">Tableau de bord</h1>
       <div className="dashboard_titles_container">
-        <h2 className="dashboard_title">Mes dépenses par catégorie</h2>
+        <Link to="/transactions?date=past">
+          <h2 className="dashboard_title">Mes dépenses par catégorie</h2>
+        </Link>
       </div>
       <ul className="period_button_container">
         <Link to="/dashboard?period=day&limit=10">
@@ -162,13 +164,17 @@ export default function Dashboard() {
         </span>
       </p>
       <div className="dashboard_titles_container">
-        <h2 className="dashboard_title">Mes budgets</h2>
+        <Link to="/budgets">
+          <h2 className="dashboard_title">Mes budgets</h2>
+        </Link>
       </div>
       {budgets.map((budget) => (
         <BudgetThumb budget={budget} key={budget.id} />
       ))}
       <div className="dashboard_titles_container">
-        <h2 className="dashboard_title expenses">Mes dernières dépenses</h2>
+        <Link to="/transactions?date=past">
+          <h2 className="dashboard_title expenses">Mes dernières dépenses</h2>
+        </Link>
       </div>
       {transactions.slice(0, 10).map((transaction) => (
         <TransactionThumb transaction={transaction} key={transaction.id} />
