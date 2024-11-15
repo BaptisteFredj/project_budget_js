@@ -44,7 +44,6 @@ import TransactionEdit from "./pages/TransactionEdit";
 import TransactionDelete from "./components/TransactionDelete";
 import TransactionCopy from "./pages/TransactionCopy";
 import Budgets from "./pages/Budgets";
-import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import BudgetForm from "./pages/BudgetForm";
@@ -271,13 +270,6 @@ const router = createBrowserRouter([
         element: <Budgets />,
         loader: async () => ({
           budgets: await getBudgetsByUserId(),
-        }),
-      },
-      {
-        path: "/budgets/:id",
-        element: <BudgetDetails />,
-        loader: async ({ params }) => ({
-          budget: await getBudget(params.id),
         }),
       },
       {
