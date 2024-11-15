@@ -32,29 +32,30 @@
 .transaction_block {
   display: flex;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, white, rgb(231, 230, 230) 50%, white);
-  padding: 0.1rem 0.5rem;
-  border-radius: 2rem;
+  background: var(--grey-background);
+  border: 1px solid var(--light-grey);
+  border-radius: 3rem 0.5rem 0.5rem 3rem;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 0.25rem;
 }
 
-.transaction_date,
-.transaction_type {
+.transaction_date {
   font-weight: 600;
   font-size: 1rem;
+  font-family: var(--number-font-family);
+  letter-spacing: 1px;
 }
 
-.transaction_type,
 .transaction_category,
 .transaction_date {
   color: var(--text-light-grey);
+  font-family: var(--primary-font-family);
 }
 
 .transaction_category {
-  font-weight: 500;
-  font-size: 1rem;
+  font-weight: 400;
+  font-size: 15px;
   max-width: 7ch;
 }
 
@@ -63,11 +64,7 @@
 }
 
 .transaction_name {
-  font-size: 1rem;
-}
-
-.transaction_type {
-  font-family: var(--primary-font-family);
+  font-size: 1.25rem;
 }
 
 .transaction_right_block {
@@ -92,14 +89,13 @@
 
 .transaction_left_container {
   display: flex;
-  gap: 1.5rem;
 }
 
 .transaction_left_texts {
   display: flex;
   flex-direction: column;
   font-family: var(--primary-font-family);
-  gap: 0.3rem;
+  gap: 0.5rem;
   justify-content: center;
 }
 
@@ -109,5 +105,5 @@
   align-items: flex-start;
   gap: 0.5rem;
   align-items: center;
-  min-width: 5.75rem;
+  min-width: 7rem;
 }

@@ -100,11 +100,12 @@
   border: 1px solid var(--light-grey);
   border-radius: 4px;
   padding: 0.5rem;
+  background: var(--grey-background);
 }
 
 .left_thumb_container {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   flex-direction: row;
 }
 

@@ -8,6 +8,7 @@
   border: 1px solid var(--light-grey);
   border-radius: 6px;
   padding: 0.5rem 0.5rem;
+  background: var(--grey-background);
 }
 
 .budgets_title {
@@ -35,7 +36,7 @@
   display: flex;
   gap: 5rem;
   margin-left: 0.25rem;
-  padding-right: 3.5rem;
+  padding-right: 4rem;
   justify-content: space-evenly;
 }
 
