@@ -38,7 +38,7 @@ function BudgetForm() {
         />
         <label htmlFor="category">Catégorie du budget</label>
         <select id="category" name="category" required>
-          <option value="">Sans catégorie</option>
+          <option value="">Sélectionner une catégorie</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}
