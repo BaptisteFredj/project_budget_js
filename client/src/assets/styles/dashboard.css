@@ -1,3 +1,29 @@
+.dashboard_headtitle {
+  margin-top: 2rem;
+  font-family: var(--primary-font-family);
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin-left: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard_title {
+  margin-top: 1.5rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--primary-font-family);
+  font-weight: 600;
+  font-size: 1.75rem;
+}
+
+.dashboard_title.expenses {
+  margin-top: 2.5rem;
+}
+
+.dashboard_titles_container {
+  display: flex;
+  justify-content: center;
+}
+
 .period_button_container {
   display: flex;
   font-family: var(--primary-font-family);
@@ -80,23 +106,6 @@
   display: flex;
   gap: 2rem;
   flex-direction: row;
-}
-
-.dashboard_title {
-  margin-top: 1.5rem;
-  margin-bottom: 1.25rem;
-  font-family: var(--primary-font-family);
-  font-weight: 600;
-  font-size: 1.75rem;
-}
-
-.dashboard_title.expenses {
-  margin-top: 2.5rem;
-}
-
-.dashboard_titles_container {
-  display: flex;
-  justify-content: center;
 }
 
 .period_start_label,

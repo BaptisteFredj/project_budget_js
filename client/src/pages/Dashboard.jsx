@@ -53,6 +53,7 @@ export default function Dashboard() {
 
   return (
     <>
+      <h1 className="dashboard_headtitle">Tableau de bord</h1>
       <div className="dashboard_titles_container">
         <h2 className="dashboard_title">Mes dépenses par catégorie</h2>
       </div>
