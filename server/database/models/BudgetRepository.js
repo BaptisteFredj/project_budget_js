@@ -20,6 +20,7 @@ class BudgetRepository extends AbstractRepository {
         category c ON b.category_id = c.id
       LEFT JOIN 
         transaction t ON t.category_id = c.id
+        AND t.date BETWEEN b.start_date AND b.end_date
       WHERE 
         b.user_id = ?
       GROUP BY 
