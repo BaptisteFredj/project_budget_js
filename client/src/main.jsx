@@ -51,6 +51,7 @@ import BudgetForm from "./pages/BudgetForm";
 import BudgetEdit from "./pages/BudgetEdit";
 import CategoryDelete from "./components/CategoryDelete";
 import Dashboard from "./pages/Dashboard";
+import BudgetDelete from "./components/BudgetDelete";
 
 const router = createBrowserRouter([
   {
@@ -147,18 +148,8 @@ const router = createBrowserRouter([
             return validatedData;
           }
 
-          switch (request.method.toLocaleLowerCase()) {
-            case "put": {
-              await editCategory(formDataObject);
-              return redirect(`/categories/`);
-            }
-            case "delete": {
-              await deleteCategory(params.id);
-              return redirect("/categories");
-            }
-            default:
-              throw new Response("", { status: 405 });
-          }
+          await editCategory(formDataObject);
+          return redirect(`/categories`);
         },
       },
       {
@@ -338,23 +329,16 @@ const router = createBrowserRouter([
             return validatedData;
           }
 
-          switch (request.method.toLocaleLowerCase()) {
-            case "put": {
-              const result = await editBudget(formDataObject);
-
-              if (result && typeof result.message === "string") {
-                return { error: result };
-              }
-
-              return redirect(`/budgets/`);
-            }
-            case "delete": {
-              await deleteBudget(params.id);
-              return redirect("/budgets");
-            }
-            default:
-              throw new Response("Method Not Allowed", { status: 405 });
-          }
+          await editBudget(formDataObject);
+          return redirect(`/budgets`);
+        },
+      },
+      {
+        path: "/budgets/:id/delete",
+        element: <BudgetDelete />,
+        action: async ({ params }) => {
+          await deleteBudget(params.id);
+          return redirect("/budgets");
         },
       },
     ],
