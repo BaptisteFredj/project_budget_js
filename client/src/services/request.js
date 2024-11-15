@@ -245,12 +245,11 @@ export function getBudget(id) {
 }
 
 // Create a budget
-export function addBudget({ name, amount, startDate, endDate, categoryId }) {
+export function addBudget({ amount, startDate, endDate, categoryId }) {
   return axios
     .post(
       `${url}/api/budgets`,
       {
-        name,
         amount,
         start_date: startDate,
         end_date: endDate,
@@ -265,19 +264,11 @@ export function addBudget({ name, amount, startDate, endDate, categoryId }) {
 }
 
 // Edit a budget
-export function editBudget({
-  name,
-  amount,
-  startDate,
-  endDate,
-  categoryId,
-  id,
-}) {
+export function editBudget({ amount, startDate, endDate, categoryId, id }) {
   return axios
     .put(
       `${url}/api/budgets/${id}`,
       {
-        name,
         amount,
         start_date: startDate,
         end_date: endDate,
