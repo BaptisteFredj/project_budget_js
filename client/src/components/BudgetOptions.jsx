@@ -5,17 +5,17 @@ import trash from "../assets/images/trash.svg";
 
 import "../assets/styles/transactionoptions.css";
 
-function CategoryOptions({ category }) {
+function BudgetOptions({ budget }) {
   return (
     <div className="options_block category_edit_option">
-      <Link to={`/categories/${category.id}/edit`}>
+      <Link to={`/budgets/${budget.id}/edit`}>
         <div className="options edit_block">
           <img className="copy_icon" src={pen} alt="Pen icon" />
           <p>Modifier</p>
         </div>
       </Link>
 
-      <Link to={`/categories/${category.id}/delete`}>
+      <Link to={`/budgets/${budget.id}/delete`}>
         <div className="options delete_block">
           <img className="copy_icon" src={trash} alt="Trash icon" />
           <p>Supprimer</p>
@@ -25,10 +25,10 @@ function CategoryOptions({ category }) {
   );
 }
 
-export default CategoryOptions;
+export default BudgetOptions;
 
-CategoryOptions.propTypes = {
-  category: PropTypes.shape({
+BudgetOptions.propTypes = {
+  budget: PropTypes.shape({
     id: PropTypes.number.isRequired,
   }).isRequired,
 };
