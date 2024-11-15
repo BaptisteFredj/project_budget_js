@@ -21,7 +21,7 @@ class TransactionRepository extends AbstractRepository {
     }
 
     if (limit === "none") {
-      limitFilter = "";
+      limitFilter = ` LIMIT 20`;
     }
 
     const [rows] = await this.database.query(
