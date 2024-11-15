@@ -1,0 +1,46 @@
+.budget_label_form {
+  font-family: var(--primary-font-family);
+  color: var(--dark-grey);
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.budget_amount_label,
+.budget_name_label,
+.budget_end_date_label,
+.budget_start_date_label,
+.budget_category_label {
+  margin-bottom: 0.5rem;
+}
+
+.budget_amount_input,
+.budget_name_input,
+.budget_end_date_input,
+.budget_start_date_input {
+  margin-bottom: 1.5rem;
+}
+
+.budget_label_form input[type="text"]::placeholder,
+.budget_label_form input[type="number"]::placeholder,
+.budget_label_form input[type="date"]::placeholder,
+.budget_label_form select::placeholder {
+  color: var(--text-light-grey);
+}
+
+.budget_label_form input[type="text"],
+.budget_label_form input[type="number"],
+.budget_label_form input[type="date"],
+.budget_label_form select {
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  padding: 0.4rem 0.5rem;
+  font-size: 1rem;
+}
+
+.budget_form_button {
+  margin-top: 3rem;
+  padding-left: 8.5rem;
+}
