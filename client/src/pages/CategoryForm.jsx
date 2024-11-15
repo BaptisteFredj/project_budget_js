@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import { Form, useLoaderData, useActionData } from "react-router-dom";
-import { useState } from "react";
 
 import "../assets/styles/categoryform.css";
 
@@ -7,6 +7,10 @@ function CategoryForm() {
   const errors = useActionData();
   const { icons } = useLoaderData();
   const [selectedIcon, setSelectedIcon] = useState("");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleIconClick = (iconId) => {
     setSelectedIcon(iconId);

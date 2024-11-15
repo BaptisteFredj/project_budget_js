@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Form, useActionData, useLoaderData } from "react-router-dom";
 
 import "../assets/styles/budgetform.css";
@@ -5,6 +6,10 @@ import "../assets/styles/budgetform.css";
 function BudgetForm() {
   const { categories } = useLoaderData();
   const errors = useActionData();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Form method="post" className="budget_label_form">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, useLoaderData, useActionData } from "react-router-dom";
 
 import "../assets/styles/transactionform.css";
@@ -8,6 +8,10 @@ function TransactionForm() {
   const errors = useActionData();
 
   const [selectedCategory, setSelectedCategory] = useState("Sans catégorie");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
