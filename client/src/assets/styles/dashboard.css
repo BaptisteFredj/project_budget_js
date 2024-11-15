@@ -3,7 +3,7 @@
   font-family: var(--primary-font-family);
   gap: 10px;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -28,7 +28,7 @@
 
 .dashboard_total_text,
 .dashboard_total_amount {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: var(--dark-grey);
 }
 
@@ -52,8 +52,10 @@
 }
 
 .dashboard_total {
-  margin-bottom: 2.5rem;
-  margin-inline: 5svw;
+  display: flex;
+  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .category_amount_thumb_container {
@@ -83,10 +85,18 @@
 .dashboard_title {
   margin-top: 1.5rem;
   margin-bottom: 1.25rem;
-  margin-left: 1rem;
   font-family: var(--primary-font-family);
   font-weight: 600;
   font-size: 1.75rem;
+}
+
+.dashboard_title.expenses {
+  margin-top: 2.5rem;
+}
+
+.dashboard_titles_container {
+  display: flex;
+  justify-content: center;
 }
 
 .period_start_label,

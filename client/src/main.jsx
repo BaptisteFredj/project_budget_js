@@ -87,6 +87,7 @@ const router = createBrowserRouter([
               endDate
             ),
             transactions: await getTransactionsByUserId(date, limit),
+            budgets: await getBudgetsByUserId(),
           };
         },
       },

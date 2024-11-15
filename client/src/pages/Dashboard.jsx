@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLoaderData, useSearchParams, Link } from "react-router-dom";
 import CategoryAmountThumb from "../components/CategoryAmountThumb";
 import TransactionThumb from "../components/TransactionThumb";
+import BudgetThumb from "../components/BudgetThumb";
 
 import { formattedNumber, computePercentage } from "../utils/functions";
 
@@ -10,7 +11,8 @@ import "../assets/styles/dashboard.css";
 export default function Dashboard() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { transactionsTotalSum, categories, transactions } = useLoaderData();
+  const { transactionsTotalSum, categories, transactions, budgets } =
+    useLoaderData();
 
   const [selectedStartDate, setSelectedStartDate] = useState(
     searchParams.get("startDate") || ""
@@ -51,7 +53,9 @@ export default function Dashboard() {
 
   return (
     <>
-      <h2 className="dashboard_title">Dépenses par catégorie</h2>
+      <div className="dashboard_titles_container">
+        <h2 className="dashboard_title">Mes dépenses par catégorie</h2>
+      </div>
       <ul className="period_button_container">
         <Link to="/dashboard?period=day&limit=10">
           <button
@@ -156,15 +160,15 @@ export default function Dashboard() {
           {formattedNumber(transactionsTotalSum)} €
         </span>
       </p>
-
-      <h2 className="dashboard_title">Budgets en cours</h2>
-      <ul>
-        <li>Budget 1</li>
-        <li>Budget 2</li>
-        <li>Budget 3</li>
-      </ul>
-
-      <h2 className="dashboard_title">Dix dernières dépenses</h2>
+      <div className="dashboard_titles_container">
+        <h2 className="dashboard_title">Mes budgets</h2>
+      </div>
+      {budgets.map((budget) => (
+        <BudgetThumb budget={budget} key={budget.id} />
+      ))}
+      <div className="dashboard_titles_container">
+        <h2 className="dashboard_title expenses">Mes dernières dépenses</h2>
+      </div>
       {transactions.slice(0, 10).map((transaction) => (
         <TransactionThumb transaction={transaction} key={transaction.id} />
       ))}
