@@ -1,12 +1,3 @@
-.dashboard_headtitle {
-  margin-top: 2rem;
-  font-family: var(--primary-font-family);
-  font-weight: 600;
-  font-size: 2.5rem;
-  margin-left: 2rem;
-  margin-bottom: 0.5rem;
-}
-
 .dashboard_title {
   margin-top: 1.5rem;
   margin-bottom: 1.25rem;
@@ -95,7 +86,7 @@
 .categories_thumbs_container {
   display: flex;
   margin-bottom: 0.75rem;
-  gap: 0.25rem;
+  gap: 0.5rem;
   flex-direction: column;
   border: 1px solid var(--light-grey);
   border-radius: 4px;
@@ -112,7 +103,7 @@
 .period_start_label,
 .period_end_label {
   font-family: var(--primary-font-family);
-  font-size: 1rem;
+  font-size: 18px;
   display: flex;
   flex-direction: column;
   margin-top: 0.25rem;

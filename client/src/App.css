@@ -60,7 +60,7 @@ main {
 .add_button_container {
   display: flex;
   justify-content: center;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .add_button {

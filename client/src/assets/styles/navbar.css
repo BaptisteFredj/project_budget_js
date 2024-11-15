@@ -37,7 +37,6 @@
 @media screen and (max-width: 767px) {
   .navbar_links {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: fixed;
     right: -100svw;
