@@ -9,16 +9,21 @@ class BudgetRepository extends AbstractRepository {
     const [rows] = await this.database.query(
       `SELECT 
         b.id,
+        c.name AS category_name,
+        COALESCE(SUM(t.amount), 0) AS category_sum,
         b.amount,
         DATE_FORMAT(b.start_date, '%d/%m/%Y') as start_date,
-        DATE_FORMAT(b.end_date, '%d/%m/%Y') as end_date,
-        c.name AS category_name
+        DATE_FORMAT(b.end_date, '%d/%m/%Y') as end_date
       FROM 
         ${this.table} b
       INNER JOIN 
         category c ON b.category_id = c.id
+      LEFT JOIN 
+        transaction t ON t.category_id = c.id
       WHERE 
-        b.user_id = ?`,
+        b.user_id = ?
+      GROUP BY 
+        b.id, c.name, b.amount, b.start_date, b.end_date`,
       [userId]
     );
     return rows;
@@ -42,6 +47,8 @@ class BudgetRepository extends AbstractRepository {
     );
     return rows[0];
   }
+
+  async;
 
   async create(budget) {
     const [result] = await this.database.query(
