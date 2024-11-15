@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   margin-inline: 0.75rem;
-  margin-top: 1.5rem;
 }
 
 .transaction_amount_label,
@@ -14,12 +13,13 @@
 .transaction_type_label,
 .transaction_category_label {
   margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .transaction_amount_input,
 .transaction_name_input,
 .transaction_date_input {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .transaction_label_form input[type="text"]::placeholder,
