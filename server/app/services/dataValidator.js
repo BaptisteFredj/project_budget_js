@@ -35,11 +35,9 @@ const nameValidator = async (name) => {
 };
 
 const budgetFormValidator = async (req, res, next) => {
-  const { name, amount, start_date: startDate, end_date: endDate } = req.body;
+  const { amount, start_date: startDate, end_date: endDate } = req.body;
 
   try {
-    await nameValidator(name);
-
     // At first, i add a "or" condition to check if input is an integer, but the form already does it
     if (Number(amount) <= 0) {
       const error = new Error(

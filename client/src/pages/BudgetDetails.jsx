@@ -5,7 +5,6 @@ function BudgetDetails() {
 
   return (
     <ul>
-      <li>Nom du budget : {budget.name}</li>
       <li>Catégorie du budget : {budget.category_name}</li>
       <li>Montant du budget : {budget.amount}</li>
       <li>Date de début de la période : {budget.start_date}</li>

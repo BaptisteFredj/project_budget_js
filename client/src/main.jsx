@@ -297,14 +297,12 @@ const router = createBrowserRouter([
         action: async ({ request }) => {
           const formData = await request.formData();
           const formDataObject = {
-            name: formData.get("name"),
             amount: parseInt(formData.get("amount"), 10),
             startDate: formData.get("start_date"),
             endDate: formData.get("end_date"),
             categoryId: parseInt(formData.get("category"), 10),
           };
 
-          formDataObject.name = formDataObject.name.trim();
           const validatedData = budgetFormValidator(formDataObject);
 
           if (Object.keys(validatedData).length > 0) {
@@ -326,7 +324,6 @@ const router = createBrowserRouter([
         action: async ({ request, params }) => {
           const formData = await request.formData();
           const formDataObject = {
-            name: formData.get("name"),
             amount: parseInt(formData.get("amount"), 10),
             startDate: formData.get("start_date"),
             endDate: formData.get("end_date"),
@@ -334,7 +331,6 @@ const router = createBrowserRouter([
             id: params.id,
           };
 
-          formDataObject.name = formDataObject.name.trim();
           const validatedData = budgetFormValidator(formDataObject);
 
           if (Object.keys(validatedData).length > 0) {
