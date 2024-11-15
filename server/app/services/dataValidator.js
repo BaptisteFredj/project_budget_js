@@ -1,5 +1,6 @@
 const nameValidator = async (name, maxLength) => {
-  const specialCharacters = /[^A-Za-zÀ-ÿ0-9 ]/;
+  const specialCharacters = /[^A-Za-zÀ-ÿ0-9 çàèéêëîïôùüöç'-]/;
+
   const trimmedName = name.trim();
 
   if (!trimmedName) {

@@ -1,5 +1,6 @@
 function nameValidator(name, maxLength) {
-  const specialCharacters = /[^A-Za-zÀ-ÿ0-9 ]/;
+  const specialCharacters = /[^A-Za-zÀ-ÿ0-9 çàèéêëîïôùüöç'-]/;
+
   const errors = {};
 
   if (!name) {
