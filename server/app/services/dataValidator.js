@@ -70,7 +70,7 @@ const transactionFormValidator = async (req, res, next) => {
   const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
 
   try {
-    await nameValidator(name, 35);
+    await nameValidator(name, 28);
 
     if (!amount.toString().match(validNumber)) {
       const error = new Error(
@@ -95,7 +95,7 @@ const transactionFormValidator = async (req, res, next) => {
 const categoryFormValidator = async (req, res, next) => {
   const { name } = req.body;
   try {
-    await nameValidator(name, 25);
+    await nameValidator(name, 22);
 
     return next();
   } catch (error) {

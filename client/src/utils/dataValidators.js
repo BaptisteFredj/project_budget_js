@@ -42,7 +42,7 @@ export function budgetFormValidator(formData) {
 
 export function transactionFormValidator(formData) {
   const errors = {};
-  Object.assign(errors, nameValidator(formData.name, 35));
+  Object.assign(errors, nameValidator(formData.name, 28));
 
   const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
 
@@ -60,7 +60,7 @@ export function transactionFormValidator(formData) {
 
 export function categoryFormValidator(formData) {
   const errors = {};
-  Object.assign(errors, nameValidator(formData.name, 25));
+  Object.assign(errors, nameValidator(formData.name, 22));
 
   return errors;
 }
