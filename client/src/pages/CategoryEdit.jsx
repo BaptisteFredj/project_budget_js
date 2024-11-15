@@ -10,6 +10,10 @@ function CategoryEdit() {
   const [name, setName] = useState(category.name || "");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const defaultIcon = icons.find((icon) => icon.id === category.icon_id);
     setSelectedIcon(defaultIcon.id);
   }, [category.icon_id, icons]);

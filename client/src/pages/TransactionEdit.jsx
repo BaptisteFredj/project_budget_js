@@ -17,6 +17,10 @@ function TransactionEdit() {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     setSelectedCategory(previousCategory?.id);
   }, [previousCategory]);
 

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Form, useLoaderData, useActionData } from "react-router-dom";
 import { toIso } from "../utils/functions";
 
@@ -10,6 +11,10 @@ function BudgetEdit() {
   const previousCategory = categories?.find(
     (category) => category.name === budget.category_name
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Form method="put" className="budget_label_form">
