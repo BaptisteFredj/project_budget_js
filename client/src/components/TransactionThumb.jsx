@@ -12,6 +12,15 @@ export default function TransactionThumb({ transaction }) {
     setShowOptions(!showOptions);
   };
 
+  let categoryName;
+  if (!transaction.category_name) {
+    categoryName = "Sans catégorie";
+  } else if (transaction.category_name.length > 10) {
+    categoryName = `${transaction.category_name.substring(0, 11)}...`;
+  } else {
+    categoryName = transaction.category_name;
+  }
+
   return (
     <section className="transaction_block">
       <div className="transaction_left_container">
@@ -27,11 +36,7 @@ export default function TransactionThumb({ transaction }) {
               alt={transaction.icon_name}
             />
           </div>
-          <p className="transaction_category">
-            {transaction.category_name
-              ? transaction.category_name
-              : "Sans catégorie"}
-          </p>
+          <p className="transaction_category">{categoryName}</p>
         </div>
         <ul className="transaction_left_texts">
           <li className="transaction_name">{transaction.name}</li>
