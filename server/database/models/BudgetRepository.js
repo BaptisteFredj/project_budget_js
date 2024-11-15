@@ -45,7 +45,7 @@ class BudgetRepository extends AbstractRepository {
 
   async create(budget) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (name, amount, start_date, end_date, category_id, user_id ) VALUES(?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (amount, start_date, end_date, category_id, user_id ) VALUES(?, ?, ?, ?, ?)`,
       [
         budget.amount,
         budget.start_date,

@@ -38,7 +38,7 @@
     category_id INT NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(id),
-    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE SET NULL
+    FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
   );
 
 INSERT INTO icon (name) VALUES 
