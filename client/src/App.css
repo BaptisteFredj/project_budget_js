@@ -98,3 +98,9 @@ main {
 .icon_img {
   z-index: 90;
 }
+
+.error_message {
+  color: red;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}

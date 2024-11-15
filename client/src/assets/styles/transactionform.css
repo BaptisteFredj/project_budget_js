@@ -101,12 +101,6 @@
   position: relative;
 }
 
-.error_message {
-  color: red;
-  margin-bottom: 0.5rem;
-  font-size: 0.8rem;
-}
-
 .category_list {
   display: flex;
   gap: 0.5rem;

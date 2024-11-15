@@ -24,8 +24,9 @@ function BudgetForm() {
         placeholder="Montant"
         required
       />
-      {errors?.AmountError}
-
+      {errors?.AmountError && (
+        <span className="error_message">{errors.AmountError}</span>
+      )}
       <label className="budget_start_date_label" htmlFor="start_date">
         Date de début du budget
       </label>
@@ -37,7 +38,9 @@ function BudgetForm() {
         placeholder="Date de début du budget"
         required
       />
-      {errors?.DateError}
+      {errors?.DateError && (
+        <span className="error_message"> {errors.DateError}</span>
+      )}
 
       <label className="budget_end_date_label" htmlFor="end_date">
         Date de fin du budget
