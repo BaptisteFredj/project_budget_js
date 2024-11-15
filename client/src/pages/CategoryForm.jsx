@@ -29,8 +29,13 @@ function CategoryForm() {
         required
         className="category_name_input"
       />
-      {errors?.NameError}
-      {errors?.CharacterError}
+
+      {errors?.NameError && (
+        <span className="error_message">{errors.NameError}</span>
+      )}
+      {errors?.CharacterError && (
+        <span className="error_message">{errors.CharacterError}</span>
+      )}
 
       <label className="category_icon_label" htmlFor="icon">
         Icône
