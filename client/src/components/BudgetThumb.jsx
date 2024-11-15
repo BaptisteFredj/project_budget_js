@@ -12,7 +12,7 @@ export default function BudgetThumb({ budget }) {
           </li>
         </ul>
         <ul>
-          <li>Montant dép</li>
+          <li>Montant dép {budget.category_sum}</li>
           <li>Options</li>
           <li>
             <Link to={`/budgets/${budget.id}/edit`}>Modifier le budget</Link>
@@ -30,7 +30,8 @@ export default function BudgetThumb({ budget }) {
 
 BudgetThumb.propTypes = {
   budget: PropTypes.shape({
-    category_name: PropTypes.string,
+    category_name: PropTypes.string.isRequired,
+    category_sum: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
     start_date: PropTypes.string.isRequired,
     end_date: PropTypes.string.isRequired,
