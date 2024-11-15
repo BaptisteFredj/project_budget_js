@@ -1,0 +1,44 @@
+.budget_thumb_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  font-family: var(--primary-font-family);
+  gap: 1rem;
+  padding: 0.25rem;
+}
+
+.budget_sum,
+.budget_amount {
+  font-family: var(--number-font-family);
+  font-size: 1.25rem;
+}
+
+.budget_top_container,
+.budget_bottom_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.budget_name_dates {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.budget_sum_options {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.budget_name {
+  font-size: 1.5rem;
+}
+
+.budget_dates {
+  color: var(--text-light-grey);
+}
+
+.budget_amount {
+  font-size: 1.5rem;
+}
