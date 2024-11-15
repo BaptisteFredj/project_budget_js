@@ -1,0 +1,46 @@
+.progress_bar_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.progress_bar_container {
+  flex: 1;
+  height: 2rem;
+  background-color: var(--progress-bar-background, #e0e0e0);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress_bar {
+  height: 100%;
+  border-radius: 0.5rem;
+  transition: width 0.3s ease;
+}
+
+.progress_bar.blue {
+  background-color: var(--progress-bar-blue, #007bff);
+}
+
+.progress_bar.green {
+  background-color: var(--progress-bar-green, #28a745);
+}
+
+.progress_bar.yellow {
+  background-color: var(--progress-bar-yellow, #ffc107);
+}
+
+.progress_bar.red {
+  background-color: var(--progress-bar-red, #dc3545);
+}
+
+.progress_bar_percentage {
+  font-size: 1.25rem;
+  font-family: var(--number-font-family);
+  color: var(--progress-bar-text, #333);
+  white-space: nowrap;
+  min-width: 3rem;
+}
