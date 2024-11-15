@@ -40,7 +40,8 @@
 
 .login_form_button {
   margin-top: 1.5rem;
-  padding-left: 8.5rem;
+  text-align: center;
+  padding-inline: 5rem;
 }
 
 .error_message {
@@ -63,9 +64,32 @@
 .login_link {
   font-size: 1.25rem;
   color: var(--dark-grey);
+  text-align: center;
 }
 
 .register_link:hover,
 .login_link:hover {
   color: var(--text-light-grey);
+}
+
+@media screen and (min-width: 767px) {
+  .login_title {
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-size: 4.5rem;
+  }
+
+  .login_label_form {
+    font-size: 2rem;
+    align-items: center;
+  }
+  .login_label_form input[type="email"],
+  .login_label_form input[type="password"] {
+    width: 35svw;
+  }
+  .login_email_input,
+  .login_password_input {
+    margin-bottom: 2.5rem;
+  }
 }
