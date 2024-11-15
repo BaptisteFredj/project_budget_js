@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import BudgetThumb from "../components/BudgetThumb";
 
@@ -5,6 +6,10 @@ import "../assets/styles/budgets.css";
 
 function Users() {
   const { budgets } = useLoaderData();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

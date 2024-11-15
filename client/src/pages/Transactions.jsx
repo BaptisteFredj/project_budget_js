@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLoaderData, Link, useSearchParams } from "react-router-dom";
 import TransactionThumb from "../components/TransactionThumb";
 
@@ -7,6 +8,10 @@ function Transactions() {
   const [searchParams] = useSearchParams();
   const date = searchParams.get("date");
   const { transactions } = useLoaderData();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

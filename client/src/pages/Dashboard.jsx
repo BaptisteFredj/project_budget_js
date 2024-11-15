@@ -9,6 +9,10 @@ import { formattedNumber, computePercentage } from "../utils/functions";
 import "../assets/styles/dashboard.css";
 
 export default function Dashboard() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { transactionsTotalSum, categories, transactions, budgets } =

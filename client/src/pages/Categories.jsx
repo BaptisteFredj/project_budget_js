@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import CategoryThumb from "../components/CategoryThumb";
 
@@ -5,6 +6,10 @@ import "../assets/styles/categories.css";
 
 function Categories() {
   const { categories } = useLoaderData();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
