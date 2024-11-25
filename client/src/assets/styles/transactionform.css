@@ -119,12 +119,13 @@
   .transaction_type_label,
   .transaction_category_label {
     font-size: 2rem;
+    margin-bottom: 1rem;
   }
 
-  .transaction_label_form input[type="text"],
-  .transaction_label_form input[type="number"],
-  .transaction_label_form input[type="date"] {
-    width: 40svw;
+  .transaction_amount_input,
+  .transaction_name_input,
+  .transaction_date_input {
+    margin-bottom: 1rem;
   }
 
   .transaction_label_form input[type="text"]::placeholder,
@@ -138,5 +139,6 @@
   .transaction_label_form input[type="date"] {
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
+    width: 40svw;
   }
 }
