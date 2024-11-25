@@ -172,6 +172,13 @@ export default function Dashboard() {
         <Link to="/budgets">
           <h2 className="dashboard_title">Mes budgets</h2>
         </Link>
+        <Link to="/budgets_form">
+          <div
+            className="plus_button dashboard_budget_add"
+            role="button"
+            aria-label="Add"
+          />
+        </Link>
       </div>
       <section className="budget_thumbs_container">
         {budgets.map((budget) => (
@@ -181,6 +188,13 @@ export default function Dashboard() {
       <div className="dashboard_titles_container">
         <Link to="/transactions?date=past">
           <h2 className="dashboard_title expenses">Mes dernières dépenses</h2>
+        </Link>
+        <Link to="/transactions_form">
+          <div
+            className="plus_button dashboard_transaction_add"
+            role="button"
+            aria-label="Add"
+          />
         </Link>
       </div>
       <section className="transaction_blocks_container">

@@ -13,6 +13,16 @@
 .dashboard_titles_container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dashboard_budget_add {
+  margin-top: 6px;
+}
+
+.dashboard_transaction_add {
+  margin-top: 25px;
 }
 
 .period_button_container {
