@@ -72,8 +72,9 @@ section.warning_popover {
     border-radius: 8px;
     border: 0.5px solid black;
     margin-top: 20svh;
-    margin-inline: 10svw;
+    margin-inline: 20svw;
     max-width: 600px;
+    min-width: 450px;
   }
 
   .warning_confirm,
