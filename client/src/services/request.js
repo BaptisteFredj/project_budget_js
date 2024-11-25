@@ -323,3 +323,12 @@ export function register(email, password) {
       throw error;
     });
 }
+
+export function logout() {
+  return axios
+    .post(`${url}/api/logout`, {}, { withCredentials: true })
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error;
+    });
+}
