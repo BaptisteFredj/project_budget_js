@@ -49,3 +49,44 @@
   margin-top: 3rem;
   padding-left: 5.25rem;
 }
+
+@media screen and (min-width: 992px) {
+  .budget_label_form {
+    display: flex;
+    flex-direction: column;
+    margin-inline: 15svw;
+    margin-top: 5svw;
+  }
+
+  .budget_amount_label,
+  .budget_name_label,
+  .budget_end_date_label,
+  .budget_start_date_label,
+  .budget_category_label {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .budget_amount_input,
+  .budget_name_input,
+  .budget_end_date_input,
+  .budget_start_date_input {
+    margin-bottom: 1rem;
+  }
+
+  .budget_label_form input[type="text"]::placeholder,
+  .budget_label_form input[type="number"]::placeholder,
+  .budget_label_form input[type="date"]::placeholder,
+  .budget_label_form select::placeholder {
+    font-size: 1.25rem;
+  }
+
+  .budget_label_form input[type="text"],
+  .budget_label_form input[type="number"],
+  .budget_label_form input[type="date"],
+  .budget_label_form select {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    width: 40svw;
+  }
+}
