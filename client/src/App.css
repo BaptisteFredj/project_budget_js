@@ -152,8 +152,23 @@ main {
 }
 
 @media screen and (min-width: 767px) {
+  body {
+    height: 90vh;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--white) 0 250px,
+      var(--light-grey) 250px 500px
+    );
+    position: relative;
+    z-index: -1;
+  }
+
   main {
     margin-inline: 15svw;
+    border: 1px solid var(--light-grey);
+    position: relative;
+    z-index: 1;
+    background-color: var(--white);
   }
 
   .icon_img {
