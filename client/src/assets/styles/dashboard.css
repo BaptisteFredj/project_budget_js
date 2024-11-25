@@ -160,6 +160,18 @@
     font-size: 3.5rem;
   }
 
+  .dashboard_budget_add {
+    margin-top: 2.25rem;
+  }
+
+  .dashboard_transaction_add {
+    margin-top: 2.5rem;
+  }
+
+  .dashboard_titles_container {
+    gap: 2rem;
+  }
+
   .dashboard_title.expenses {
     margin-top: 5rem;
   }

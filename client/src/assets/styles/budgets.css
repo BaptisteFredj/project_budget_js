@@ -80,6 +80,23 @@
     text-align: center;
   }
 
+  .budget_thumb_container {
+    min-width: 460px;
+  }
+
+  .budget_thumb_container {
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1499px) {
+  .budget_thumb_container {
+    margin-inline: 15svw;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (min-width: 1500px) {
   .budget_thumbs_container {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
@@ -87,13 +104,5 @@
     justify-items: center;
     max-width: 922px;
     margin: 0 auto;
-  }
-
-  .budget_thumb_container {
-    min-width: 460px;
-  }
-
-  .budget_thumb_container {
-    padding: 1rem;
   }
 }
