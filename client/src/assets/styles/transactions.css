@@ -108,7 +108,7 @@
   min-width: 7rem;
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 992px) {
   .transaction_blocks_container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

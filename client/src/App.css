@@ -151,7 +151,7 @@ main {
   font-size: 0.8rem;
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 992px) {
   body {
     height: 90vh;
     background: repeating-linear-gradient(

@@ -72,7 +72,7 @@
   color: var(--text-light-grey);
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 992px) {
   .login_title {
     margin-top: 6rem;
     margin-bottom: 3rem;

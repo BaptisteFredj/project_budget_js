@@ -67,7 +67,7 @@
   flex-direction: column;
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 992px) {
   .register_title {
     margin-top: 6rem;
     margin-bottom: 3rem;
