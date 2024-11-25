@@ -54,3 +54,34 @@ section.warning_popover {
   margin-top: 5rem;
   margin-inline: 10svw;
 }
+
+@media screen and (min-width: 992px) {
+  .warning_h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .warning_h2 {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    color: var(--dark-grey);
+  }
+
+  section.warning_popover {
+    padding: 2rem;
+    border-radius: 8px;
+    border: 0.5px solid black;
+    margin-top: 20svh;
+    margin-inline: 10svw;
+    max-width: 600px;
+  }
+
+  .warning_confirm,
+  .warning_cancel {
+    font-size: 1.75rem;
+    padding: 1rem 1.5rem;
+  }
+  .warning_buttons {
+    gap: 3rem;
+  }
+}
