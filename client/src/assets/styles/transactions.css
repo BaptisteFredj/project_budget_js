@@ -33,7 +33,7 @@
   display: flex;
   margin-bottom: 1rem;
   background: var(--grey-background);
-  border: 1px solid var(--light-grey);
+  border: 1px solid var(--dark-grey);
   border-radius: 3rem 0.5rem 0.5rem 3rem;
   align-items: center;
   justify-content: space-between;
