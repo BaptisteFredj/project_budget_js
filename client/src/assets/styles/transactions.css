@@ -49,7 +49,7 @@
 
 .transaction_category,
 .transaction_date {
-  color: var(--text-light-grey);
+  color: var(--dark-grey);
   font-family: var(--primary-font-family);
 }
 
