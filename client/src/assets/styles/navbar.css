@@ -10,6 +10,7 @@
   min-height: 10svh;
   padding: 1rem;
   display: flex;
+  z-index: 100;
 }
 
 .navbar_logo img {
@@ -19,6 +20,8 @@
 
 .navbar_links {
   display: flex;
+  gap: 2rem;
+  font-size: 1.5rem;
 }
 
 .navbar_link {
@@ -36,7 +39,6 @@
 @media screen and (max-width: 767px) {
   .navbar_links {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: fixed;
     right: -100svw;
@@ -79,6 +81,7 @@
     position: fixed;
     top: 2.5rem;
     right: 1.5rem;
+    z-index: 110;
   }
 
   .navbar_burger:hover {

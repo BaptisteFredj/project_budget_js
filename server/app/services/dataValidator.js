@@ -1,5 +1,6 @@
-const nameValidator = async (name) => {
-  const specialCharacters = /[^A-Za-zÀ-ÿ0-9 ]/;
+const nameValidator = async (name, maxLength) => {
+  const specialCharacters = /[^A-Za-zÀ-ÿ0-9 çàèéêëîïôùüöç'-]/;
+
   const trimmedName = name.trim();
 
   if (!trimmedName) {
@@ -11,8 +12,10 @@ const nameValidator = async (name) => {
   }
 
   if (trimmedName) {
-    if (trimmedName.length > 100) {
-      const error = new Error("Nom trop long : maximum 100 caractères.");
+    if (trimmedName.length > maxLength) {
+      const error = new Error(
+        `Nom trop long : maximum ${maxLength} caractères.`
+      );
       error.name = "NameError";
       throw error;
     }
@@ -67,7 +70,7 @@ const transactionFormValidator = async (req, res, next) => {
   const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
 
   try {
-    await nameValidator(name);
+    await nameValidator(name, 25);
 
     if (!amount.toString().match(validNumber)) {
       const error = new Error(
@@ -92,7 +95,7 @@ const transactionFormValidator = async (req, res, next) => {
 const categoryFormValidator = async (req, res, next) => {
   const { name } = req.body;
   try {
-    await nameValidator(name);
+    await nameValidator(name, 22);
 
     return next();
   } catch (error) {

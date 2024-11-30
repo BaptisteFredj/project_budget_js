@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLoaderData, Link, useSearchParams } from "react-router-dom";
 import TransactionThumb from "../components/TransactionThumb";
 
@@ -7,6 +8,10 @@ function Transactions() {
   const [searchParams] = useSearchParams();
   const date = searchParams.get("date");
   const { transactions } = useLoaderData();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -27,10 +32,11 @@ function Transactions() {
           </li>
         </Link>
       </ul>
-
-      {transactions.map((transaction) => (
-        <TransactionThumb transaction={transaction} key={transaction.id} />
-      ))}
+      <section className="transaction_blocks_container">
+        {transactions.map((transaction) => (
+          <TransactionThumb transaction={transaction} key={transaction.id} />
+        ))}
+      </section>
       <div className="add_button_container">
         <button type="button" className="add_button">
           <Link to="/transactions_form">Nouvelle transaction</Link>

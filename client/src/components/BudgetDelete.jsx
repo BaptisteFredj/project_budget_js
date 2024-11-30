@@ -3,7 +3,7 @@ import { Form, Link } from "react-router-dom";
 
 import "../assets/styles/transactiondelete.css";
 
-function CategoryDelete() {
+function BudgetDelete() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -15,7 +15,7 @@ function CategoryDelete() {
         <h2 className="warning_h2">Cette action ne peut être annulée.</h2>
       </div>
       <div className="warning_buttons">
-        <Link to="/transactions/">
+        <Link to="/budgets">
           <button className="warning_cancel" type="button">
             Annuler
           </button>
@@ -30,4 +30,4 @@ function CategoryDelete() {
   );
 }
 
-export default CategoryDelete;
+export default BudgetDelete;

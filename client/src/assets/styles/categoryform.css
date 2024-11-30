@@ -5,16 +5,16 @@
   display: flex;
   flex-direction: column;
   margin-inline: 0.75rem;
-  margin-top: 1.5rem;
 }
 
 .category_name_label,
 .category_icon_label {
   margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .category_name_input {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .category_label_form input[type="text"]::placeholder {
@@ -51,4 +51,33 @@
   border-radius: 50%;
   animation: brightness-animation 1.5s ease-in-out infinite;
   position: relative;
+}
+
+@media screen and (min-width: 992px) {
+  .category_label_form {
+    display: flex;
+    flex-direction: column;
+    margin-inline: 15svw;
+    margin-top: 5svw;
+  }
+
+  .category_name_label,
+  .category_icon_label {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .category_name_input {
+    margin-bottom: 1rem;
+  }
+
+  .category_label_form input[type="text"]::placeholder {
+    font-size: 1.25rem;
+  }
+
+  .category_label_form input[type="text"] {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    width: 40svw;
+  }
 }

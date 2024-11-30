@@ -10,6 +10,10 @@ function CategoryEdit() {
   const [name, setName] = useState(category.name || "");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const defaultIcon = icons.find((icon) => icon.id === category.icon_id);
     setSelectedIcon(defaultIcon.id);
   }, [category.icon_id, icons]);
@@ -32,8 +36,12 @@ function CategoryEdit() {
         className="category_name_input"
         required
       />
-      {errors?.NameError}
-      {errors?.CharacterError}
+      {errors?.NameError && (
+        <span className="error_message">{errors.NameError}</span>
+      )}
+      {errors?.CharacterError && (
+        <span className="error_message">{errors.CharacterError}</span>
+      )}
       <label className="category_icon_label" htmlFor="icon">
         Icône
       </label>

@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { Form, Link } from "react-router-dom";
 
 import "../assets/styles/transactiondelete.css";
 
 function TransactionDelete() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className="warning_popover">
       <div className="warning_text">

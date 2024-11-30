@@ -1,25 +1,25 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { register } from "../services/request";
 
 import "../assets/styles/register.css";
 
 function Register() {
-  const emailRef = useRef();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
+  const emailRef = useRef();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const navigate = useNavigate();
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-
   const handleConfirmPasswordChange = (event) => {
     setConfirmPassword(event.target.value);
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 

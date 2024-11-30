@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, useLoaderData, useActionData } from "react-router-dom";
 
 import "../assets/styles/transactionform.css";
@@ -9,6 +9,10 @@ function TransactionForm() {
 
   const [selectedCategory, setSelectedCategory] = useState("Sans catégorie");
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleCategoryClick = (categoryName) => {
     setSelectedCategory(categoryName);
   };
@@ -18,9 +22,6 @@ function TransactionForm() {
       <label className="transaction_amount_label" htmlFor="amount">
         Montant
       </label>
-      {errors?.AmountError && (
-        <span className="error_message">{errors.AmountError}</span>
-      )}
       <input
         type="number"
         id="amount"
@@ -29,16 +30,14 @@ function TransactionForm() {
         step="0.01"
         className="transaction_amount_input"
       />
+      {errors?.AmountError && (
+        <span className="error_message">{errors.AmountError}</span>
+      )}
 
       <label className="transaction_name_label" htmlFor="name">
         Libellé
       </label>
-      {errors?.NameError && (
-        <span className="error_message">{errors.NameError}</span>
-      )}
-      {errors?.CharacterError && (
-        <span className="error_message">{errors.CharacterError}</span>
-      )}
+
       <input
         type="text"
         id="name"
@@ -46,13 +45,17 @@ function TransactionForm() {
         placeholder="Exemple : Paire de chaussures"
         className="transaction_name_input"
       />
+      {errors?.NameError && (
+        <span className="error_message">{errors.NameError}</span>
+      )}
+      {errors?.CharacterError && (
+        <span className="error_message">{errors.CharacterError}</span>
+      )}
 
       <label className="transaction_date_label" htmlFor="date">
         Date
       </label>
-      {errors?.DateError && (
-        <span className="error_message">{errors.DateError}</span>
-      )}
+
       <input
         type="date"
         id="date"
@@ -60,6 +63,9 @@ function TransactionForm() {
         placeholder="Date de la transaction"
         className="transaction_date_input"
       />
+      {errors?.DateError && (
+        <span className="error_message">{errors.DateError}</span>
+      )}
 
       <label className="transaction_category_label" htmlFor="category">
         Catégorie

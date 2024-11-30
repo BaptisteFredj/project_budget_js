@@ -1,5 +1,6 @@
-function nameValidator(name) {
-  const specialCharacters = /[^A-Za-zÀ-ÿ0-9 ]/;
+function nameValidator(name, maxLength) {
+  const specialCharacters = /[^A-Za-zÀ-ÿ0-9 çàèéêëîïôùüöç'-]/;
+
   const errors = {};
 
   if (!name) {
@@ -7,8 +8,8 @@ function nameValidator(name) {
       "Le nom ne peut pas être vide ou composé uniquement d'espaces. Les espaces en début et fin de nom ne comptent pas comme un caractère.";
   }
   if (name) {
-    if (name.length > 100) {
-      errors.NameError = "Nom trop long : maximum 100 caractères.";
+    if (name.length > maxLength) {
+      errors.NameError = `Nom trop long : maximum ${maxLength} caractères.`;
     }
     if (name.length < 3) {
       errors.NameError =
@@ -41,7 +42,7 @@ export function budgetFormValidator(formData) {
 
 export function transactionFormValidator(formData) {
   const errors = {};
-  Object.assign(errors, nameValidator(formData.name));
+  Object.assign(errors, nameValidator(formData.name, 25));
 
   const validNumber = /^(?!0$)\d+(\.\d{1,2})?$/;
 
@@ -59,7 +60,7 @@ export function transactionFormValidator(formData) {
 
 export function categoryFormValidator(formData) {
   const errors = {};
-  Object.assign(errors, nameValidator(formData.name));
+  Object.assign(errors, nameValidator(formData.name, 22));
 
   return errors;
 }

@@ -44,13 +44,13 @@ import TransactionEdit from "./pages/TransactionEdit";
 import TransactionDelete from "./components/TransactionDelete";
 import TransactionCopy from "./pages/TransactionCopy";
 import Budgets from "./pages/Budgets";
-import BudgetDetails from "./pages/BudgetDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import BudgetForm from "./pages/BudgetForm";
 import BudgetEdit from "./pages/BudgetEdit";
 import CategoryDelete from "./components/CategoryDelete";
 import Dashboard from "./pages/Dashboard";
+import BudgetDelete from "./components/BudgetDelete";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +87,7 @@ const router = createBrowserRouter([
               endDate
             ),
             transactions: await getTransactionsByUserId(date, limit),
+            budgets: await getBudgetsByUserId(),
           };
         },
       },
@@ -146,18 +147,8 @@ const router = createBrowserRouter([
             return validatedData;
           }
 
-          switch (request.method.toLocaleLowerCase()) {
-            case "put": {
-              await editCategory(formDataObject);
-              return redirect(`/categories/`);
-            }
-            case "delete": {
-              await deleteCategory(params.id);
-              return redirect("/categories");
-            }
-            default:
-              throw new Response("", { status: 405 });
-          }
+          await editCategory(formDataObject);
+          return redirect(`/categories`);
         },
       },
       {
@@ -282,13 +273,6 @@ const router = createBrowserRouter([
         }),
       },
       {
-        path: "/budgets/:id",
-        element: <BudgetDetails />,
-        loader: async ({ params }) => ({
-          budget: await getBudget(params.id),
-        }),
-      },
-      {
         path: "/budgets_form",
         element: <BudgetForm />,
         loader: async () => ({
@@ -337,23 +321,16 @@ const router = createBrowserRouter([
             return validatedData;
           }
 
-          switch (request.method.toLocaleLowerCase()) {
-            case "put": {
-              const result = await editBudget(formDataObject);
-
-              if (result && typeof result.message === "string") {
-                return { error: result };
-              }
-
-              return redirect(`/budgets/`);
-            }
-            case "delete": {
-              await deleteBudget(params.id);
-              return redirect("/budgets");
-            }
-            default:
-              throw new Response("Method Not Allowed", { status: 405 });
-          }
+          await editBudget(formDataObject);
+          return redirect(`/budgets`);
+        },
+      },
+      {
+        path: "/budgets/:id/delete",
+        element: <BudgetDelete />,
+        action: async ({ params }) => {
+          await deleteBudget(params.id);
+          return redirect("/budgets");
         },
       },
     ],

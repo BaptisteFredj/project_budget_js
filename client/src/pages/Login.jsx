@@ -1,13 +1,16 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../services/request";
 
 import "../assets/styles/login.css";
 
 function Login() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const emailRef = useRef();
   const passwordRef = useRef();
-
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {

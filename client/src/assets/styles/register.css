@@ -42,7 +42,8 @@
 
 .register_form_button {
   margin-top: 1.5rem;
-  padding-left: 5rem;
+  text-align: center;
+  padding-inline: 5rem;
 }
 
 .error_message {
@@ -64,4 +65,26 @@
 .register_confirm_password_block {
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (min-width: 992px) {
+  .register_title {
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-size: 4.5rem;
+  }
+
+  .register_label_form {
+    font-size: 2rem;
+    align-items: center;
+  }
+  .register_label_form input[type="email"],
+  .register_label_form input[type="password"] {
+    width: 35svw;
+  }
+  .register_email_input,
+  .register_password_input {
+    margin-bottom: 2.5rem;
+  }
 }

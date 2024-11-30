@@ -5,6 +5,10 @@ import { toIso } from "../utils/functions";
 import "../assets/styles/transactionform.css";
 
 function TransactionCopy() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { transaction, categories } = useLoaderData();
   const errors = useActionData();
   const [selectedCategory, setSelectedCategory] = useState();
@@ -29,9 +33,7 @@ function TransactionCopy() {
       <label className="transaction_amount_label" htmlFor="amount">
         Montant
       </label>
-      {errors?.AmountError && (
-        <span className="error_message">{errors.AmountError}</span>
-      )}
+
       <input
         type="number"
         id="amount"
@@ -41,16 +43,14 @@ function TransactionCopy() {
         onChange={(event) => setAmount(event.target.value)}
         className="transaction_amount_input"
       />
+      {errors?.AmountError && (
+        <span className="error_message">{errors.AmountError}</span>
+      )}
 
       <label className="transaction_name_label" htmlFor="name">
         Libellé
       </label>
-      {errors?.NameError && (
-        <span className="error_message">{errors.NameError}</span>
-      )}
-      {errors?.CharacterError && (
-        <span className="error_message">{errors.CharacterError}</span>
-      )}
+
       <input
         type="text"
         id="name"
@@ -59,13 +59,17 @@ function TransactionCopy() {
         onChange={(event) => setName(event.target.value)}
         className="transaction_name_input"
       />
+      {errors?.NameError && (
+        <span className="error_message">{errors.NameError}</span>
+      )}
+      {errors?.CharacterError && (
+        <span className="error_message">{errors.CharacterError}</span>
+      )}
 
       <label className="transaction_date_label" htmlFor="date">
         Date
       </label>
-      {errors?.DateError && (
-        <span className="error_message">{errors.DateError}</span>
-      )}
+
       <input
         type="date"
         id="date"
@@ -74,6 +78,9 @@ function TransactionCopy() {
         onChange={(event) => setDate(event.target.value)}
         className="transaction_date_input"
       />
+      {errors?.DateError && (
+        <span className="error_message">{errors.DateError}</span>
+      )}
 
       <label className="transaction_category_label" htmlFor="category">
         Catégorie

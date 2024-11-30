@@ -2,15 +2,21 @@ import { useState, useEffect } from "react";
 import { useLoaderData, useSearchParams, Link } from "react-router-dom";
 import CategoryAmountThumb from "../components/CategoryAmountThumb";
 import TransactionThumb from "../components/TransactionThumb";
+import BudgetThumb from "../components/BudgetThumb";
 
 import { formattedNumber, computePercentage } from "../utils/functions";
 
 import "../assets/styles/dashboard.css";
 
 export default function Dashboard() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { transactionsTotalSum, categories, transactions } = useLoaderData();
+  const { transactionsTotalSum, categories, transactions, budgets } =
+    useLoaderData();
 
   const [selectedStartDate, setSelectedStartDate] = useState(
     searchParams.get("startDate") || ""
@@ -51,7 +57,13 @@ export default function Dashboard() {
 
   return (
     <>
-      <h2 className="dashboard_title">Dépenses par catégorie</h2>
+      <div className="dashboard_titles_container">
+        <Link to="/transactions?date=past">
+          <h2 className="dashboard_title title_by_period">
+            Mes dépenses par catégorie
+          </h2>
+        </Link>
+      </div>
       <ul className="period_button_container">
         <Link to="/dashboard?period=day&limit=10">
           <button
@@ -156,18 +168,40 @@ export default function Dashboard() {
           {formattedNumber(transactionsTotalSum)} €
         </span>
       </p>
-
-      <h2 className="dashboard_title">Budgets en cours</h2>
-      <ul>
-        <li>Budget 1</li>
-        <li>Budget 2</li>
-        <li>Budget 3</li>
-      </ul>
-
-      <h2 className="dashboard_title">Dix dernières dépenses</h2>
-      {transactions.slice(0, 10).map((transaction) => (
-        <TransactionThumb transaction={transaction} key={transaction.id} />
-      ))}
+      <div className="dashboard_titles_container">
+        <Link to="/budgets">
+          <h2 className="dashboard_title">Mes budgets</h2>
+        </Link>
+        <Link to="/budgets_form">
+          <div
+            className="plus_button dashboard_budget_add"
+            role="button"
+            aria-label="Add"
+          />
+        </Link>
+      </div>
+      <section className="budget_thumbs_container">
+        {budgets.map((budget) => (
+          <BudgetThumb budget={budget} key={budget.id} />
+        ))}
+      </section>
+      <div className="dashboard_titles_container">
+        <Link to="/transactions?date=past">
+          <h2 className="dashboard_title expenses">Mes dernières dépenses</h2>
+        </Link>
+        <Link to="/transactions_form">
+          <div
+            className="plus_button dashboard_transaction_add"
+            role="button"
+            aria-label="Add"
+          />
+        </Link>
+      </div>
+      <section className="transaction_blocks_container">
+        {transactions.slice(0, 10).map((transaction) => (
+          <TransactionThumb transaction={transaction} key={transaction.id} />
+        ))}
+      </section>
     </>
   );
 }
