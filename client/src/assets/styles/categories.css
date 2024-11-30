@@ -12,8 +12,9 @@
   gap: 1rem;
   justify-content: space-between;
   padding: 0.25rem;
-  background: linear-gradient(to right, white, rgb(231, 230, 230) 50%, white);
-  border-radius: 0.5rem;
+  background: var(--grey-background);
+  border: 2px solid var(--light-grey);
+  border-radius: 3rem 0.5rem 0.5rem 3rem;
   margin-bottom: 0.75rem;
 }
 
@@ -35,4 +36,28 @@
 .category_edit_option {
   padding-top: 4px;
   right: 3rem;
+}
+
+@media screen and (min-width: 992px) {
+  .categories_title {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-size: 4.5rem;
+  }
+  .category_blocks_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .category_container:nth-child(odd) {
+    border-radius: 3rem 0.5rem 0.5rem 3rem;
+  }
+
+  .category_container:nth-child(even) {
+    border-radius: 0.5rem 3rem 3rem 0.5rem;
+  }
 }

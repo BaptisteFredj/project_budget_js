@@ -18,3 +18,10 @@
   align-items: center;
   gap: 0.75rem;
 }
+
+@media screen and (min-width: 992px) {
+  .options_block {
+    position: relative;
+    right: 0;
+  }
+}

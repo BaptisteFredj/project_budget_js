@@ -33,7 +33,7 @@
   display: flex;
   margin-bottom: 1rem;
   background: var(--grey-background);
-  border: 1px solid var(--light-grey);
+  border: 2px solid var(--light-grey);
   border-radius: 3rem 0.5rem 0.5rem 3rem;
   align-items: center;
   justify-content: space-between;
@@ -49,7 +49,7 @@
 
 .transaction_category,
 .transaction_date {
-  color: var(--text-light-grey);
+  color: var(--dark-grey);
   font-family: var(--primary-font-family);
 }
 
@@ -106,4 +106,69 @@
   gap: 0.5rem;
   align-items: center;
   min-width: 7rem;
+}
+
+@media screen and (min-width: 992px) {
+  .title_transactions {
+    font-size: 3rem;
+  }
+
+  .transaction_category_container {
+    min-width: 10rem;
+    gap: 0.75rem;
+  }
+
+  .transaction_name,
+  .transaction_amount {
+    font-size: 1.5rem;
+  }
+
+  .transaction_right_texts {
+    min-width: 95px;
+  }
+
+  .transaction_date,
+  .transaction_category {
+    font-size: 1.25rem;
+  }
+
+  .future_transactions,
+  .last_transactions {
+    font-size: 2rem;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .transactions_title_group {
+    margin-top: 3rem;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 992px) and (max-width: 1299px) {
+    .transaction_block {
+      margin-inline: 10svw;
+    }
+  }
+
+  @media screen and (min-width: 1300px) {
+    .transaction_blocks_container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    /* Alternate border-radius for every other .transaction_block */
+    .transaction_block:nth-child(odd) {
+      border-radius: 3rem 0.5rem 0.5rem 3rem;
+    }
+
+    .transaction_block:nth-child(even) {
+      border-radius: 0.5rem 3rem 3rem 0.5rem;
+    }
+    .title_transactions {
+      font-size: 4.5rem;
+    }
+  }
 }

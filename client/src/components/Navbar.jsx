@@ -1,9 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/styles/navbar.css";
 import { PropTypes } from "prop-types";
 import wallet from "../../public/assets/icons/wallet.svg";
+import { logout } from "../services/request";
 
 export default function Navbar({ handleShowLinks }) {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/login");
+    handleShowLinks();
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar_logo">
@@ -41,6 +50,11 @@ export default function Navbar({ handleShowLinks }) {
           <a href="/budgets" className="navbar_link">
             Mes budgets
           </a>
+        </li>
+        <li className="navbar_item">
+          <button type="button" onClick={handleLogout} className="navbar_link">
+            Se déconnecter
+          </button>
         </li>
       </ul>
       <button

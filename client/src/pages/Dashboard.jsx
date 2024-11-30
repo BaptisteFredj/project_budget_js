@@ -59,7 +59,9 @@ export default function Dashboard() {
     <>
       <div className="dashboard_titles_container">
         <Link to="/transactions?date=past">
-          <h2 className="dashboard_title">Mes dépenses par catégorie</h2>
+          <h2 className="dashboard_title title_by_period">
+            Mes dépenses par catégorie
+          </h2>
         </Link>
       </div>
       <ul className="period_button_container">
@@ -170,18 +172,36 @@ export default function Dashboard() {
         <Link to="/budgets">
           <h2 className="dashboard_title">Mes budgets</h2>
         </Link>
+        <Link to="/budgets_form">
+          <div
+            className="plus_button dashboard_budget_add"
+            role="button"
+            aria-label="Add"
+          />
+        </Link>
       </div>
-      {budgets.map((budget) => (
-        <BudgetThumb budget={budget} key={budget.id} />
-      ))}
+      <section className="budget_thumbs_container">
+        {budgets.map((budget) => (
+          <BudgetThumb budget={budget} key={budget.id} />
+        ))}
+      </section>
       <div className="dashboard_titles_container">
         <Link to="/transactions?date=past">
           <h2 className="dashboard_title expenses">Mes dernières dépenses</h2>
         </Link>
+        <Link to="/transactions_form">
+          <div
+            className="plus_button dashboard_transaction_add"
+            role="button"
+            aria-label="Add"
+          />
+        </Link>
       </div>
-      {transactions.slice(0, 10).map((transaction) => (
-        <TransactionThumb transaction={transaction} key={transaction.id} />
-      ))}
+      <section className="transaction_blocks_container">
+        {transactions.slice(0, 10).map((transaction) => (
+          <TransactionThumb transaction={transaction} key={transaction.id} />
+        ))}
+      </section>
     </>
   );
 }

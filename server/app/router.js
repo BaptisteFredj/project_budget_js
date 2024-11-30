@@ -18,6 +18,7 @@ router.delete("/users/:id", user.destroy);
 const auth = require("./controllers/authActions");
 
 router.post("/login", auth.login);
+router.post("/logout", auth.logout);
 
 // Transaction operations routes
 const icon = require("./controllers/iconActions");

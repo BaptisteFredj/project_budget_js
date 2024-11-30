@@ -24,15 +24,13 @@
 
 .transaction_label_form input[type="text"]::placeholder,
 .transaction_label_form input[type="number"]::placeholder,
-.transaction_label_form input[type="date"]::placeholder,
-.transaction_label_form select::placeholder {
+.transaction_label_form input[type="date"]::placeholder {
   color: var(--text-light-grey);
 }
 
 .transaction_label_form input[type="text"],
 .transaction_label_form input[type="number"],
-.transaction_label_form input[type="date"],
-.transaction_label_form select {
+.transaction_label_form input[type="date"] {
   border: 1px solid var(--light-grey);
   border-radius: 4px;
   padding: 0.4rem 0.5rem;
@@ -105,4 +103,42 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+}
+
+@media screen and (min-width: 992px) {
+  .transaction_label_form {
+    display: flex;
+    flex-direction: column;
+    margin-inline: 15svw;
+    margin-top: 5svw;
+  }
+
+  .transaction_amount_label,
+  .transaction_name_label,
+  .transaction_date_label,
+  .transaction_type_label,
+  .transaction_category_label {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .transaction_amount_input,
+  .transaction_name_input,
+  .transaction_date_input {
+    margin-bottom: 1rem;
+  }
+
+  .transaction_label_form input[type="text"]::placeholder,
+  .transaction_label_form input[type="number"]::placeholder,
+  .transaction_label_form input[type="date"]::placeholder {
+    font-size: 1.25rem;
+  }
+
+  .transaction_label_form input[type="text"],
+  .transaction_label_form input[type="number"],
+  .transaction_label_form input[type="date"] {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    width: 40svw;
+  }
 }

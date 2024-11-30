@@ -70,7 +70,52 @@ main {
   background: var(--dark-grey);
   color: white;
   padding: 17px 3rem;
+  text-align: center;
   border-radius: 8px;
+}
+
+.plus_button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #aaa;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  color: #aaa;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+}
+
+.plus_button::before,
+.plus_button::after {
+  content: "";
+  position: absolute;
+  background-color: #aaa;
+}
+
+.plus_button::before {
+  width: 50%;
+  height: 2px;
+}
+
+.plus_button::after {
+  width: 2px;
+  height: 50%;
+}
+
+.plus_button:hover {
+  background-color: #333;
+  transform: scale(1.1);
+}
+
+.plus_button:active {
+  transform: scale(0.95);
 }
 
 .icon_img {
@@ -104,4 +149,34 @@ main {
   color: red;
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
+}
+
+@media screen and (min-width: 992px) {
+  body {
+    height: 90vh;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--white) 0 250px,
+      var(--light-grey) 250px 500px
+    );
+    position: relative;
+    z-index: -1;
+  }
+
+  main {
+    margin-inline: 15svw;
+    border: 1px solid var(--light-grey);
+    position: relative;
+    z-index: 1;
+    background-color: var(--white);
+  }
+
+  .icon_img {
+    width: 40px;
+  }
+
+  .icon_circle {
+    width: 50px;
+    height: 50px;
+  }
 }

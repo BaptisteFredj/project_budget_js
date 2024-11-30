@@ -1,18 +1,18 @@
   create table user (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
     hashed_password VARCHAR(255) NOT NULL,
     created_at DATE
   );
 
   create table icon (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255) NOT NULL
   );
    
   create table category (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
+    name VARCHAR(100) NOT NULL,
     icon_id INT NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY(icon_id) REFERENCES icon(id),
@@ -21,7 +21,7 @@
   
   create table transaction (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     date DATE NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
     user_id INT NOT NULL,
